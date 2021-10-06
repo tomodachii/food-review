@@ -13,7 +13,7 @@ hoặc nếu sử dụng https
 ```
 git remote add sun https://github.com/tomodachii/food-review.git
 ```
-- Branch chính của dự án là **develop**
+- Branch chính của dự án là **main**
 - Mỗi tính năng mới hoặc bug fix mới sẽ làm theo flow như sau
 1. Đảm bảo code mới nhất ở nhánh develop dưới local tương đương với nhánh mới nhất trên server bằng cách chạy 2 lệnh:
 ```
