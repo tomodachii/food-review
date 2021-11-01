@@ -1,0 +1,89 @@
+
+/**** body ****/
+/**** ____ ****/
+
+/* card layout */
+
+.body{
+    background-color: white;
+    margin-top: 40px;
+    border-radius: 20px;
+}
+
+.body .body-top .follow-btn:hover{
+    background-color: rgb(224, 255, 210);
+    color: green;
+}
+
+.body .body-bottom{
+    padding-top: 40px;
+}
+
+.body .card-div{
+    border-radius: 20px;
+    border: 0px;
+}
+
+.body .card-img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.body .card-title-anchor a h4{
+    color: black;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.body .card-title-anchor a h4:hover{
+    color: rgb(250, 81, 81);
+}
+
+.body .card-title-anchor a:hover{
+    text-decoration-line: none;
+}
+
+.body .avt-card{
+    border-radius: 100%;
+}
+
+.body .link-to-acc{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.body .username{
+    color: rgb(136, 135, 135);
+}
+
+.body .username:hover{
+    color: black;
+}
+
+.body .link-to-acc a{
+    text-decoration-line: none;
+}
+
+/* .body .heart-icon{
+    float: right;
+    margin-right: 10px;
+    font-size: 25px;
+} */
+
+/* see more button */
+.body .post-list .see-more-btn{
+    width: 130px;
+    height: 40px;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 0px;
+    background: linear-gradient(rgb(240, 174, 75), rgb(255, 116, 3));    
+}
+
+.body .post-list .see-more-btn-div{
+    display: flex;
+    justify-content: center;
+}
+

@@ -1,44 +1,4 @@
-/**** header ****/
-/**** ______ ****/
 
-/* menu */
-
-body{
-    background-color: #f5f4f4;
-}
-
-.header{
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-nav{
-    float: right;
-    padding-right: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-nav .search-box{
-    width: 380px;
-    height: 50px;
-    background-color: #eeeeee;
-    border-radius: 30px;
-    margin-right: 20px;
-    border: 0px;
-}
-
-.header-nav .login-btn{
-    width: 130px;
-    height: 40px;
-    font-weight: 600;
-    border-radius: 10px;
-    border: 0px;
-    background: linear-gradient(rgb(236, 185, 109), rgb(243, 113, 7));
-}
 
 /* banner */
 
@@ -68,7 +28,8 @@ body{
 }
 
 .login-recommend img{
-    width: 140px;
+    /* width: 140px; */
+    height: 150px;
 }
 
 .login-recommend #sign-up{
@@ -153,7 +114,11 @@ body{
 }
 
 .body .card-title-anchor a h4:hover{
-    color: rgb(250, 129, 129);
+    color: rgb(250, 81, 81);
+}
+
+.body .card-title-anchor a:hover{
+    text-decoration-line: none;
 }
 
 .body .avt-card{
@@ -166,11 +131,15 @@ body{
 }
 
 .body .username{
-    color: rgb(114, 113, 113);
+    color: rgb(136, 135, 135);
 }
 
 .body .username:hover{
     color: black;
+}
+
+.body .link-to-acc a{
+    text-decoration-line: none;
 }
 
 /* .body .heart-icon{
@@ -187,7 +156,7 @@ body{
     font-weight: 600;
     border-radius: 20px;
     border: 0px;
-    background: linear-gradient(rgb(236, 185, 109), rgb(243, 113, 7));    
+    background: linear-gradient(rgb(240, 174, 75), rgb(255, 116, 3));    
 }
 
 .body .left-content .see-more-btn-div{
@@ -235,7 +204,7 @@ body{
 {
     border-radius: 10px;
     margin-top: 3px;
-    margin-left: 3px;
+    margin-left: 10px;
     width: 18%;
 }
 
@@ -295,61 +264,4 @@ body{
 .body .right-content .recommend-account .recommend-account-item .user-recommend
 {
     padding-top: 10px;
-}
-
-/**** footer ****/
-/**** ______ ****/
-
-.footer{
-    margin-top: 30px;
-    background-color: white;
-}
-
-.footer .footer-top{
-    padding-top: 50px;
-    padding-bottom: 10px;
-}
-
-.footer .slogan{
-    font-size: larger;   
-    font-weight: 500;
-    color: black;
-}
-
-.footer .slogan img{
-    width: 80px;
-}
-
-.footer .link-bonus a{
-    color: rgb(116, 116, 116);
-    font-weight: 600;
-    padding-right: 20px;
-}
-
-.footer .link-bonus a:hover{
-    color: rgb(0, 0, 0);
-    font-weight: 750;
-}
-
-.footer .footer-bottom{
-    padding-top: 30px;
-    padding-bottom: 50px;
-}
-
-.footer .footer-bottom p{
-    font-size: large;
-    color: rgb(116, 116, 116);
-}
-
-/* Back-to-top-icon */
-
-.back-to-top-icon{
-    position: fixed;
-    float: right;
-    bottom: 10px;
-    right: 10px;
-}
-
-.back-to-top-img{
-    width: 120px;
 }
