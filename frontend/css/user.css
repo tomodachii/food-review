@@ -6,58 +6,105 @@
 
 .body{
     background-color: white;
-    margin-top: 40px;
+    padding-bottom: 50px;
+    margin-top: 30px;
     border-radius: 20px;
+}
+
+.body .body-top .avt{
+    border-radius: 100%;
+    width: 135px;
+}
+
+.body .body-top .username{
+    padding-top: 10px;
+}
+
+.body .body-top .email{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: rgb(146, 146, 146);
+    font-weight: 480;
+    font-size: 18px;
+}
+
+.body .body-top .follow-btn{
+    border-color: rgb(255, 156, 28);
+    border-radius: 10px;
+    color: rgb(255, 156, 28);
+    width: 200px;
 }
 
 .body .body-top .follow-btn:hover{
-    background-color: rgb(224, 255, 210);
-    color: green;
+    background-color: rgb(253, 236, 199);
+    color: rgb(253, 146, 6);
 }
 
-.body .body-bottom{
-    padding-top: 40px;
+.body .body-top .post-number,
+.body .body-top .follower,
+.body .body-top .following{
+    padding-right: 20px;
 }
 
-.body .card-div{
+.body .body-bottom .align-center{
+    display: flex;
+    justify-content: center;
+}
+
+.body .body-bottom .choice-list div{
+    color: rgb(146, 146, 146);
+    font-weight: 400;
+    font-size: 22px;
+    border: 0;
+    margin-right: 15px;
+}
+
+.body .body-bottom .choice-list div:hover,
+.body .body-bottom div .default-choice{
+    background-color: white;
+    color: black;
+    font-weight: 500;
+}
+
+.body .body-bottom .card-div{
     border-radius: 20px;
-    border: 0px;
 }
 
-.body .card-img{
+.body .body-bottom .card-img{
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    width: 100%;
 }
 
-.body .card-title-anchor a h4{
+.body .body-bottom .card-title-anchor a h4{
     color: black;
     margin-top: 10px;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
-.body .card-title-anchor a h4:hover{
+.body .body-bottom .card-title-anchor a h4:hover{
     color: rgb(250, 81, 81);
 }
 
-.body .card-title-anchor a:hover{
+.body .body-bottom .card-title-anchor a:hover{
     text-decoration-line: none;
 }
 
-.body .avt-card{
+.body .body-bottom .avt-card{
     border-radius: 100%;
 }
 
-.body .link-to-acc{
+.body .body-bottom .link-to-acc{
     margin-left: 10px;
     margin-bottom: 10px;
 }
 
-.body .username{
+.body .body-bottom .username{
     color: rgb(136, 135, 135);
 }
 
-.body .username:hover{
+.body  .body-bottom  .username:hover{
     color: black;
 }
 
@@ -70,20 +117,3 @@
     margin-right: 10px;
     font-size: 25px;
 } */
-
-/* see more button */
-.body .post-list .see-more-btn{
-    width: 130px;
-    height: 40px;
-    color: white;
-    font-weight: 600;
-    border-radius: 20px;
-    border: 0px;
-    background: linear-gradient(rgb(240, 174, 75), rgb(255, 116, 3));    
-}
-
-.body .post-list .see-more-btn-div{
-    display: flex;
-    justify-content: center;
-}
-
