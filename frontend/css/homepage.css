@@ -142,11 +142,16 @@
     text-decoration-line: none;
 }
 
-/* .body .heart-icon{
+.body .heart-icon{
     float: right;
     margin-right: 10px;
-    font-size: 25px;
-} */
+    font-size: 20px;
+}
+
+.body .heart-icon:hover{
+    color: red;
+    background-color: red;
+}
 
 /* see more button */
 .body .left-content .see-more-btn{
