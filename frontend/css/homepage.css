@@ -1,0 +1,272 @@
+
+
+/* banner */
+
+.carousel-layout{
+    padding: 0px 20px;
+}
+
+.slider{
+    border: 0px;
+    border-radius: 20px;
+}
+
+.slider-image{
+    border-radius: 20px;
+}
+
+.login-recommend{
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-recommend p{
+    text-align: center;
+}
+
+.login-recommend img{
+    /* width: 140px; */
+    height: 150px;
+}
+
+.login-recommend #sign-up{
+    width: 130px;
+    height: 40px;
+    background-color: #d8d8d8;
+    color: black;
+    font-weight: 600;
+    border: 0px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.login-recommend #sign-up:hover{
+    background-color: #bbbaba;
+}
+
+.login-recommend #sign-in{
+    width: 130px;
+    height: 40px;
+    background-color: #e7dada;
+    color: rgb(235, 93, 28);
+    font-weight: 600;
+    border: 0px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.login-recommend #sign-in:hover{
+    background-color: #cec2c2;
+}
+
+
+/**** body ****/
+/**** ____ ****/
+
+/* card layout */
+
+.body{
+    margin-top: 40px;
+}
+
+.body .choice-list{
+    margin-bottom: 10px;
+}
+
+.body .choice-list span{
+    width: 90px;
+    height: 40px;
+    border-radius: 15px;
+    border: 0px;
+    color: rgb(119, 119, 119);
+}
+
+.body .choice-list span:hover{
+    font-weight: 500;
+    color: black;
+    background-color: rgb(189, 189, 189);
+}
+
+.body .default-choice{
+    font-weight: 500;
+    color: black;
+    background-color: rgb(231, 231, 231);
+}
+
+.body .card-div{
+    border-radius: 20px;
+    border: 0px;
+}
+
+.body .card-img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.body .card-title-anchor a h4{
+    color: black;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.body .card-title-anchor a h4:hover{
+    color: rgb(250, 81, 81);
+}
+
+.body .card-title-anchor a:hover{
+    text-decoration-line: none;
+}
+
+.body .avt-card{
+    border-radius: 100%;
+}
+
+.body .link-to-acc{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.body .username{
+    color: rgb(136, 135, 135);
+}
+
+.body .username:hover{
+    color: black;
+}
+
+.body .link-to-acc a{
+    text-decoration-line: none;
+}
+
+.body .heart-icon{
+    float: right;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.body .heart-icon:hover{
+    color: red;
+    background-color: red;
+}
+
+/* see more button */
+.body .left-content .see-more-btn{
+    width: 130px;
+    height: 40px;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 0px;
+    background: linear-gradient(rgb(240, 174, 75), rgb(255, 116, 3));    
+}
+
+.body .left-content .see-more-btn-div{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* right content */
+
+/* featured-location & recommend-account */
+
+.body .right-content .featured-location,
+.body .right-content .recommend-account
+{
+    background-color: white;
+    border-radius: 20px;
+}
+
+.body .right-content .featured-location>h6,
+.body .right-content .recommend-account>h6
+{
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(139, 134, 134);
+    font-weight: 650;
+}
+
+.body .right-content .featured-location .featured-location-item,
+.body .right-content .recommend-account .recommend-account-item
+{
+    height: 90px;
+}
+
+.body .right-content .featured-location .featured-location-item:hover,
+.body .right-content .recommend-account .recommend-account-item:hover
+{
+    background-color: #e9e8e8;
+    border-radius: 20px;
+}
+
+.body .right-content .featured-location .featured-location-item img,
+.body .right-content .recommend-account .recommend-account-item img
+{
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-left: 10px;
+    width: 18%;
+}
+
+.body .right-content .featured-location .featured-location-item .store-info,
+.body .right-content .recommend-account .recommend-account-item .user-recommend
+{
+    float: right;
+    width: 75%;
+}
+
+.body .right-content .featured-location .featured-location-item .name,
+.body .right-content .recommend-account .recommend-account-item .name
+{
+    color: black;
+    font-weight: 620;
+    font-size: 18px;
+}
+
+.body .right-content .featured-location .featured-location-item .location,
+.body .right-content .recommend-account .recommend-account-item .mail
+{
+    color: rgb(145, 145, 145);
+    font-weight: 390;
+    font-size: 15px;
+}
+
+.body .right-content .featured-location .featured-location-item .point{
+    color: black;
+    font-size: 15px;
+}
+
+/* recommend-account */
+
+.body .right-content .recommend-account
+{
+    margin-top: 30px;
+}
+
+.body .right-content .recommend-account .recommend-account-item img
+{
+    border-radius: 100%;
+    width: 18%px;
+}
+
+.body .right-content .recommend-account .recommend-account-item .mail
+{
+    color: rgb(145, 145, 145);
+    font-weight: 390;
+    font-size: 18px;
+}
+
+.body .right-content .recommend-account .recommend-account-item>a>div
+{
+    padding-top: 10px;
+}
+
+.body .right-content .recommend-account .recommend-account-item .user-recommend
+{
+    padding-top: 10px;
+}
