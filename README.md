@@ -1,5 +1,19 @@
 # Food review Setup project
 
+## Run
+
+- Server chạy trên cổng 5000
+- Client chạy trên cổng 3000
+- Để code tiếp và check thì ae dùng 2 terminal để chạy server và client trên cổng tương ứng.
+
+## Library and framework
+
+### Front-end
+- Reactjs, Axios,...
+
+### Back-end
+- Nodejs, Prisma ORM, Cors,...
+
 
 ## Github workflow
 
