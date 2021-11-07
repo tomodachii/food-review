@@ -9,3 +9,67 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model users {
+  user_id      Int            @id @default(autoincrement())
+  first_name   String         @db.VarChar(255)
+  last_name    String         @db.VarChar(255)
+  email        String         @db.VarChar(255)
+  role         Int
+  phone_number String         @db.VarChar(10)
+  table_review table_review[]
+}
+
+model table_review {
+  user_id   Int
+  review_id Int      @id
+  create_at DateTime @default(now())
+  action    String   @db.VarChar(255)
+  user      users    @relation(fields: [user_id], references: [user_id])
+}
+
+model review {
+  review_id     Int        @id
+  title         String     @db.VarChar(255)
+  description   String     @db.VarChar(1000)
+  rating        Float
+  service       Int
+  price         Int
+  food          Int
+  ambience      Int
+  picture       String     @db.VarChar(255)
+  restaurant_id Int
+  category_id   Int
+  restaurant    restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
+  category      category   @relation(fields: [category_id], references: [category_id])
+}
+
+model category {
+  category_id Int      @id
+  name        String   @db.VarChar(255)
+  review      review[]
+}
+
+model restaurant {
+  restaurant_id Int      @id
+  address_id    Int
+  rating        Float
+  name          String   @db.VarChar(255)
+  picture       String   @db.VarChar(255)
+  address       address  @relation(fields: [address_id], references: [address_id])
+  review        review[]
+}
+
+model address {
+  address_id  Int          @id
+  address     String       @db.VarChar(255)
+  district_id Int
+  district    district     @relation(fields: [district_id], references: [district_id])
+  restaurant  restaurant[]
+}
+
+model district {
+  district_id Int       @id
+  district    String    @unique @db.VarChar(255)
+  address     address[]
+}
