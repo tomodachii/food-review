@@ -4,6 +4,24 @@
 
 - Server chạy trên cổng 5000
 - Client chạy trên cổng 3000
+- Khi mới clone hoặc fetch project về , ae muốn chạy server thì di chuyển vào server và chạy:
+```
+npm install
+```
+  Tương tự đối với client.
+- Để connect với db online, ae vào server, xóa thư mục prisma, và chạy lênh:
+```
+npx prisma init
+
+```
+- Lệnh trên sẽ tạo ra folder prisma.prisma và file .evn; Sau đó ae vào .evn và thay thế  DATABASE_URL="......" thành:
+```
+DATABASE_URL="postgres://uozvijpupszwsk:d00662e828becbfb49af206e2447a24538faf04fa71b8062ad0624642b7e88fb@ec2-44-198-29-193.compute-1.amazonaws.com:5432/d9hrbghvl94fe1?schema=public"
+```
+- chạy lệnh sau để kết nối db:
+```
+npx prisma db pull
+```
 - Để code tiếp và check thì ae dùng 2 terminal để chạy server và client trên cổng tương ứng.
 
 ## Library and framework
