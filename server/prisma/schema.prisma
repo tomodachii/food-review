@@ -66,8 +66,8 @@ model table_review {
 
 model users {
   user_id      Int            @id @default(autoincrement())
-  password     String         @db.VarChar(225)
   username     String         @db.VarChar(255)
+  password     String         @db.VarChar(225)
   email        String         @db.VarChar(255)
   role         Int
   phone_number String         @db.VarChar(10)
