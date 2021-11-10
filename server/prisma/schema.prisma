@@ -54,7 +54,7 @@ model review {
 }
 
 model table_review {
-  user_id   Int
+  user_id   String   @db.VarChar(255)
   review_id Int      @id
   create_at DateTime @default(now())
   action    String   @db.VarChar(255)
@@ -62,11 +62,13 @@ model table_review {
 }
 
 model users {
-  user_id      Int            @id @default(autoincrement())
-  first_name   String         @db.VarChar(255)
-  last_name    String         @db.VarChar(255)
+  user_id      String         @id @db.VarChar(255)
   email        String         @db.VarChar(255)
-  role         Int
+  role         Int            @default(1)
   phone_number String         @db.VarChar(10)
+  password     String         @db.VarChar(225)
+  username     String         @db.VarChar(255)
+  avatar       String         @db.VarChar(255)
+  provider     String         @db.VarChar(30)
   table_review table_review[]
 }
