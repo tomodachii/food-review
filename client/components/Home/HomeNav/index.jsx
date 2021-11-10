@@ -1,3 +1,4 @@
+import './style.module.scss';
 const HomeNav = () => {
   return (
     <nav className='nav__container w-4/5 my-0 mx-auto flex flex-row items-center justify-between'>
