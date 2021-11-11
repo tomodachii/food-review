@@ -2,6 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth2').Strategy
+const bcrypt = require('./bcrypt');
 
 const keys = require('./key');
 const { PrismaClient } = require('@prisma/client')
@@ -16,7 +17,12 @@ passport.use(new LocalStrategy(
         username
       }
     })
-    if (UserRecord?.password == password) return done(null, UserRecord)
+    try {
+      const passwordCompare = await bcrypt.compare(password, UserRecord.password);
+      if (passwordCompare) return done(null, UserRecord)
+    } catch(err) {
+      return done(err, false)
+    }
     return done(null, false)
   } catch(err) {
     return done(err)
@@ -115,17 +121,17 @@ async function(request, accessToken, refreshToken, profile, done) {
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.user_id);
 });
 
 passport.deserializeUser( async function(user, done) {
   try {
-    const user = await prisma.users.findFirst({
+    const authUser = await prisma.users.findFirst({
       where: {
-        username: user.username
+        user_id: user.user_id
       }
     })
-    if (user) {
+    if (authUser) {
       done(null, user)
       return
     }
