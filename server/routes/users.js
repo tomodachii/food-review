@@ -117,6 +117,6 @@ router.get('/signout', (req, res) => {
   if (req.isAuthenticated()){
     req.logOut()
   }
-  res.json({user: req.user})
+  res.json({user: req.user}) 
 })
 module.exports = router;
