@@ -1,4 +1,4 @@
-import 'tailwindcss/tailwind.css';
+// import 'tailwindcss/tailwind.css';
 import '../styles/styles.scss';
 import 'antd/dist/antd.css';
 import Head from 'next/head';
