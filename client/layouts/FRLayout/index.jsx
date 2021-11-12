@@ -1,13 +1,12 @@
-import { Head } from 'next/document';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 const FRLayout = ({ children }) => {
   return (
     <>
-      {/* <Head>
-        <title>Tastie</title>
-      </Head> */}
+      <Header />
       {children}
-      <div>Footer</div>
+      <Footer />
     </>
   );
 };

@@ -1,6 +1,5 @@
-import Head from 'next/head';
 import ParallaxHeader from '../components/Home/ParallaxHeader';
-import FRLayout from '../layouts/FRLayout';
+import HomeLayout from '../layouts/HomeLayout';
 import items from '../testcategories';
 import React, { useState } from 'react';
 import Categories from '../components/Home/Categories';
@@ -21,11 +20,13 @@ export default function Home() {
   };
 
   return (
-    <FRLayout>
+    <HomeLayout>
       <div className='w-full m-0'>
-        <ParallaxHeader />
-        <Categories categories={categories} filterItems={filterItems} />
+        {/* <ParallaxHeader /> */}
+        <div className='w-3/5 mx-auto'>
+          <Categories categories={categories} filterItems={filterItems} />
+        </div>
       </div>
-    </FRLayout>
+    </HomeLayout>
   );
 }
