@@ -14,6 +14,9 @@ module.exports = {
       color: {
         'custom-footer-color': '#F8F8F8',
       },
+      fontSize: {
+        '10xl': '12rem',
+      },
     },
   },
   variants: {
