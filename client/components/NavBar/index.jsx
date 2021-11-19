@@ -1,10 +1,11 @@
-import './style.module.scss';
 import { Button } from 'antd';
 import { useEffect, useState } from 'react';
-import LoginModal from '../Home/LoginModal';
+import LoginModal from '../LoginModal';
 import { FiEdit3 } from 'react-icons/fi';
+import { useRouter } from 'next/dist/client/router';
 
 const HomeNav = ({ appName, type }) => {
+  const router = useRouter();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [navItemStyle, setNavItemStyle] = useState('');
@@ -22,8 +23,14 @@ const HomeNav = ({ appName, type }) => {
 
   return (
     <>
-      <nav className='nav__container w-3/5 my-0 mx-auto flex flex-row items-center justify-between'>
-        <h2 className='inline font-yujiboku'>{appName}</h2>
+      <nav className='nav__container w-3/4 my-0 mx-auto flex flex-row items-center justify-between'>
+        <h2
+          className='inline cursor-pointer font-yujiboku'
+          onClick={() => {
+            router.push('/');
+          }}>
+          {appName}
+        </h2>
         <ul className='nav flex flex-row items-center justify-between mb-0'>
           <li className='nav__item p-5 text-white'>
             <Button

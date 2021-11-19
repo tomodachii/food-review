@@ -6,6 +6,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .review--mini__section {
+    columns: 4;
+    // column-gap: 1rem;
+  }
+
+  .break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  .review__img {
+    top: -60px;
+    left: 12.5%;
+  }
+
+  .review--mini {
+    margin-top: 60px;
+  }
+
+  .review--mini__content {
+    margin-top: -60px;
+  }
+}
+
+* {
+  font-size: 18px;
+}
+
 body {
   font-size: 18px;
   margin: 0 auto;
@@ -18,7 +46,8 @@ body {
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5 {
     line-height: 1.25;
     margin-bottom: 0.75rem;
   }
@@ -32,11 +61,15 @@ body {
   }
 
   h3 {
-    font-size: 1.75rem;
+    font-size: 1.75em;
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+
+  h5 {
+    font-size: 0.875rem;
   }
 
   .input {
