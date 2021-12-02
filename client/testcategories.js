@@ -19,8 +19,8 @@ const menu = [
   // },
   {
     id: 3,
-    title: 'godzilla milkshake',
-    user: 'john titor',
+    title: 'godzilla milkshake motherfucker',
+    user: 'john titorrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
     category: 'shakes',
     like: 6,
     img: 'https://picsum.photos/300/400',

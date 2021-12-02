@@ -1,14 +1,14 @@
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
-const FRLayout = ({ children }) => {
+const SearchLayout = ({ children }) => {
   return (
     <>
-      <Header type='other' />
+      <Header type='search' />
       {children}
       <Footer />
     </>
   );
 };
 
-export default FRLayout;
+export default SearchLayout;

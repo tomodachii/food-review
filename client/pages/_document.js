@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head></Head>
-        <body className='font-poppins bg-gray-50 cursor-default'>
+        <body className='font-poppins bg-gray-50 cursor-default select-none'>
           <Main />
           <NextScript />
         </body>
