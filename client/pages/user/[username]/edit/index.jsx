@@ -1,9 +1,14 @@
 import FRLayout from '../../../../layouts/FRLayout';
+import { Input } from 'antd';
 
 const UserEdit = () => {
   return (
     <FRLayout>
-      <h1>User Edit</h1>
+      <div className='w-3/4 mx-auto'>
+        <h1>Edit</h1>
+        <input type='text' placeholder='Edit username' />
+        <Input />
+      </div>
     </FRLayout>
   );
 };

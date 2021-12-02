@@ -16,6 +16,10 @@ module.exports = {
       },
       fontSize: {
         '10xl': '12rem',
+        default: '18px',
+      },
+      transitionProperty: {
+        width: 'width',
       },
     },
   },

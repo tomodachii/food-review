@@ -129,7 +129,7 @@ body {
   .ant-input,
   .ant-input-affix-wrapper {
     color: #272343;
-    padding: 9px 10px;
+    // padding: 9px 10px;
     border-radius: 6px;
     font-size: 14px;
   }
@@ -139,21 +139,21 @@ body {
     border-color: #272343;
   }
 
-  .ant-input-affix-wrapper {
-    height: 40px;
-  }
+  // .ant-input-affix-wrapper {
+  //   height: 40px;
+  // }
 
-  .ant-input-affix-wrapper .ant-input {
-    padding: 9px 10px;
-  }
+  // .ant-input-affix-wrapper .ant-input {
+  //   padding: 9px 10px;
+  // }
 
-  .ant-input-prefix {
-    margin-left: 7px;
-  }
+  // .ant-input-prefix {
+  //   margin-left: 7px;
+  // }
 
-  .ant-input-suffix {
-    margin-right: 10px;
-  }
+  // .ant-input-suffix {
+  //   margin-right: 10px;
+  // }
 
   .ant-input:hover,
   .ant-input:focus {
@@ -180,10 +180,10 @@ body {
   }
 
   //Tooltip
-  .ant-tooltip-inner {
-    color: #272343;
-    background-color: #fffffe;
-  }
+  // .ant-tooltip-inner {
+  //   // color: #272343;
+  //   background-color: #fffffe;
+  // }
 
   //date
   .ant-picker:hover,
@@ -421,6 +421,7 @@ body {
       background: $primary-color;
     }
   }
+  // -webkit-overflow-scrolling: touch;
 }
 
 ::-webkit-scrollbar {

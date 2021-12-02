@@ -1,6 +1,5 @@
-import ParallaxHeader from '../components/Home/ParallaxHeader';
 import HomeLayout from '../layouts/HomeLayout';
-import React, { useState } from 'react';
+import React from 'react';
 import Categories from '../components/Home/Categories';
 
 export default function Home() {
