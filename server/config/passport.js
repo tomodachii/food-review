@@ -135,7 +135,6 @@ passport.deserializeUser( async function(user, done) {
       done(null, user)
       return
     }
-
   } catch (err) {
     done(err, user);
   }

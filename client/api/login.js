@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const loginAPI = {
-  getData: (id) => {
-    const url = `http://localhost:5000/home/${id}`;
-    return axios.get(url);
+  login: (user) => {
+    const url = `http://localhost:5000/users/signin`;
+    return axios.post(url, user);
   },
-
-  checkRole: (taskId, userId) => {
-    return axios.post('/task/check-role', { taskId, userId });
+  register: (user) => {
+    const url = `http://localhost:5000/users/signup`;
+    return axios.post(url, user);
   },
 };
 export default loginAPI;
