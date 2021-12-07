@@ -36,7 +36,7 @@ const NavBar = ({ appName, type }) => {
           }}>
           {appName}
         </h2>
-        {type !== 'home' && type !== 'search' && <SearchBar />}
+        {type !== 'home' && <SearchBar />}
         <ul className='nav flex flex-row items-center justify-between mb-0'>
           <li className='nav__item p-5 text-white'>
             <Button
