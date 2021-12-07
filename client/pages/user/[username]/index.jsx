@@ -1,7 +1,15 @@
 import FRLayout from '../../../layouts/FRLayout';
 import Tablist from '../../../components/User/Tablist';
+import UserContext from '../../../UserContext';
+import { useEffect, useContext } from 'react';
 
 const User = () => {
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log('user' + user);
+  }, []);
+
   return (
     <FRLayout>
       <div className='w-full bg-gray-50 mx-auto'>

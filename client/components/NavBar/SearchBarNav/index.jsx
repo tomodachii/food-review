@@ -20,6 +20,7 @@ const SearchBar = () => {
     <div className='w-full relative'>
       <div className=' border-indigo-600 w-1/4 transition-width duration-300 ease-in-out focus-within:w-3/4 pl-8'>
         <Input
+          bordered='false'
           allowClear
           placeholder='Search...'
           prefix={<SearchOutlined />}

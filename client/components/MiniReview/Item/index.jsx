@@ -51,12 +51,19 @@ const MiniReviewItem = ({ review }) => {
 
           <div className='flex items-center justify-between'>
             <Tooltip placement='bottomLeft' title={review.user}>
-              <p
-                className='m-0 cursor-pointer inline-block overflow-hidden overflow-ellipsis whitespace-nowrap'
+              <div
+                className='flex gap-2 items-center overflow-hidden'
                 onClick={onUserClick}>
-                {review.user}
-              </p>
+                <img
+                  className='m-0 rounded-full h-8 w-8 cursor-pointer'
+                  src={review.user_img}
+                />
+                <p className='m-0 cursor-pointer inline-block overflow-hidden overflow-ellipsis whitespace-nowrap'>
+                  {review.user}
+                </p>
+              </div>
             </Tooltip>
+
             <div className='flex '>
               <LikeButton />
               <h5 className='text-gray-400 m-0 ml-1 '>{review.like}</h5>

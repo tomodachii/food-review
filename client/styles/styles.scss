@@ -131,7 +131,7 @@ body {
     color: #272343;
     // padding: 9px 10px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 18px;
   }
 
   .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
@@ -422,6 +422,10 @@ body {
     }
   }
   // -webkit-overflow-scrolling: touch;
+
+  .ant-form-item-label > label {
+    font-size: 18px;
+  }
 }
 
 ::-webkit-scrollbar {
