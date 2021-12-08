@@ -1,24 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import loginAPI from '../../../api/login';
+import userContext from '../../../UserContext';
 
 const LoginModal = ({ open, setOpen }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [form] = Form.useForm();
+  const { user, setUser } = useContext(userContext);
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
-    await loginAPI.login({
-      username: values.username,
-      password: values.password,
-    }).then((res) => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.error(err);
-    })
+    await loginAPI
+      .login({
+        username: values.username,
+        password: values.password,
+      })
+      .then((res) => {
+        console.log('response data: ');
+        console.log(res.data.user);
+        setUser(res.data.user);
+        console.log('user: ');
+        console.log(user);
+        openNotification('success', 'Hello ' + user.username);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const openNotification = (type, msg) => {
+    notification[type]({
+      message: msg,
+      duration: 3,
+    });
   };
 
   const onUsernameValueChange = (e) => {

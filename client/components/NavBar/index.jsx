@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 // const { Search } = Input;
 import SearchBar from './SearchBarNav';
 import { useEffect, useState } from 'react';
@@ -6,12 +6,21 @@ import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 import { FiEdit3 } from 'react-icons/fi';
 import { useRouter } from 'next/dist/client/router';
+import UserContext from '../../UserContext';
+import { useContext } from 'react';
 
 const NavBar = ({ appName, type }) => {
   const router = useRouter();
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [navItemStyle, setNavItemStyle] = useState('');
+  const {
+    user,
+    setUser,
+    loginModalOpen,
+    setLoginModalOpen,
+    registerModalOpen,
+    setRegisterModalOpen,
+  } = useContext(UserContext);
+
   useEffect(() => {
     if (type === 'home') {
       setNavItemStyle(
@@ -25,6 +34,21 @@ const NavBar = ({ appName, type }) => {
   }, []);
 
   // const onSearch = value => {}
+  const handleWriteReview = async () => {
+    if (user) {
+      router.push('/review/create');
+    } else {
+      await setRegisterModalOpen(true);
+      await openNotification('error', 'You have to login first');
+    }
+  };
+
+  const openNotification = (type, msg) => {
+    notification[type]({
+      message: msg,
+      duration: 3,
+    });
+  };
 
   return (
     <>
@@ -43,26 +67,30 @@ const NavBar = ({ appName, type }) => {
               icon={<FiEdit3 className='inline mr-2' />}
               type='primary'
               size='large'
-              onClick={() => {
-                router.push('/review/create');
-              }}>
+              onClick={handleWriteReview}>
               Write review
             </Button>
           </li>
-          <li className='nav__item p-5 '>
-            <button
-              className={navItemStyle}
-              onClick={() => setLoginModalOpen(true)}>
-              Login
-            </button>
-          </li>
-          <li className='nav__item p-5 '>
-            <button
-              className={navItemStyle}
-              onClick={() => setRegisterModalOpen(true)}>
-              Register
-            </button>
-          </li>
+          {user ? (
+            <li className='text-white'>{'Hello ' + user.username}</li>
+          ) : (
+            <>
+              <li className='nav__item p-5 '>
+                <button
+                  className={navItemStyle}
+                  onClick={() => setLoginModalOpen(true)}>
+                  Login
+                </button>
+              </li>
+              <li className='nav__item p-5 '>
+                <button
+                  className={navItemStyle}
+                  onClick={() => setRegisterModalOpen(true)}>
+                  Register
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
       <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />

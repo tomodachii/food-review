@@ -23,7 +23,6 @@ const SearchResult = ({ data }) => {
 
   useEffect(() => {
     // fetchData();
-    setUser('My nigga');
     console.log(data);
     console.log(user);
   }, []);
