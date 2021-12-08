@@ -3,13 +3,22 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import loginAPI from '../../../api/login';
 
 const LoginModal = ({ open, setOpen }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [form] = Form.useForm();
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    await loginAPI.login({
+      username: values.username,
+      password: values.password,
+    }).then((res) => {
+      console.log(res.data);
+    }).catch((err) => {
+      console.error(err);
+    })
   };
 
   const onUsernameValueChange = (e) => {

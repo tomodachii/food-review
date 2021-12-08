@@ -51,6 +51,7 @@ router.post('/signup', async (req, res) => {
     return
   }
 
+
   try {
     // check if username is existed in database
     const userTemp = await prisma.users.findFirst({
@@ -76,8 +77,8 @@ router.post('/signup', async (req, res) => {
           user_id: IdRender(),
           username: req.body.username,
           password: hashPassword,
-          email: req.body.email,
-          phone_number: req.body.phone,
+          email: "",
+          phone_number: "",
           avatar: "",
           provider: ""
         }
