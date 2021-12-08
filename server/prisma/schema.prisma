@@ -10,90 +10,95 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model address {
-  address_id  Int          @id
+  address_id  String       @id @default(uuid())
   address     String       @db.VarChar(255)
-  district_id Int
+  district_id String
   district    district     @relation(fields: [district_id], references: [district_id])
   restaurant  restaurant[]
 }
 
 model category {
-  category_id Int      @id
-  name        String   @db.VarChar(255)
-  review      review[]
+  category_id   String   @id @default(uuid())
+  category_name String   @db.VarChar(255)
+  review        review[]
 }
 
 model district {
-  district_id Int       @id
+  district_id String    @id @default(uuid())
   district    String    @unique @db.VarChar(255)
   address     address[]
 }
 
 model restaurant {
-  restaurant_id Int      @id
-  address_id    Int
-  rating        Float
-  name          String   @db.VarChar(255)
-  picture       String   @db.VarChar(255)
-  address       address  @relation(fields: [address_id], references: [address_id])
-  review        review[]
+  restaurant_id     String   @id @default(uuid())
+  address_id        String
+  restaurant_rating Float    @default(0)
+  restaurant_name   String   @db.VarChar(255)
+  restaurant_image  String?  @db.VarChar(255)
+  address           address  @relation(fields: [address_id], references: [address_id])
+  review            review[]
 }
 
 model review {
-  review_id     Int        @id
+  review_id     String     @id @default(uuid())
   title         String     @db.VarChar(255)
   description   String     @db.VarChar(1000)
-  rating        Float
-  service       Int
-  price         Int
-  food          Int
-  ambience      Int
-  picture       String     @db.VarChar(255)
-  restaurant_id Int
-  category_id   Int
+  likes         Int        @default(0)
+  user_rating   Float
+  service       Int        @default(0)
+  price         Int        @default(0)
+  food          Int        @default(0)
+  ambience      Int        @default(0)
+  review_image  String     @db.VarChar(255)
+  restaurant_id String
+  category_id   String
   category      category   @relation(fields: [category_id], references: [category_id])
   restaurant    restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
   comments      comments[]
 }
 
 model table_review {
-  user_id   Int
+  user_id   String
   review_id Int      @id
-  likes     Int
   create_at DateTime @default(now())
   action    String   @db.VarChar(255)
   users     users    @relation(fields: [user_id], references: [user_id])
 }
 
 model comments {
-  comment_id         Int @id
-  comment_content    String @db.VarChar(1000)
-  commntedDate       DateTime @default(now())
-  review_id          Int
-  user_id            Int
-  review             review  @relation(fields: [review_id], references: [review_id])
-  users              users   @relation(fields: [user_id], references: [user_id])
-  subcomments        subcomments[]
+  comment_id      String        @id @default(uuid())
+  comment_content String        @db.VarChar(1000)
+  comment_date    DateTime      @default(now())
+  review_id       String
+  user_id         String
+  review          review        @relation(fields: [review_id], references: [review_id])
+  users           users         @relation(fields: [user_id], references: [user_id])
+  subcomments     subcomments[]
 }
 
 model subcomments {
-  subcomment_id Int @id
-  suncommented_content String @db.VarChar(1000)
-  user_id       Int
-  comment_id    Int
-  user          users @relation(fields: [user_id], references: [user_id])
-  comments      comments @relation(fields: [comment_id], references: [comment_id])
+  subcomment_id      String   @id @default(uuid())
+  subcomment_content String   @db.VarChar(1000)
+  subcomment_date    DateTime @default(now())
+  user_id            String
+  comment_id         String
+  users              users    @relation(fields: [user_id], references: [user_id])
+  comments           comments @relation(fields: [comment_id], references: [comment_id])
 }
 
 model users {
-  user_id       Int            @id @default(autoincrement())
-  username      String         @db.VarChar(255)
-  password      String         @db.VarChar(225)
-  email         String         @db.VarChar(255)
-  role          Int
-  phone_number  String         @db.VarChar(10)
-  table_review  table_review[]
-  comments      comments[]
-  subcomments   subcomments[]
+  user_id      String         @id @default(uuid())
+  username     String         @db.VarChar(255)
+  password     String         @db.VarChar(225)
+  email        String         @unique @db.VarChar(255)
+  role         Int            @default(1)
+  phone_number String?        @db.VarChar(10)
+  avatar       String         @db.VarChar(255)
+  provider     String         @db.VarChar(30)
+  table_review table_review[]
+  subcomments  subcomments[]
+  comments     comments[]
 }
+
