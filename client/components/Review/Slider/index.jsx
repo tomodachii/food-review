@@ -21,7 +21,7 @@ const Slider = ({ data }) => {
         {imgList.map((item, itemIndex) => {
           const { image, name } = item;
           let initPosition =
-            'mx-auto w-full h-full absolute top-0 left-0 transition duration-500 ease-in-out';
+            'mx-auto w-full h-full absolute top-0 left-0 transition duration-300 ease-in-out';
           let position = initPosition + ' opacity-0 translate-x-full';
           if (itemIndex === index) {
             position = initPosition + ' opacity-1 translate-x-0';
@@ -46,12 +46,12 @@ const Slider = ({ data }) => {
       <button
         className='absolute top-1/2 -translate-y-1/2 left-2 w-18 h-18 grid place-items-center'
         onClick={() => setIndex(index - 1)}>
-        <FiChevronLeft className='text-5xl m-0' />
+        <FiChevronLeft className='text-5xl m-0 transition duration-300 ease-in-out hover:text-red-600 hover:scale-110 active:scale-90' />
       </button>
       <button
         className='absolute top-1/2 -translate-y-1/2 right-2 w-18 h-18 grid place-items-center'
         onClick={() => setIndex(index + 1)}>
-        <FiChevronRight className='text-5xl m-0' />
+        <FiChevronRight className='text-5xl m-0 transition duration-300 ease-in-out hover:text-red-600 hover:scale-110 active:scale-90' />
       </button>
 
       <div className='pt-8 flex items-center justify-center gap-4'>

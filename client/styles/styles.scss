@@ -7,8 +7,13 @@
 @tailwind utilities;
 
 @layer utilities {
-  .review--mini__section {
+  .review__section-col-4 {
     columns: 4;
+    // column-gap: 1rem;
+  }
+
+  .review__section-col-3 {
+    columns: 3;
     // column-gap: 1rem;
   }
 
@@ -106,10 +111,17 @@ body {
   .ant-btn {
     font-weight: 500;
   }
-  .ant-btn:hover,
-  .ant-btn:focus {
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
     background-color: darken($primary-color, 5%);
     color: #ffffff;
+    border-color: darken($primary-color, 5%);
+  }
+
+  .ant-btn-default:hover,
+  .ant-btn-default:focus {
+    // background-color: darken($primary-color, 5%);
+    color: darken($primary-color, 5%);
     border-color: darken($primary-color, 5%);
   }
 
@@ -157,7 +169,8 @@ body {
 
   .ant-input:hover,
   .ant-input:focus {
-    border: #272343 solid 1px;
+    // border: #272343 solid 1px;
+    // border: 1px solid #d9d9d9
   }
 
   .ant-table-row:hover {
@@ -425,6 +438,20 @@ body {
 
   .ant-form-item-label > label {
     font-size: 18px;
+  }
+
+  //ck input
+  .ck-editor__editable {
+    height: 500px;
+    overflow: scroll;
+  }
+
+  .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    border: 1px solid #272343;
+  }
+  .ck.ck-dropdown__panel {
+    max-height: 160 px; /* or anything else, more likely ~300px or so */
+    overflow-y: auto;
   }
 }
 

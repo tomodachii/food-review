@@ -21,7 +21,7 @@ const Categories = () => {
 
   return (
     <>
-      <h2>Discover</h2>
+      <h2 className='pt-10'>Discover</h2>
       <Tabs
         defaultActiveKey='0'
         centered

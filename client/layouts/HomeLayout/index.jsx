@@ -1,4 +1,3 @@
-// import HomeFooter from '../../components/Home/MenuFooter';
 import HomeFooter from '../../components/Footer';
 import ParallaxHeader from '../../components/Home/ParallaxHeader';
 

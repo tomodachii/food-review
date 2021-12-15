@@ -7,6 +7,7 @@ const menu = [
     like: 15,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/200/300',
+    rating: 4.5,
     description: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
   },
   // {
@@ -26,6 +27,7 @@ const menu = [
     like: 6,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/300/400',
+    rating: 5,
     description: `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
   },
   {
@@ -36,6 +38,7 @@ const menu = [
     like: 20,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/400',
+    rating: 2.5,
     description: `Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut, `,
   },
   {
@@ -46,6 +49,7 @@ const menu = [
     like: 22,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/200/300',
+    rating: 2,
     description: `franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up `,
   },
   {
@@ -56,6 +60,7 @@ const menu = [
     like: 18.99,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/200/300',
+    rating: 3.7,
     description: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
   },
   {
@@ -66,6 +71,7 @@ const menu = [
     like: 8,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/400',
+    rating: 3.4,
     description: `carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird `,
   },
   {
@@ -76,6 +82,7 @@ const menu = [
     like: 12,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/200/400',
+    rating: 2.8,
     description: `on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut  `,
   },
   {
@@ -86,6 +93,7 @@ const menu = [
     like: 16,
     user_img: 'https://picsum.photos/400',
     img: 'https://picsum.photos/500',
+    rating: 0,
     description: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];

@@ -67,6 +67,7 @@ const NavBar = ({ appName, type }) => {
               icon={<FiEdit3 className='inline mr-2' />}
               type='primary'
               size='large'
+              style={{ borderRadius: '1rem' }}
               onClick={handleWriteReview}>
               Write review
             </Button>

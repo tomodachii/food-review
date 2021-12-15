@@ -1,4 +1,4 @@
-import SearchLayout from '../../layouts/SearchLayout';
+import FRLayout from '../../layouts/FRLayout';
 import { useRouter } from 'next/dist/client/router';
 import homeAPI from '../../api/home';
 import { useEffect, useState, useContext } from 'react';
@@ -28,7 +28,7 @@ const SearchResult = ({ data }) => {
   }, []);
 
   return (
-    <SearchLayout>
+    <FRLayout>
       {/* <h1>{router.query.name}</h1>
       <h2>{'wtf ' + homeData}</h2> */}
       <div className='w-3/4 mx-auto'>
@@ -51,7 +51,7 @@ const SearchResult = ({ data }) => {
           </Tabs>
         </div>
       </div>
-    </SearchLayout>
+    </FRLayout>
   );
 };
 

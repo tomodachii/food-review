@@ -19,11 +19,11 @@ const LoginModal = ({ open, setOpen }) => {
         password: values.password,
       })
       .then((res) => {
-        console.log('response data: ');
-        console.log(res.data.user);
+        // console.log('response data: ');
+        // console.log(res.data.user);
         setUser(res.data.user);
-        console.log('user: ');
-        console.log(user);
+        // console.log('user: ');
+        // console.log(user);
         openNotification('success', 'Hello ' + user.username);
       })
       .catch((err) => {
@@ -49,7 +49,7 @@ const LoginModal = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    console.log(form.getFieldsValue('username'));
+    // console.log(form.getFieldsValue('username'));
   }, [username, password]);
 
   const bg = {

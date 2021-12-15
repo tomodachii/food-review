@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const LikeButton = ({ size }) => {
   const [liked, setLiked] = useState(false);
@@ -8,13 +8,17 @@ const LikeButton = ({ size }) => {
     fontSize = ' text-3xl';
   }
 
+  if (size == 'medium') {
+    fontSize = ' text-2xl';
+  }
+
   return liked ? (
-    <AiFillHeart
+    <FaHeart
       className={'text-red-700 cursor-pointer' + fontSize}
       onClick={() => setLiked(false)}
     />
   ) : (
-    <AiOutlineHeart
+    <FaRegHeart
       className={'text-black cursor-pointer' + fontSize}
       onClick={() => setLiked(true)}
     />

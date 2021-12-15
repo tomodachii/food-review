@@ -14,7 +14,7 @@ const Register = ({ open, setOpen }) => {
     await loginAPI.register({
       username: values.username,
       password: values.password,
-    })
+    });
   };
 
   const onUsernameValueChange = (e) => {
@@ -28,7 +28,7 @@ const Register = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    console.log(form.getFieldsValue('username'));
+    // console.log(form.getFieldsValue('username'));
   }, [username, password]);
 
   const bg = {

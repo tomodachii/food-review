@@ -10,7 +10,7 @@ const MiniReviewItem = ({ review }) => {
 
   const router = useRouter();
   const onReviewClick = () => {
-    router.push(`/review/${review.id}`);
+    router.push(`/reviews/${review.id}`);
   };
 
   const onUserClick = () => {
@@ -20,9 +20,6 @@ const MiniReviewItem = ({ review }) => {
   return (
     <motion.div
       layout
-      initial='rest'
-      whileHover='hover'
-      animate='rest'
       className='relative w-full py-5 px-3 break-inside-avoid '>
       <motion.div
         layout

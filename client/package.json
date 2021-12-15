@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+    "@ckeditor/ckeditor5-react": "^3.0.3",
     "antd": "^4.16.13",
     "axios": "^0.24.0",
     "framer-motion": "^5.3.3",

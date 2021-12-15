@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BsBookmark, BsBookmarkFill } from 'react-icons/bs';
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 
 const SaveButton = ({ size }) => {
   const [saved, setSaved] = useState(false);
@@ -9,17 +9,17 @@ const SaveButton = ({ size }) => {
   }
 
   if (size == 'medium') {
-    fontSize = ' text-2xl';
+    fontSize = ' text-xl';
   }
 
   return saved ? (
-    <BsBookmarkFill
-      className={'text-black cursor-pointer' + fontSize}
+    <FaBookmark
+      className={'text-black cursor-pointer font-bold' + fontSize}
       onClick={() => setSaved(false)}
     />
   ) : (
-    <BsBookmark
-      className={'text-black cursor-pointer' + fontSize}
+    <FaRegBookmark
+      className={'text-black cursor-pointer font-bold' + fontSize}
       onClick={() => setSaved(true)}
     />
   );
