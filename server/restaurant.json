@@ -1,0 +1,278 @@
+[
+  {
+    "restaurant_id": "795af646cfd74cd4b570cc7864c58e01",
+    "restaurant_name": "ốc mèo mun - Tạ Quang Bửu",
+    "restaurant_rating": 9.333333333333334,
+    "address_id": "ef5280c1-488f-48ba-836e-2f032aa142b5"
+  },
+  {
+    "restaurant_id": "95ca9382ebbe41e0914d7b0594bb8791",
+    "restaurant_name": "T-One - Trà Sữa & Ăn Vặt",
+    "restaurant_rating": 10,
+    "address_id": "b69e880c-60e9-4282-9085-ab2e2ff1c25d"
+  },
+  {
+    "restaurant_id": "ab4964a23b35468c8321ae504a57b25d",
+    "restaurant_name": "Lẩu Mỳ Ly - Ăn Vặt LoCha - Nguyên Hồng",
+    "restaurant_rating": 9.333333333333334,
+    "address_id": "d3d144c4-d8ed-4f4a-a8c9-2a95319d70d4"
+  },
+  {
+    "restaurant_id": "338faa14c9fa4730bfd48c81d18e1c61",
+    "restaurant_name": "Chick Garden - Phan Văn Trường",
+    "restaurant_rating": 8,
+    "address_id": "eea6008e-50ac-4465-8024-4cedb2c082ef"
+  },
+  {
+    "restaurant_id": "a52631c814714afaaa1708ee5f346cdf",
+    "restaurant_name": "Bánh cuốn Cao Bằng Thanh Hội",
+    "restaurant_rating": 8,
+    "address_id": "ea40f90e-3731-4fe0-9beb-5bf6deac2678"
+  },
+  {
+    "restaurant_id": "8e9a5c9f74ce4fa6b08873a7cf089e26",
+    "restaurant_name": "Sữa Chua Thạch Lá Nếp - Huyền Vi",
+    "restaurant_rating": 7.5,
+    "address_id": "f379e851-f5da-4ab6-adbf-357fb1f9bc52"
+  },
+  {
+    "restaurant_id": "15461a574e5a423db85f665e3439239c",
+    "restaurant_name": "Chè Ngon Sài Gòn - Hàng Chuối",
+    "restaurant_rating": 6,
+    "address_id": "6b993487-9856-42e5-9d6e-881a4192445d"
+  },
+  {
+    "restaurant_id": "f8d572d9e24442efa707fb5795a13189",
+    "restaurant_name": "Bánh Tráng Trộn Việt Anh - Hàng Nón",
+    "restaurant_rating": 8,
+    "address_id": "72a36c18-2fb5-4904-a548-67a2e04b9bef"
+  },
+  {
+    "restaurant_id": "f2f63cd4842546a6b0eec00d14578c42",
+    "restaurant_name": "Shiba Chef - Bếp ăn Nhật",
+    "restaurant_rating": 9.666666666666666,
+    "address_id": "bec512e7-a680-4acf-8403-0275f8c5dad8"
+  },
+  {
+    "restaurant_id": "4a55ec5620344955aaf2d0a1088996c0",
+    "restaurant_name": "Bánh Tráng Trộn - Quang Trung",
+    "restaurant_rating": 8.5,
+    "address_id": "6f6c427e-afd9-45f2-b3d7-6fe9606bf642"
+  },
+  {
+    "restaurant_id": "e1e0702797b141c7ae584b113e7b3cb4",
+    "restaurant_name": "Nguyễn quý đức",
+    "restaurant_rating": 8,
+    "address_id": "d6b90523-a2c9-4042-9898-bd573db5a379"
+  },
+  {
+    "restaurant_id": "f13d606560e94bb0a79babee614aa50c",
+    "restaurant_name": "An Viên Chinatown",
+    "restaurant_rating": 10,
+    "address_id": "4eef1cde-9b37-4152-9da0-d5cf695236a0"
+  },
+  {
+    "restaurant_id": "10c4f32c32c94a559febd090e74748c7",
+    "restaurant_name": "Caramel - Nguyễn Thượng Hiền",
+    "restaurant_rating": 9,
+    "address_id": "ddc4e429-539c-45a1-9671-378a4d9f3921"
+  },
+  {
+    "restaurant_id": "23c79fd4cf5f432794931808057a7d99",
+    "restaurant_name": "Lối nhỏ kafe 2",
+    "restaurant_rating": 10,
+    "address_id": "4adea6a6-3347-4506-a599-fb90e2ebbdae"
+  },
+  {
+    "restaurant_id": "e4b13477baa845f891caf49e8cd2d6e9",
+    "restaurant_name": "Bánh Tráng Trộn Sài Gòn",
+    "restaurant_rating": 8,
+    "address_id": "b6841052-018f-4fcc-a4ab-2c8c903ac926"
+  },
+  {
+    "restaurant_id": "d3678749793d4b748bcfbb77cc7e16e3",
+    "restaurant_name": "Kem Tuấn Ngọc - Bánh Tờ Rim Online",
+    "restaurant_rating": 7,
+    "address_id": "253f7b0e-a16b-4d4a-8112-deba94eb6fd3"
+  },
+  {
+    "restaurant_id": "9a835a98a5ba43dcbafa9213605a8f31",
+    "restaurant_name": "Takoyaki - Mã Mây",
+    "restaurant_rating": 6,
+    "address_id": "4335179a-1910-40a8-af40-67dc7b7a6e0d"
+  },
+  {
+    "restaurant_id": "e3b5d5fe81e4442b92eb2a8e2fc33ee2",
+    "restaurant_name": "Chè Thuỷ - Thành Công",
+    "restaurant_rating": 5,
+    "address_id": "a21bfa3b-1372-4c2b-be0a-58cf6e9476d2"
+  },
+  {
+    "restaurant_id": "d8236f85f9b24f1194d4b68d5bb648b0",
+    "restaurant_name": "Bếp mẹ Đăng-Nhân Hòa",
+    "restaurant_rating": 8,
+    "address_id": "2b763ce8-4c39-4fb8-803e-9334f866fecf"
+  },
+  {
+    "restaurant_id": "59f31df6d8804a11942aea95e19b60b8",
+    "restaurant_name": "Shiba Chef - Tạ Quang Bửu",
+    "restaurant_rating": 10,
+    "address_id": "3d5ee6cb-b793-42c2-b695-c1cb3461fc17"
+  },
+  {
+    "restaurant_id": "fad68c5135a144a1bf846d407f6502ee",
+    "restaurant_name": "Bánh Mỳ Nướng Lạng Sơn",
+    "restaurant_rating": 10,
+    "address_id": "20847f58-d8ef-484b-a557-e5f3c84832bf"
+  },
+  {
+    "restaurant_id": "60d4b95dc17a4bf5b5c328901718a0aa",
+    "restaurant_name": "Bánh rán Hoàn",
+    "restaurant_rating": 10,
+    "address_id": "904107c1-8e9f-47d9-8fce-8984c2070c7e"
+  },
+  {
+    "restaurant_id": "2eabca5c44c64daea977a95f6a11bbc5",
+    "restaurant_name": "Circle K Viet Nam",
+    "restaurant_rating": 9.25,
+    "address_id": "024515cd-5ce8-4be5-bdd3-66435f21fadf"
+  },
+  {
+    "restaurant_id": "d9b8ef85d85d4cdf9b5e03c47f89cf9b",
+    "restaurant_name": "Bánh Tráng Trộn - Hàng Trống",
+    "restaurant_rating": 5.5,
+    "address_id": "e201535c-33bd-4d12-a3fa-d324daa9097a"
+  },
+  {
+    "restaurant_id": "4ee37e8ff3d54442850ceca717a033e3",
+    "restaurant_name": "Bánh Tráng Fun",
+    "restaurant_rating": 8.666666666666666,
+    "address_id": "5245ddb2-3d32-4f3c-a0d4-d2e46de11338"
+  },
+  {
+    "restaurant_id": "8fc17db49f814df18d8c90984fb27514",
+    "restaurant_name": "Take Eat Easy Ice Cream & Cafe",
+    "restaurant_rating": 9.333333333333334,
+    "address_id": "43a31ebf-94ff-4fd7-8804-7ebaa384ebaf"
+  },
+  {
+    "restaurant_id": "8733e8e2e3944cdab7ee87ce1c8b47b0",
+    "restaurant_name": "1994 Coffee",
+    "restaurant_rating": 10,
+    "address_id": "d4f2c382-aee1-4e36-956b-06d0250f1321"
+  },
+  {
+    "restaurant_id": "a5b571d3ef4e4fa5aa7962cb7d16d3b4",
+    "restaurant_name": "Triển Lãm Vân Hồ",
+    "restaurant_rating": 9.727272727272728,
+    "address_id": "eb24ded3-9ee2-4241-bfb1-cacdb79d73ba"
+  },
+  {
+    "restaurant_id": "5daa450049c141689f0cf23c609c4b6e",
+    "restaurant_name": "Sụn Dồi Nướng - Lãng Yên",
+    "restaurant_rating": 8.333333333333334,
+    "address_id": "c038618b-c4ac-4efe-839b-6e818679e218"
+  },
+  {
+    "restaurant_id": "11db83e20cc04080a5cc1a245411bfc3",
+    "restaurant_name": "Ajjossi Tteokbokki",
+    "restaurant_rating": 9.090909090909092,
+    "address_id": "17744e91-d331-45bb-a875-8803bb05756f"
+  },
+  {
+    "restaurant_id": "4a2af091a29143d7a7c0b3c77d4cebe4",
+    "restaurant_name": "Lutulata - Desserts & Drinks",
+    "restaurant_rating": 10,
+    "address_id": "0b607f1c-2ca8-448c-b7e4-791f60d1e40f"
+  },
+  {
+    "restaurant_id": "14b593a347de46b3ab992ed0f1855ff4",
+    "restaurant_name": "Nộm Bò 1982 - Hàng Bún",
+    "restaurant_rating": 9,
+    "address_id": "34df5640-17d4-4cbd-8b48-2ace3d926d6d"
+  },
+  {
+    "restaurant_id": "0e2f0f357eb846339a029f043aab6a6e",
+    "restaurant_name": "SushiLa- 37F Kim Mã Thượng",
+    "restaurant_rating": 8,
+    "address_id": "f2dbd435-115e-4177-8558-9e6f1ae970cc"
+  },
+  {
+    "restaurant_id": "71c6527d1f9d4d1bb33f84d07c426942",
+    "restaurant_name": "Ốc 88 - Tạ Quang Bửu",
+    "restaurant_rating": 8,
+    "address_id": "fdb91aeb-2303-4e17-a990-e0d907554fd4"
+  },
+  {
+    "restaurant_id": "341db07d823441488873e96448e4ac76",
+    "restaurant_name": "Royal City Vincom Mega Mall",
+    "restaurant_rating": 10,
+    "address_id": "ed9dd980-c5c6-4143-8acb-4ebe8a9e98c2"
+  },
+  {
+    "restaurant_id": "07bdb976a6284c30bea55cbcf2f161da",
+    "restaurant_name": "Thái Deli - Xuýt Xoa Vị Thái ",
+    "restaurant_rating": 8.666666666666666,
+    "address_id": "671a6f2f-bca8-4623-80d2-cfd29c5d2aab"
+  },
+  {
+    "restaurant_id": "ff2ddb75d2bb4f439b6549bff6b06466",
+    "restaurant_name": "Bếp Mẹ Đăng ",
+    "restaurant_rating": 8,
+    "address_id": "f76900fa-0527-4de3-8e5c-d26a717f6c9d"
+  },
+  {
+    "restaurant_id": "2793b4b6247e413f9627fd75fa723616",
+    "restaurant_name": "Bánh Tráng Nướng - Đội Cấn",
+    "restaurant_rating": 9.333333333333334,
+    "address_id": "694f58f5-c6bf-420b-8c67-f9aed5307c94"
+  },
+  {
+    "restaurant_id": "b01e6a9179e84926b46ad9d39a795a25",
+    "restaurant_name": "Mì Cay Seoul - Yên Lãng",
+    "restaurant_rating": 9,
+    "address_id": "0e052f87-fdd8-4360-829c-0c94759384c7"
+  },
+  {
+    "restaurant_id": "622859f4b09842cda4a020a8206933be",
+    "restaurant_name": "Quà Vặt Kitty Snack",
+    "restaurant_rating": 9.714285714285714,
+    "address_id": "3800401c-ed44-4f40-bb95-f5b31b375bae"
+  },
+  {
+    "restaurant_id": "52a16a47188b41b38fcf0f191d2eb5e3",
+    "restaurant_name": "Cúc - Cháo Sườn Sụn - Lê Thanh Nghị",
+    "restaurant_rating": 8,
+    "address_id": "5d79bdeb-81db-4fca-80dc-f7c2ab31c043"
+  },
+  {
+    "restaurant_id": "673b299a0c2c4ef382d00635de5c4ca0",
+    "restaurant_name": "Ba Dí - Súp Cua",
+    "restaurant_rating": 8.5,
+    "address_id": "7d5fd1ac-f1b9-43ac-96de-fe8c4a62cf88"
+  },
+  {
+    "restaurant_id": "3643d28e014e4baea42696b33c526266",
+    "restaurant_name": "Tiny Post- Phùng Khoang",
+    "restaurant_rating": 10,
+    "address_id": "db0e6c01-2eee-4b7a-938d-3f9f3f383e4f"
+  },
+  {
+    "restaurant_id": "b79381ad8e774e7393c531d263017ed6",
+    "restaurant_name": "Cô Lân Bánh Khọt",
+    "restaurant_rating": 8,
+    "address_id": "24762b21-b7c5-49c3-8a56-1474528e3048"
+  },
+  {
+    "restaurant_id": "a2e2dabd2e4049a980c24f6f970999ac",
+    "restaurant_name": "Chè Nhà Suvy - Chè Khúc Bạch & Sữa Chua Phô Mai Hoa Quả ",
+    "restaurant_rating": 9.285714285714286,
+    "address_id": "39a26db9-69bf-4d70-9d60-2a0e12e3bf50"
+  },
+  {
+    "restaurant_id": "c99af9e243c0416e8649f73228f7d5c5",
+    "restaurant_name": "Nhà Thỏ Bống - Bò nướng - Hồng Mai",
+    "restaurant_rating": 8,
+    "address_id": "680c6519-5b52-4dfa-a645-88262095a487"
+  }
+]
