@@ -1,0 +1,232 @@
+[
+  {
+    "address": "106k3 ngõ 48 Tạ Quang Bửu, Phường Bách Khoa, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "ef5280c1-488f-48ba-836e-2f032aa142b5",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "50 Lê Lai, Quận Hà Đông, Hà Nội",
+    "address_id": "b69e880c-60e9-4282-9085-ab2e2ff1c25d",
+    "district_id": "b69d3913f4a04ff5b8f01cf17646e0db"
+  },
+  {
+    "address": "2 Nguyên Hồng, Thành Công, Ba Đình, Hà Nộ, Phường Thành Công, Quận Ba Đình, Hà Nội",
+    "address_id": "d3d144c4-d8ed-4f4a-a8c9-2a95319d70d4",
+    "district_id": "f617644f9e4f4b80bd25d4f68f7aacb1"
+  },
+  {
+    "address": "125 Phan Văn Trường, Phường Trung Hoà, Quận Cầu Giấy, Hà Nội",
+    "address_id": "eea6008e-50ac-4465-8024-4cedb2c082ef",
+    "district_id": "083c1f081fad4777b3fef5d5dcbf172f"
+  },
+  {
+    "address": "193 Phố Trung Kính, Yên Hoà, Cầu Giấy, Hà Nội, Việt Nam, Phường Yên Hoà, Quận Cầu Giấy, Hà Nội",
+    "address_id": "ea40f90e-3731-4fe0-9beb-5bf6deac2678",
+    "district_id": "083c1f081fad4777b3fef5d5dcbf172f"
+  },
+  {
+    "address": "5B Đinh Liệt , Phường Hàng Bạc, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "f379e851-f5da-4ab6-adbf-357fb1f9bc52",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "44 Hàng Chuối, Phường Phạm Đình Hổ, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "6b993487-9856-42e5-9d6e-881a4192445d",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": " 2A Hàng Nón, Phường Hàng Gai, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "72a36c18-2fb5-4904-a548-67a2e04b9bef",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "10/40 Tạ Quang Bửu, Phường Bách Khoa, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "bec512e7-a680-4acf-8403-0275f8c5dad8",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "33 Quang Trung, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "6f6c427e-afd9-45f2-b3d7-6fe9606bf642",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "Nguyễn quý đức thanh xuân hn",
+    "address_id": "d6b90523-a2c9-4042-9898-bd573db5a379",
+    "district_id": "6411243f35244cd19c61e26fb07407c9"
+  },
+  {
+    "address": "127 Chùa Láng, Phường Láng Thượng, Quận Đống Đa, Hà Nội",
+    "address_id": "4eef1cde-9b37-4152-9da0-d5cf695236a0",
+    "district_id": "2479211312a147299f5d5609c4995432"
+  },
+  {
+    "address": "13 Nguyễn Thượng Hiền, Phường Nguyễn Du, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "ddc4e429-539c-45a1-9671-378a4d9f3921",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "2 Ngõ Tức Mặc, Phường Cửa Nam, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "4adea6a6-3347-4506-a599-fb90e2ebbdae",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "3 Nguyễn Siêu, Phường Hàng Buồm, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "b6841052-018f-4fcc-a4ab-2c8c903ac926",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "4A/57/121 Kim Ngưu, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "253f7b0e-a16b-4d4a-8112-deba94eb6fd3",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "1 Mã Mây, Phường Hàng Buồm, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "4335179a-1910-40a8-af40-67dc7b7a6e0d",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "105B A4 , Phường Thành Công, Quận Ba Đình, Hà Nội",
+    "address_id": "a21bfa3b-1372-4c2b-be0a-58cf6e9476d2",
+    "district_id": "f617644f9e4f4b80bd25d4f68f7aacb1"
+  },
+  {
+    "address": "39 Nhân Hòa, Phường Nhân Chính, Quận Thanh Xuân, Hà Nội",
+    "address_id": "2b763ce8-4c39-4fb8-803e-9334f866fecf",
+    "district_id": "6411243f35244cd19c61e26fb07407c9"
+  },
+  {
+    "address": "Đầu Ngách 2 Ngõ 40 Tạ Quang Bửu, Phường Bách Khoa, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "3d5ee6cb-b793-42c2-b695-c1cb3461fc17",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "21 Ngõ 154 Ngọc Lâm, Phường Ngọc Lâm, Quận Long Biên, Hà Nội",
+    "address_id": "20847f58-d8ef-484b-a557-e5f3c84832bf",
+    "district_id": "0ef0c3d851294381846e2e4d1ea5c64e"
+  },
+  {
+    "address": "103C6 Trần Huy Liệu",
+    "address_id": "904107c1-8e9f-47d9-8fce-8984c2070c7e",
+    "district_id": "0ef0c3d851294381846e2e4d1ea5c64e"
+  },
+  {
+    "address": "252 Hoàng Quốc Việt, Phường Cổ Nhuế 1, Quận Bắc Từ Liêm, Hà Nội",
+    "address_id": "024515cd-5ce8-4be5-bdd3-66435f21fadf",
+    "district_id": "43549917542f49e78c9140af715289e2"
+  },
+  {
+    "address": "Hàng Trống, Quận Hoàn Kiếm",
+    "address_id": "e201535c-33bd-4d12-a3fa-d324daa9097a",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "86 Hàng Trống, P. Hàng Trống, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "5245ddb2-3d32-4f3c-a0d4-d2e46de11338",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "18B Nhà Thờ, Phường Hàng Trống, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "43a31ebf-94ff-4fd7-8804-7ebaa384ebaf",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "Tầng 8 - 9, 83 Nguyễn Ngọc Vũ, Phường Trung Hoà, Quận Cầu Giấy, Hà Nội",
+    "address_id": "d4f2c382-aee1-4e36-956b-06d0250f1321",
+    "district_id": "083c1f081fad4777b3fef5d5dcbf172f"
+  },
+  {
+    "address": "2 Hoa Lư, Lê Đại Hành, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "eb24ded3-9ee2-4241-bfb1-cacdb79d73ba",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "167 Phố Lãng Yên, Phường Thanh Lương, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "c038618b-c4ac-4efe-839b-6e818679e218",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "338 Nguyễn Hữu Thọ, Q7 (Đối diện trường ĐH Tôn Đức Thắng)",
+    "address_id": "17744e91-d331-45bb-a875-8803bb05756f",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "39 Hàng Cót, Phường Hàng Mã, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "0b607f1c-2ca8-448c-b7e4-791f60d1e40f",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "11 Hàng Bún, Quận Ba Đình, Hà Nội",
+    "address_id": "34df5640-17d4-4cbd-8b48-2ace3d926d6d",
+    "district_id": "f617644f9e4f4b80bd25d4f68f7aacb1"
+  },
+  {
+    "address": "37f Kim Mã Thượng, Cống Vị, Ba Đình, Hà Nội, Việt Nam",
+    "address_id": "f2dbd435-115e-4177-8558-9e6f1ae970cc",
+    "district_id": "f617644f9e4f4b80bd25d4f68f7aacb1"
+  },
+  {
+    "address": "111E5 Tạ Quang Bửu, Phường Bách Khoa, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "fdb91aeb-2303-4e17-a990-e0d907554fd4",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "Royal City Vincom Mega Mall, Nguyễn Trãi, Khu đô thị Royal City, Thượng Đình, Thanh Xuân, Hà Nội, Việt Nam",
+    "address_id": "ed9dd980-c5c6-4143-8acb-4ebe8a9e98c2",
+    "district_id": "6411243f35244cd19c61e26fb07407c9"
+  },
+  {
+    "address": "Số 2 - Lô TT 01 - Ngõ 4 Hàm Nghi, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "671a6f2f-bca8-4623-80d2-cfd29c5d2aab",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "2 Ngõ 132 Quan Nhân, Quận Thanh Xuân, Hà Nội",
+    "address_id": "f76900fa-0527-4de3-8e5c-d26a717f6c9d",
+    "district_id": "6411243f35244cd19c61e26fb07407c9"
+  },
+  {
+    "address": "111 Đội Cấn, Ba Đình, Hà Nội",
+    "address_id": "694f58f5-c6bf-420b-8c67-f9aed5307c94",
+    "district_id": "f617644f9e4f4b80bd25d4f68f7aacb1"
+  },
+  {
+    "address": "39 Yên Lãng, Quận Đống Đa, Hà Nội",
+    "address_id": "0e052f87-fdd8-4360-829c-0c94759384c7",
+    "district_id": "2479211312a147299f5d5609c4995432"
+  },
+  {
+    "address": "105A Nhà B9 Nghĩa Tân, Quận Cầu Giấy, Hà Nội",
+    "address_id": "3800401c-ed44-4f40-bb95-f5b31b375bae",
+    "district_id": "083c1f081fad4777b3fef5d5dcbf172f"
+  },
+  {
+    "address": "254 Lê Thanh Nghị, Quận Hai Bà Trưng, Hà Nội",
+    "address_id": "5d79bdeb-81db-4fca-80dc-f7c2ab31c043",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "2 Ngõ Tràng Tiền, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "7d5fd1ac-f1b9-43ac-96de-fe8c4a62cf88",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "77 Ngõ 67 Phùng Khoang, Trung Văn, Hà Đông, Hà Nội, Việt Nam",
+    "address_id": "db0e6c01-2eee-4b7a-938d-3f9f3f383e4f",
+    "district_id": "b69d3913f4a04ff5b8f01cf17646e0db"
+  },
+  {
+    "address": "124 Hồng Mai, Bạch Mai, quận Hai Bà Trưng, Hà Nội, Việt Nam",
+    "address_id": "24762b21-b7c5-49c3-8a56-1474528e3048",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  },
+  {
+    "address": "33 Quang Trung, Phường Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội",
+    "address_id": "39a26db9-69bf-4d70-9d60-2a0e12e3bf50",
+    "district_id": "71b7bdfbd3d24c0792eb537b8817a77b"
+  },
+  {
+    "address": "124 Hồng Mai, Bạch Mai, Hai Bà Trưng, Hà Nội 100000, Việt Nam",
+    "address_id": "680c6519-5b52-4dfa-a645-88262095a487",
+    "district_id": "e8d2229c65b64f76a98cdbed1e66a952"
+  }
+]
