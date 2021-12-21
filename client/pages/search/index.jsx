@@ -4,12 +4,16 @@ import homeAPI from '../../api/home';
 import { useEffect, useState, useContext } from 'react';
 import UserContext from '../../UserContext';
 import { Tabs } from 'antd';
+import ReviewContainer from '../../components/Review';
+import RestaurantContainer from '../../components/Restaurant';
+import items from '../../testcategories';
 const { TabPane } = Tabs;
 
 const SearchResult = ({ data }) => {
   const [homeData, setHomeData] = useState(data);
   const router = useRouter();
   const { user, setUser } = useContext(UserContext);
+  const [containerWidth, setContainerWidth] = useState('w-3/4');
 
   // const fetchData = async () => {
   //   await homeAPI
@@ -21,6 +25,14 @@ const SearchResult = ({ data }) => {
   //     .catch((err) => console.error(err));
   // };
 
+  const handleTabChange = (key) => {
+    if (key === 'all') {
+      setContainerWidth('w-3/4');
+    } else {
+      setContainerWidth('w-2/3');
+    }
+  };
+
   useEffect(() => {
     // fetchData();
     console.log(data);
@@ -31,22 +43,26 @@ const SearchResult = ({ data }) => {
     <FRLayout>
       {/* <h1>{router.query.name}</h1>
       <h2>{'wtf ' + homeData}</h2> */}
-      <div className='w-3/4 mx-auto'>
+      <div className={containerWidth + ' mx-auto'}>
         <div className='my-8'>
           <h5 className='text-center font-light'>Search result for</h5>
           <h2 className='text-center'>{router.query.name}</h2>
-          <Tabs defaultActiveKey='1' centered>
-            <TabPane tab='Tab 1' key='1'>
-              Content of Tab Pane 1
+          <Tabs defaultActiveKey='1' centered onChange={handleTabChange}>
+            <TabPane tab='All' key='all'>
+              <div className='mt-10'>Content of Tab Pane 1</div>
             </TabPane>
-            <TabPane tab='Tab 2' key='2'>
-              Content of Tab Pane 2
+            <TabPane tab='Reviews' key='reviews'>
+              <div className='mt-10'>
+                <ReviewContainer reviews={items} />
+              </div>
             </TabPane>
-            <TabPane tab='Tab 3' key='3'>
-              Content of Tab Pane 3
+            <TabPane tab='Restaurants' key='restaurants'>
+              <div className='mt-10'>
+                <RestaurantContainer restaurants={items} />
+              </div>
             </TabPane>
-            <TabPane tab='Tab 4' key='4'>
-              Content of Tab Pane 3
+            <TabPane tab='Users' key='users'>
+              <div className='mt-10'>Content of Tab Pane 3</div>
             </TabPane>
           </Tabs>
         </div>
