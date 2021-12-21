@@ -51,7 +51,6 @@ router.post('/signup', async (req, res) => {
     return
   }
 
-
   try {
     // check if username is existed in database
     const userTemp = await prisma.users.findFirst({
@@ -96,6 +95,33 @@ router.post('/signup', async (req, res) => {
     res.send({user: null, message: 'Hash password failed'})
     return;
   }
+});
+
+router.get('/person/:id', async (req, res) => {
+  // if (req.isAuthenticated()) {
+    const userId = req.params.id;
+    const reviews = await prisma.table_review.findMany({
+      include: {
+        review: {
+          select: {
+            review_id: true,
+            title: true,
+            
+          }
+        },
+        users: true,
+      },
+      where: {
+        user_id: userId,
+        action: 'write',
+
+      }
+    })
+    const data = {reviews}
+    res.json(data)
+  // } else {
+  //   res.json(null);
+  // }
 })
 
 // auth with facebook
