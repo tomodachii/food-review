@@ -18,13 +18,11 @@ const LoginModal = ({ open, setOpen }) => {
         username: values.username,
         password: values.password,
       })
-      .then((res) => {
-        // console.log('response data: ');
-        // console.log(res.data.user);
-        setUser(res.data.user);
-        // console.log('user: ');
-        // console.log(user);
-        openNotification('success', 'Hello ' + user.username);
+      .then(async (res) => {
+        console.log(res.data.user);
+        await setUser(res.data.user);
+        await setOpen(false);
+        await openNotification('success', 'Hello ' + res.data.user.username);
       })
       .catch((err) => {
         console.error(err);

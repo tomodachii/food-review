@@ -8,7 +8,7 @@ const Menu = () => {
       <h2 className='pb-5'>Collections</h2>
       <div className='flex items-center justify-between gap-8'>
         <div
-          className='w-1/2 relative rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition duration-400 ease-in-out'
+          className='w-1/2 relative rounded-xl shadow-lg hover:shadow-2xl transition duration-400 ease-in-out'
           onClick={() => {
             router.push('/reviews');
           }}>
@@ -18,7 +18,7 @@ const Menu = () => {
           </h2>
         </div>
         <div
-          className='w-1/2 relative rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition duration-400 ease-in-out'
+          className='w-1/2 relative rounded-xl shadow-lg hover:shadow-2xl transition duration-400 ease-in-out'
           onClick={() => {
             router.push('/restaurants');
           }}>

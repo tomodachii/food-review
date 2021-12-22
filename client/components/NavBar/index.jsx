@@ -1,4 +1,4 @@
-import { Button, notification } from 'antd';
+import { Menu, Button, notification, Dropdown, Avatar, Tooltip } from 'antd';
 // const { Search } = Input;
 import SearchBar from './SearchBarNav';
 import { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ import { useContext } from 'react';
 const NavBar = ({ appName, type }) => {
   const router = useRouter();
   const [navItemStyle, setNavItemStyle] = useState('');
+  const [avatarUser, setAvatarUser] = useState('');
   const {
     user,
     setUser,
@@ -46,10 +47,27 @@ const NavBar = ({ appName, type }) => {
   const openNotification = (type, msg) => {
     notification[type]({
       message: msg,
-      duration: 3,
+      duration: 2,
     });
   };
 
+  const handleLogout = () => {
+    console.log('logout');
+    setUser(null);
+  };
+
+  const userInformations = (
+    <Menu className='rounded-2xl py-2 absolute transform -translate-x-1/2 left-1/2'>
+      <Menu.Item key='0'>
+        <p className='m-0'>Profile</p>
+      </Menu.Item>
+      <Menu.Item key='1'>
+        <p className='m-0' onClick={handleLogout}>
+          Logout
+        </p>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <>
       <nav className='nav__container w-3/4 my-0 mx-auto flex flex-row items-center justify-between'>
@@ -73,7 +91,33 @@ const NavBar = ({ appName, type }) => {
             </Button>
           </li>
           {user ? (
-            <li className='text-white'>{'Hello ' + user.username}</li>
+            <li className='rounded-full p-0 hover:shadow-xl'>
+              <Dropdown
+                overlay={userInformations}
+                trigger={['click']}
+                placement='bottomLeft'>
+                <Tooltip title={user.userName}>
+                  {avatarUser ? (
+                    <Avatar
+                      size={45}
+                      style={{
+                        cursor: 'pointer',
+                      }}
+                      src={avatarUser}
+                    />
+                  ) : (
+                    <Avatar
+                      size={45}
+                      style={{
+                        backgroundColor: 'white',
+                        cursor: 'pointer',
+                      }}
+                      src='/images/avatars/punpun.png'
+                    />
+                  )}
+                </Tooltip>
+              </Dropdown>
+            </li>
           ) : (
             <>
               <li className='nav__item p-5 '>

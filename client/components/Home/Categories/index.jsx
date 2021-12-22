@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
-import items from '../../../testcategories';
+// import items from '../../../testcategories';
 import MiniReview from '../../MiniReview';
 const { TabPane } = Tabs;
 
-const allCategories = ['all', ...new Set(items.map((item) => item.category))];
+const Categories = ({ items, categoriesData }) => {
+  // const allCategories = ['all', ...new Set(items.map((item) => item.category))];
 
-const Categories = () => {
-  const [categories, setCategories] = useState(allCategories);
+  useEffect(() => {
+    console.log(items);
+    console.log(categories);
+  });
+  const [categories, setCategories] = useState(categoriesData);
   const [reviews, setReviews] = useState(items);
 
-  const filterItems = (category) => {
-    if (category === 'all') {
-      setReviews(items);
-    } else {
-      const newItems = items.filter((item) => item.category === category);
-      setReviews(newItems);
-    }
-  };
+  // const filterItems = (category) => {
+  //   if (category === 'all') {
+  //     setReviews(items);
+  //   } else {
+  //     const newItems = items.filter((item) => item.category === category);
+  //     setReviews(newItems);
+  //   }
+  // };
 
   return (
     <>
@@ -25,10 +29,11 @@ const Categories = () => {
       <Tabs
         defaultActiveKey='0'
         centered
-        onTabClick={(index) => filterItems(categories[index])}>
-        {categories.map((category, index) => {
+        // onTabClick={(index) => filterItems(categories[index])}>
+      >
+        {categories.map((category) => {
           return (
-            <TabPane tab={category} key={index}>
+            <TabPane tab={category.category_name} key={category.category_id}>
               {<MiniReview reviews={reviews} />}
             </TabPane>
           );
@@ -37,5 +42,4 @@ const Categories = () => {
     </>
   );
 };
-
 export default Categories;
