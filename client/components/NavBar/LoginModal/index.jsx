@@ -101,9 +101,9 @@ const LoginModal = ({ open, setOpen }) => {
 
               <div>
                 <Form.Item>
-                  <Form.Item name='remember' valuePropName='checked' noStyle>
+                  {/* <Form.Item name='remember' valuePropName='checked' noStyle>
                     <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
+                  </Form.Item> */}
 
                   <a className='login-form-forgot' href=''>
                     Forgot password

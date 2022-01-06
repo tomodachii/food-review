@@ -8,6 +8,7 @@ const passport = require('../config/passport');
 
 const prisma = new PrismaClient();
 
+
 /* GET users listing. */
 // get all user in users table
 router.get('/', async function (req, res, next) {
@@ -42,6 +43,7 @@ router.post('/signin', (req, res) => {
     }
   })(req, res);
 });
+
 
 router.post('/signup', async (req, res) => {
   // if authenticated then can't access
@@ -96,17 +98,12 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+
 router.get('/person/:id', async (req, res) => {
   // if (req.isAuthenticated()) {
   const userId = req.params.id;
   const reviews = await prisma.table_review.findMany({
     include: {
-      review: {
-        select: {
-          review_id: true,
-          title: true,
-        },
-      },
       users: true,
     },
     where: {
@@ -120,6 +117,75 @@ router.get('/person/:id', async (req, res) => {
   //   res.json(null);
   // }
 });
+
+
+router.get('/person/myReview/:id/', async (req, res) => {
+  const userId = req.params.id;
+  const review_id = req.params.myreview_id;
+
+  myReviewList = await prisma.table_review.findMany({
+    where: {
+      user_id: userId
+    },
+    include: {
+      review: {
+        review_id: true,
+        title: true,
+        likes: true,
+        description: true,
+        review_image: true,
+      },
+      users: {
+        user_id: true,
+
+      }
+    }
+  })
+});
+
+
+router.get('/person/savedReview/:id/', async (req, res) => {
+  const userId = req.params.id;
+
+  myReviewList = await prisma.table_review.findMany({
+    except: {
+      user_id: userId
+    },
+    include: {
+      review: {
+        review_id: true,
+        title: true,
+        likes: true,
+        description: true,
+        review_image: true,
+      },
+    },
+    take: 5,
+  })
+});
+
+
+router.get('/avatar/:id', async (req, res) => {
+  // if (req.isAuthenticated()) {
+  const userId = req.params.id;
+  const avatar = await prisma.users.findUnique({
+    where: {
+      user_id: userId,
+    },
+    select: {
+      avatar: true,
+    },
+  });
+
+  res.json(avatar);
+  // } else {
+  //   res.json(null);
+  // }
+});
+
+
+
+
 
 // auth with facebook
 router.get('/signin/facebook', passport.authenticate('facebook'));
@@ -151,4 +217,36 @@ router.get('/signout', (req, res) => {
   }
   res.json({ user: req.user });
 });
+
+router.get('/:review_id', async (req, res) => {
+  const review_id = req.params.review_id;
+
+  const reviewItem = await prisma.table_review.findUnique({
+    where: {
+      review_id: review_id,
+    },
+    include: {
+      review: {
+        select: {
+          review_id: true,
+          title: true,
+          likes: true,
+          description: true,
+          review_image: true,
+        },
+      },
+      users: {
+        select: {
+          username: true,
+          avatar: true,
+          user_id: true,
+        },
+      },
+    },
+  });
+
+  res.json(reviewItem);
+});
+
+
 module.exports = router;

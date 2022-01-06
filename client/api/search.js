@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const homeAPI = {
-  getData: (id) => {
-    const url = `http://localhost:5000/home/${id}`;
+const searchAPI = {
+  getResults: (key) => {
+    const url = `http://localhost:5000/search/${key}`;
     return axios.get(url);
   },
-  getCategories: () => {
-    const url = `http://localhost:5000/home/categories`;
+  getReviewResults: (key) => {
+    const url = `http://localhost:5000/search/reviews/${key}`;
     return axios.get(url);
   },
   getDataByCategories: (id) => {
@@ -14,4 +14,4 @@ const homeAPI = {
     return axios.get(url);
   },
 };
-export default homeAPI;
+export default searchAPI;

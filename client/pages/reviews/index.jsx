@@ -1,9 +1,12 @@
 import FRLayout from '../../layouts/FRLayout';
 import ReviewContainer from '../../components/Review';
-import items from '../../testcategories';
+// import items from '../../testcategories';
 import { useState } from 'react';
+import Filter from '../../components/Filter';
+import { useRouter } from 'next/router';
+import homeAPI from '../../api/home';
 
-const Reviews = () => {
+const Reviews = ({ items }) => {
   const [reviews, setReviews] = useState(items);
   return (
     <FRLayout>
@@ -22,7 +25,9 @@ const Reviews = () => {
         </div>
       </div>
       <div className='w-3/4 mx-auto grid grid-cols-10 gap-5'>
-        <div className='col-span-3'></div>
+        <div className='col-span-3'>
+          <Filter />
+        </div>
         <div className='col-span-7'>
           <ReviewContainer reviews={reviews} />
         </div>
@@ -30,5 +35,23 @@ const Reviews = () => {
     </FRLayout>
   );
 };
+
+export async function getStaticProps() {
+  const router = useRouter;
+  const items = await homeAPI
+    .getData(0)
+    .then((res) => res.data.reviews)
+    .catch((err) => {
+      router.push('/404');
+      console.log(err);
+    });
+
+  return {
+    props: {
+      items,
+    },
+    revalidate: 1,
+  };
+}
 
 export default Reviews;

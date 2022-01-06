@@ -2,6 +2,7 @@ import FRLayout from '../../layouts/FRLayout';
 import RestaurantContainer from '../../components/Restaurant';
 import items from '../../testcategories';
 import { useState } from 'react';
+import Filter from '../../components/Filter';
 
 const Restaurants = () => {
   const [restaurants, setRestaurants] = useState(items);
@@ -24,7 +25,9 @@ const Restaurants = () => {
         </div>
       </div>
       <div className='w-3/4 mx-auto grid grid-cols-10 gap-5'>
-        <div className='col-span-3'></div>
+        <div className='col-span-3'>
+          <Filter options={['rating', 'sort']} />
+        </div>
         <div className='col-span-7'>
           <RestaurantContainer restaurants={restaurants} />
         </div>

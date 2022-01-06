@@ -37,7 +37,7 @@ const NavBar = ({ appName, type }) => {
   // const onSearch = value => {}
   const handleWriteReview = async () => {
     if (user) {
-      router.push('/review/create');
+      router.push('/reviews/create');
     } else {
       await setRegisterModalOpen(true);
       await openNotification('error', 'You have to login first');
@@ -47,12 +47,12 @@ const NavBar = ({ appName, type }) => {
   const openNotification = (type, msg) => {
     notification[type]({
       message: msg,
-      duration: 2,
+      duration: 3,
     });
   };
 
   const handleLogout = () => {
-    console.log('logout');
+    openNotification('success', 'successfully logged out!');
     setUser(null);
   };
 
@@ -97,7 +97,7 @@ const NavBar = ({ appName, type }) => {
                 trigger={['click']}
                 placement='bottomLeft'>
                 <Tooltip title={user.userName}>
-                  {avatarUser ? (
+                  {/* {avatarUser ? (
                     <Avatar
                       size={45}
                       style={{
@@ -114,7 +114,16 @@ const NavBar = ({ appName, type }) => {
                       }}
                       src='/images/avatars/punpun.png'
                     />
-                  )}
+                  )} */}
+                  <div className='w-12 h-12 flex items-center'>
+                    <img
+                      onError={(e) => {
+                        e.target.src = '/images/avatars/punpun.png';
+                      }}
+                      className='h-12 w-12 rounded-full object-cover'
+                      src={user.avatar}
+                    />
+                  </div>
                 </Tooltip>
               </Dropdown>
             </li>
