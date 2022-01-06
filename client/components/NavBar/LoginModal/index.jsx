@@ -1,24 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import loginAPI from '../../../api/login';
+import userContext from '../../../UserContext';
 
 const LoginModal = ({ open, setOpen }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [form] = Form.useForm();
+  const { user, setUser } = useContext(userContext);
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
-    await loginAPI.login({
-      username: values.username,
-      password: values.password,
-    }).then((res) => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.error(err);
-    })
+    await loginAPI
+      .login({
+        username: values.username,
+        password: values.password,
+      })
+      .then(async (res) => {
+        console.log(res.data.user);
+        await setUser(res.data.user);
+        await setOpen(false);
+        await openNotification('success', 'Hello ' + res.data.user.username);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const openNotification = (type, msg) => {
+    notification[type]({
+      message: msg,
+      duration: 3,
+    });
   };
 
   const onUsernameValueChange = (e) => {
@@ -32,7 +47,7 @@ const LoginModal = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    console.log(form.getFieldsValue('username'));
+    // console.log(form.getFieldsValue('username'));
   }, [username, password]);
 
   const bg = {
@@ -86,9 +101,9 @@ const LoginModal = ({ open, setOpen }) => {
 
               <div>
                 <Form.Item>
-                  <Form.Item name='remember' valuePropName='checked' noStyle>
+                  {/* <Form.Item name='remember' valuePropName='checked' noStyle>
                     <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
+                  </Form.Item> */}
 
                   <a className='login-form-forgot' href=''>
                     Forgot password

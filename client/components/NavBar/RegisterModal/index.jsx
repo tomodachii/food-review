@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import loginAPI from '../../../api/login';
 
@@ -11,10 +11,31 @@ const Register = ({ open, setOpen }) => {
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
-    await loginAPI.register({
-      username: values.username,
-      password: values.password,
-    })
+    await loginAPI
+      .register({
+        username: values.username,
+        password: values.password,
+      })
+      .then(async (res) => {
+        console.log('resgister');
+        console.log(res.data.user);
+        // await setUser(res.data.user);
+        await setOpen(false);
+        await openNotification(
+          'success',
+          'Sucessfully created ' + res.data.user.username
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const openNotification = (type, msg) => {
+    notification[type]({
+      message: msg,
+      duration: 3,
+    });
   };
 
   const onUsernameValueChange = (e) => {
@@ -28,7 +49,7 @@ const Register = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    console.log(form.getFieldsValue('username'));
+    // console.log(form.getFieldsValue('username'));
   }, [username, password]);
 
   const bg = {
@@ -82,9 +103,9 @@ const Register = ({ open, setOpen }) => {
 
               <div>
                 <Form.Item>
-                  <Form.Item name='remember' valuePropName='checked' noStyle>
+                  {/* <Form.Item name='remember' valuePropName='checked' noStyle>
                     <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
+                  </Form.Item> */}
 
                   <a className='login-form-forgot' href=''>
                     Forgot password
@@ -98,7 +119,7 @@ const Register = ({ open, setOpen }) => {
                   htmlType='submit'
                   className='login-form-button'
                   danger>
-                  Log in
+                  Register
                 </Button>
                 Or <a href=''>register now!</a>
               </Form.Item>

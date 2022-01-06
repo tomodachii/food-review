@@ -11,7 +11,7 @@ const SearchBar = () => {
     if (e.key === 'Enter') {
       router.push({
         pathname: `/search/`,
-        query: { name: inputValue },
+        query: { key: inputValue },
       });
     }
   };

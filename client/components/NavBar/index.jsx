@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Menu, Button, notification, Dropdown, Avatar, Tooltip } from 'antd';
 // const { Search } = Input;
 import SearchBar from './SearchBarNav';
 import { useEffect, useState } from 'react';
@@ -6,12 +6,22 @@ import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 import { FiEdit3 } from 'react-icons/fi';
 import { useRouter } from 'next/dist/client/router';
+import UserContext from '../../UserContext';
+import { useContext } from 'react';
 
 const NavBar = ({ appName, type }) => {
   const router = useRouter();
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [navItemStyle, setNavItemStyle] = useState('');
+  const [avatarUser, setAvatarUser] = useState('');
+  const {
+    user,
+    setUser,
+    loginModalOpen,
+    setLoginModalOpen,
+    registerModalOpen,
+    setRegisterModalOpen,
+  } = useContext(UserContext);
+
   useEffect(() => {
     if (type === 'home') {
       setNavItemStyle(
@@ -25,7 +35,39 @@ const NavBar = ({ appName, type }) => {
   }, []);
 
   // const onSearch = value => {}
+  const handleWriteReview = async () => {
+    if (user) {
+      router.push('/reviews/create');
+    } else {
+      await setRegisterModalOpen(true);
+      await openNotification('error', 'You have to login first');
+    }
+  };
 
+  const openNotification = (type, msg) => {
+    notification[type]({
+      message: msg,
+      duration: 3,
+    });
+  };
+
+  const handleLogout = () => {
+    openNotification('success', 'successfully logged out!');
+    setUser(null);
+  };
+
+  const userInformations = (
+    <Menu className='rounded-2xl py-2 absolute transform -translate-x-1/2 left-1/2'>
+      <Menu.Item key='0'>
+        <p className='m-0'>Profile</p>
+      </Menu.Item>
+      <Menu.Item key='1'>
+        <p className='m-0' onClick={handleLogout}>
+          Logout
+        </p>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <>
       <nav className='nav__container w-3/4 my-0 mx-auto flex flex-row items-center justify-between'>
@@ -43,26 +85,66 @@ const NavBar = ({ appName, type }) => {
               icon={<FiEdit3 className='inline mr-2' />}
               type='primary'
               size='large'
-              onClick={() => {
-                router.push('/review/create');
-              }}>
+              style={{ borderRadius: '1rem' }}
+              onClick={handleWriteReview}>
               Write review
             </Button>
           </li>
-          <li className='nav__item p-5 '>
-            <button
-              className={navItemStyle}
-              onClick={() => setLoginModalOpen(true)}>
-              Login
-            </button>
-          </li>
-          <li className='nav__item p-5 '>
-            <button
-              className={navItemStyle}
-              onClick={() => setRegisterModalOpen(true)}>
-              Register
-            </button>
-          </li>
+          {user ? (
+            <li className='rounded-full p-0 hover:shadow-xl'>
+              <Dropdown
+                overlay={userInformations}
+                trigger={['click']}
+                placement='bottomLeft'>
+                <Tooltip title={user.userName}>
+                  {/* {avatarUser ? (
+                    <Avatar
+                      size={45}
+                      style={{
+                        cursor: 'pointer',
+                      }}
+                      src={avatarUser}
+                    />
+                  ) : (
+                    <Avatar
+                      size={45}
+                      style={{
+                        backgroundColor: 'white',
+                        cursor: 'pointer',
+                      }}
+                      src='/images/avatars/punpun.png'
+                    />
+                  )} */}
+                  <div className='w-12 h-12 flex items-center'>
+                    <img
+                      onError={(e) => {
+                        e.target.src = '/images/avatars/punpun.png';
+                      }}
+                      className='h-12 w-12 rounded-full object-cover'
+                      src={user.avatar}
+                    />
+                  </div>
+                </Tooltip>
+              </Dropdown>
+            </li>
+          ) : (
+            <>
+              <li className='nav__item p-5 '>
+                <button
+                  className={navItemStyle}
+                  onClick={() => setLoginModalOpen(true)}>
+                  Login
+                </button>
+              </li>
+              <li className='nav__item p-5 '>
+                <button
+                  className={navItemStyle}
+                  onClick={() => setRegisterModalOpen(true)}>
+                  Register
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
       <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />

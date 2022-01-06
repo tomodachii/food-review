@@ -1,15 +1,18 @@
 import Item from './Item';
-import { motion, AnimateSharedLayout } from 'framer-motion';
 
-const MiniReview = ({ reviews }) => {
+const MiniReview = ({ reviews, col }) => {
+  const column =
+    col === 3 ? ' review__section-col-3' : ' review__section-col-4';
   return (
-    <AnimateSharedLayout>
-      <motion.div className='w-full review--mini__section p-12'>
-        {reviews.map((review, index) => (
-          <Item key={new Date().getTime().toString + index} review={review} />
-        ))}
-      </motion.div>
-    </AnimateSharedLayout>
+    <div className={'w-full p-12 pb-8' + column}>
+      {reviews && reviews.length > 0 ? (
+        reviews.map((review, index) => (
+          <Item key={new Date().getTime().toString + index} data={review} />
+        ))
+      ) : (
+        <h2 className='text-red-600 '>NO DATA @_@</h2>
+      )}
+    </div>
   );
 };
 
