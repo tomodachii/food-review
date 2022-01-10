@@ -1,143 +1,181 @@
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
-const FacebookStrategy = require('passport-facebook').Strategy
-const GoogleStrategy = require('passport-google-oauth2').Strategy
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const bcrypt = require('./bcrypt');
 
 const keys = require('./key');
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 // passport local
-passport.use(new LocalStrategy(
-  async (username, password, done) => {
-  try {
-    const UserRecord = await prisma.users.findFirst({
+
+passport.use(
+  'local.signin',
+  new LocalStrategy(async function (username, password, done) {
+    let user = await prisma.users.findFirst({
       where: {
-        username
-      }
-    })
-    try {
-      const passwordCompare = await bcrypt.compare(password, UserRecord.password);
-      if (passwordCompare) return done(null, UserRecord)
-    } catch(err) {
-      return done(err, false)
+        username,
+      },
+    });
+
+    if (user) {
+      const truePass = bcrypt.compareSync(password, user.password);
+      if (truePass) return done(null, user);
+    } else {
+      return done(null, false);
     }
-    return done(null, false)
-  } catch(err) {
-    return done(err)
-  }
-}));
+  })
+);
+
+passport.use(
+  'local.signup',
+  new LocalStrategy(async function (username, password, done) {
+    let user = await prisma.users.findFirst({
+      where: {
+        username: username,
+      },
+    });
+
+    if (!user) {
+      const hashedPass = bcrypt.hashSync(password, 12);
+      let newUser = await prisma.users.create({
+        data: {
+          username,
+          password: hashedPass,
+          displayName: username,
+        },
+      });
+
+      if (newUser) {
+        console.log('ok');
+        return done(null, newUser);
+      } else {
+        return done(null, false);
+      }
+    } else {
+      return done(null, false);
+    }
+  })
+);
 
 // passport Facebook
-passport.use(new FacebookStrategy({
-  clientID: keys.facebook.id,
-  clientSecret: keys.facebook.secret,
-  callbackURL: "http://localhost:5000/users/signin/facebook/callback",
-  profileFields: ['email', 'displayName', 'id', 'photos', ]
-},
-async function(accessToken, refreshToken, profile, done) {
-  try {
-    const user = await prisma.users.findFirst({
-      where: {
-        user_id: profile.id
-      }
-    })
-    if (user) {
-      return done(null, user)
-    } else {
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: keys.facebook.id,
+      clientSecret: keys.facebook.secret,
+      callbackURL: '/users/signin/facebook/callback',
+      profileFields: ['email', 'displayName', 'id', 'photos'],
+    },
+    async function (accessToken, refreshToken, profile, done) {
       try {
-        const newUser = await prisma.users.create({
-          data: {
+        const user = await prisma.users.findUnique({
+          where: {
             user_id: profile.id,
-            username: profile.displayName,
-            email: profile.emails? profile.emails[0].value: "",
-            password: "",
-            avatar: profile.photos[0].value,
-            phone_number: "",
-            role: 0,
-            provider: "Facebook"
-          }
-        })
-        if (newUser) {
-          return done(null, newUser)
+          },
+        });
+        if (user) {
+          return done(null, user);
         } else {
-          return done(null, false)
+          try {
+            const newUser = await prisma.users.create({
+              data: {
+                user_id: profile.id,
+                username: profile.displayName,
+                displayName: profile.displayName,
+                email: profile.emails ? profile.emails[0].value : '',
+                password: '',
+                avatar: profile.photos[0].value,
+                phone_number: '',
+                role: 0,
+                provider: 'Facebook',
+              },
+            });
+            if (newUser) {
+              return done(null, newUser);
+            } else {
+              return done(null, false);
+            }
+          } catch (err) {
+            return done(err, false);
+          }
         }
       } catch (err) {
-        return done(err, false)
+        return done(err, false);
       }
     }
-  } catch(err) {
-    return done(err, false)
-  }
-}
-));
+  )
+);
 
 // passport google
-passport.use(new GoogleStrategy({
-  clientID:     keys.google.id,
-  clientSecret: keys.google.secret,
-  callbackURL: "http://localhost:5000/users/signin/google/callback",
-  passReqToCallback   : true
-},
-async function(request, accessToken, refreshToken, profile, done) {
-  try {
-    const user = await prisma.users.findFirst({
-      where: {
-        user_id: profile.id
-      }
-    })
-    if (user) {
-      return done(null, user)
-    } else {
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: keys.google.id,
+      clientSecret: keys.google.secret,
+      callbackURL: '/users/google/callback',
+      passReqToCallback: true,
+    },
+    async function (request, accessToken, refreshToken, profile, done) {
       try {
-        const newUser = await prisma.users.create({
-          data: {
+        const user = await prisma.users.findFirst({
+          where: {
             user_id: profile.id,
-            username: profile.displayName,
-            email: profile.emails? profile.emails[0].value: "",
-            password: "",
-            avatar: profile.photos[0].value,
-            phone_number: "",
-            role: 0,
-            provider: "Google"
-          }
-        })
-        if (newUser) {
-          return done(null, newUser)
+          },
+        });
+        if (user) {
+          return done(null, user);
         } else {
-          return done(null, false)
+          try {
+            const newUser = await prisma.users.create({
+              data: {
+                user_id: profile.id,
+                username: profile.displayName,
+                displayName: profile.displayName,
+                email: profile.emails ? profile.emails[0].value : '',
+                password: '',
+                avatar: profile.photos[0].value,
+                phone_number: '',
+                role: 0,
+                provider: 'Google',
+              },
+            });
+            if (newUser) {
+              return done(null, newUser);
+            } else {
+              return done(null, false);
+            }
+          } catch (err) {
+            return done(err, false);
+          }
+          // console.log(profile);
         }
       } catch (err) {
-        return done(err, false)
+        return done(err, false);
       }
-      // console.log(profile);
     }
-  } catch(err) {
-    return done(err, false)
-  }
-}
-));
+  )
+);
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.user_id);
 });
 
-passport.deserializeUser( async function(user, done) {
+passport.deserializeUser(async function (user_id, done) {
   try {
     const authUser = await prisma.users.findFirst({
       where: {
-        user_id: user.user_id
-      }
-    })
+        user_id,
+      },
+    });
     if (authUser) {
-      done(null, user)
-      return
+      done(null, authUser);
+      return;
     }
   } catch (err) {
-    done(err, user);
+    done(null, false);
   }
 });
 
-module.exports = passport
+module.exports = passport;

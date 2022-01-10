@@ -1,13 +1,37 @@
-import { UserOutlined } from '@ant-design/icons';
-import { useEffect } from 'react';
+import { notification } from 'antd';
+import { useEffect, useState, useContext } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
 import LikeButton from '../../LikeButton';
 import SaveButton from '../../SaveButton';
+import reviewsAPI from '../../../api/reviews';
 
 const Item = ({ data }) => {
-  useEffect(() => {
-    console.log(data);
+  const onReviewClick = () => {
+    router.push(`/reviews/${data.review.review_id}`);
+  };
+
+  const onUserClick = () => {
+    router.push(`/user/${data.users.username}`);
+  };
+
+  const [imgList, setImgList] = useState([]);
+  useEffect(async () => {
+    let items = await reviewsAPI
+      .getReviewImages(data.review.review_id)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    setImgList(items);
   }, []);
+  const truncates = (input) =>
+    input.length > 200 ? `${input.substring(0, 200)}...` : input;
+
+  const convertDate = (dateTime) => {
+    let index = dateTime.indexOf('T');
+    let date = dateTime.slice(0, 10);
+    let time = dateTime.slice(index + 1, index + 6);
+    return { index, date, time };
+  };
+
   return (
     <div className='w-full p-6 mb-5 bg-white rounded-xl transition duration-300 ease-in-out shadow hover:shadow-xl'>
       <div className='flex items-center gap-5 mb-4'>
@@ -15,19 +39,26 @@ const Item = ({ data }) => {
           src={data.users.avatar}
           className='rounded-full h-16 w-16'
           onError={(e) => {
-            console.log(e);
             e.target = '../images/avatars/punpun.png';
           }}
         />
         <div className='flex flex-col gap-1'>
-          <h4 className='m-0 cursor-pointer hover:text-red-600'>
+          <h4
+            onClick={onUserClick}
+            className='m-0 cursor-pointer hover:text-red-600'>
             {data.users.username}
           </h4>
-          <h5 className='m-0 text-gray-400'>{data.create_at}</h5>
+          <h5 className='m-0 text-gray-400'>
+            {`${convertDate(data.create_at).time} ngày ${
+              convertDate(data.create_at).date
+            }`}
+          </h5>
         </div>
       </div>
       <div className='flex items-center justify-between mb-4'>
-        <h4 className='m-0 cursor-pointer hover:text-red-600 overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full'>
+        <h4
+          onClick={onReviewClick}
+          className='m-0 cursor-pointer hover:text-red-600 overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full'>
           {data.review.title}
         </h4>
 
@@ -36,45 +67,36 @@ const Item = ({ data }) => {
           <AiTwotoneStar className=' text-white' />
         </div>
       </div>
-      <p className='text-gray-500'>{data.review.description}</p>
+      <p className='text-gray-500'>{truncates(data.review.description)}</p>
       <div className='flex mb-5 gap-5 overflow-hidden'>
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-          onError={(e) => {
-            console.log(e);
-            e.target.src = '../images/avatars/punpun.png';
-          }}
-        />
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-        />
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-        />
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-        />
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-        />
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-        />
-        <img
-          className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
-          src={data.review.review_image}
-        />
+        {imgList?.length > 7
+          ? imgList.slice(0, 7).map((item) => (
+              <img
+                className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
+                src={item.image_link}
+                onError={(e) => {
+                  e.target.src = '../images/avatars/punpun.png';
+                }}
+              />
+            ))
+          : imgList.map((item) => (
+              <img
+                className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
+                src={item.image_link}
+                onError={(e) => {
+                  e.target.src = '../images/avatars/punpun.png';
+                }}
+              />
+            ))}
       </div>
       <div className='flex items-center gap-5'>
         <div className='flex items-center gap-1'>
-          <LikeButton size='medium' />
-          <h5 className='m-0 text-gray-400'>{data.review.likes}</h5>
+          <LikeButton
+            size='medium'
+            reviewID={data.review.review_id}
+            likes={data.review.likes}
+            margin={true}
+          />
         </div>
         <SaveButton size='medium' />
       </div>

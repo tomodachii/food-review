@@ -19,7 +19,7 @@ const Slider = ({ data }) => {
     <div className='my-5 mx-auto w-1/2 relative'>
       <div className='w-3/4 mx-auto h-[600px] overflow-hidden relative'>
         {imgList.map((item, itemIndex) => {
-          const image = item;
+          const image = item.image_link;
           let initPosition =
             'mx-auto w-full h-full absolute top-0 left-0 transition duration-300 ease-in-out';
           let position = initPosition;
@@ -61,7 +61,7 @@ const Slider = ({ data }) => {
 
       <div className='pt-8 flex items-center justify-center gap-4'>
         {imgList.map((item, itemIndex) => {
-          const image = item;
+          const image = item.image_link;
           let initPosition =
             'object-cover h-[65px] w-[70px] rounded-lg ransition duration-500 ease-in-out cursor-pointer hover:scale-110';
           let position = initPosition + ' opacity-50';

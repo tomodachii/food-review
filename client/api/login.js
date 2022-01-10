@@ -9,5 +9,9 @@ const loginAPI = {
     const url = `http://localhost:5000/users/signup`;
     return axios.post(url, user);
   },
+  logout: () => {
+    const url = `http://localhost:5000/users/logout`;
+    return axios.post(url);
+  },
 };
 export default loginAPI;

@@ -1,10 +1,20 @@
 import LikeButton from '../../LikeButton';
 import { useRouter } from 'next/dist/client/router';
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { Tooltip } from 'antd';
+import UserContext from '../../../UserContext';
+import { useContext, useEffect, useState } from 'react';
+import userAPI from '../../../api/users';
+import { notification } from 'antd';
 
-const MiniReviewItem = ({ data }) => {
+const MiniReviewItem = ({ data, flag }) => {
+  // useEffect(() => {
+  //   userLikedReviews.forEach((item) => {
+  //     if (item.review.review_id === data.review.review_id) setLiked(true);
+  //   });
+  // });
+  // const [likesNumber, setLikesNumber] = useState(data.review.likes);
+  // const { user, setLoginModalOpen, userLikedReviews } = useContext(UserContext);
+  // const [liked, setLiked] = useState(false);
   const truncates = (input) =>
     input.length > 150 ? `${input.substring(0, 150)}...` : input;
   const router = useRouter();
@@ -16,13 +26,45 @@ const MiniReviewItem = ({ data }) => {
     router.push(`/user/${data.users.username}`);
   };
 
+  // const handleUnlike = async () => {
+  //   if (user) {
+  //     setLiked(false);
+  //   } else {
+  //     await openNotification('error', 'You have to log in first');
+  //     await setLoginModalOpen(true);
+  //   }
+  // };
+
+  // const handleLike = async () => {
+  //   if (user) {
+  //     await setLiked(true);
+  //     await setLikesNumber((prevState) => prevState + 1);
+  //     await userAPI
+  //       .like(data.review.review_id, { user_id: user.user_id })
+  //       .then((res) => console.log(res))
+  //       .catch((err) => console.log(err));
+  //   } else {
+  //     await openNotification('error', 'You have to log in first');
+  //     await setLoginModalOpen(true);
+  //   }
+  // };
+
+  // const openNotification = (type, msg) => {
+  //   notification[type]({
+  //     message: msg,
+  //     duration: 3,
+  //   });
+  // };
+
   return (
     <div className='relative w-full py-5 px-3 break-inside-avoid '>
       <div className='review--mini bg-white relative w-full rounded-xl shadow-md border-2 border-grey-50 transition duration-500 ease-in-out hover:shadow-xl'>
         <div className='w-3/4 review__img rounded-xl relative cursor-pointer overflow-hidden'>
           <img
             onError={(e) => {
-              e.target.src = 'images/avatars/punpun.png';
+              flag
+                ? (e.target.src = 'images/avatars/punpun.png')
+                : (e.target.src = '../../images/avatars/punpun.png');
             }}
             className='w-full rounded-xl shadow-lg hover:scale-110 transition duration-500 ease-in-out'
             src={data.review.review_image}
@@ -50,7 +92,9 @@ const MiniReviewItem = ({ data }) => {
                 onClick={onUserClick}>
                 <img
                   onError={(e) => {
-                    e.target.src = 'images/avatars/punpun.png';
+                    flag
+                      ? (e.target.src = 'images/avatars/punpun.png')
+                      : (e.target.src = '../../images/avatars/punpun.png');
                   }}
                   className='m-0 rounded-full h-8 w-8 cursor-pointer'
                   src={data.users.avatar}
@@ -62,8 +106,11 @@ const MiniReviewItem = ({ data }) => {
             </Tooltip>
 
             <div className='flex '>
-              <LikeButton />
-              <h5 className='text-gray-400 m-0 ml-1 '>{data.review.likes}</h5>
+              <LikeButton
+                reviewID={data.review.review_id}
+                likes={data.review.likes}
+                margin={true}
+              />
             </div>
           </div>
         </div>

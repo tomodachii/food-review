@@ -1,11 +1,17 @@
 import Item from './Item';
 
-const ReviewContainer = ({ reviews }) => {
+const ReviewContainer = ({ reviews, limit, imgList }) => {
   return (
     <div className='w-full'>
-      {reviews.map((review, index) => (
-        <Item key={new Date().getTime().toString + index} data={review} />
-      ))}
+      {limit
+        ? reviews
+            .slice(0, limit)
+            .map((review, index) => (
+              <Item key={new Date().getTime().toString + index} data={review} />
+            ))
+        : reviews.map((review, index) => (
+            <Item key={new Date().getTime().toString + index} data={review} />
+          ))}
     </div>
   );
 };

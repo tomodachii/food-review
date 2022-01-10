@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Filter from '../../components/Filter';
 import { useRouter } from 'next/router';
 import homeAPI from '../../api/home';
+import reviewsAPI from '../../api/reviews';
 
 const Reviews = ({ items }) => {
   const [reviews, setReviews] = useState(items);

@@ -11,6 +11,11 @@ const ParallaxHeader = () => {
         <h3 className='text-white mt-5 text-center'>
           Discover the best food and drink in Ha Noi
         </h3>
+        <input
+          type='text'
+          className='search-bar bg-search-background'
+          placeholder='Search ...'
+        />
       </div>
     </div>
   );

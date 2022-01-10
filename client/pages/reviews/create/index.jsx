@@ -14,7 +14,9 @@ const customIcons = {
 
 const CreateReview = () => {
   const [text, setText] = useState('');
-  const onFinish = () => {};
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+  };
   const onFinishFailed = () => {};
   const [form] = Form.useForm();
 

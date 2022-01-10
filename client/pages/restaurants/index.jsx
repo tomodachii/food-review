@@ -1,10 +1,11 @@
 import FRLayout from '../../layouts/FRLayout';
 import RestaurantContainer from '../../components/Restaurant';
-import items from '../../testcategories';
+// import items from '../../testcategories';
 import { useState } from 'react';
 import Filter from '../../components/Filter';
+import restaurantsAPI from '../../api/restaurants';
 
-const Restaurants = () => {
+const Restaurants = ({ items }) => {
   const [restaurants, setRestaurants] = useState(items);
   return (
     <FRLayout>
@@ -35,5 +36,23 @@ const Restaurants = () => {
     </FRLayout>
   );
 };
+
+export async function getStaticProps() {
+  // const router = useRouter();
+  const items = await restaurantsAPI
+    .getRestaurants()
+    .then((res) => res.data)
+    .catch((err) => {
+      // router.push('/404');
+      console.log(err);
+    });
+
+  return {
+    props: {
+      items,
+    },
+    revalidate: 1,
+  };
+}
 
 export default Restaurants;

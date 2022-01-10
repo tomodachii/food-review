@@ -19,7 +19,7 @@ const Register = ({ open, setOpen }) => {
       .then(async (res) => {
         console.log('resgister');
         console.log(res.data.user);
-        // await setUser(res.data.user);
+        console.log(res.data.message);
         await setOpen(false);
         await openNotification(
           'success',
@@ -27,6 +27,7 @@ const Register = ({ open, setOpen }) => {
         );
       })
       .catch((err) => {
+        console.log('register error');
         console.error(err);
       });
   };

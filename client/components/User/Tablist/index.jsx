@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
-import items from '../../../testcategories';
 import MiniReview from '../../MiniReview';
 import { BsGrid3X3GapFill, BsBookmarkFill } from 'react-icons/bs';
 const { TabPane } = Tabs;
 
-const allCategories = ['all', ...new Set(items.map((item) => item.category))];
-
-const Tablist = () => {
+const Tablist = ({ items }) => {
   const [tabs, setTabs] = useState(['posts', 'saved']);
   const [reviews, setReviews] = useState(items);
 
@@ -19,7 +16,6 @@ const Tablist = () => {
   //     setReviews(newItems);
   //   }
   // };
-  useEffect;
 
   return (
     <>
@@ -45,7 +41,7 @@ const Tablist = () => {
                 )
               }
               key={index}>
-              {<MiniReview reviews={reviews} />}
+              {<MiniReview reviews={items[index]} flag={true} />}
             </TabPane>
           );
         })}

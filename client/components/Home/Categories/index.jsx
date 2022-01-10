@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Tabs, Button } from 'antd';
 import { useRouter } from 'next/router';
 import MiniReview from '../../MiniReview';
@@ -12,9 +12,6 @@ const Categories = ({ items, categoriesData }) => {
   const router = useRouter();
   const [page, setPage] = useState(1);
   const [reviews, setReviews] = useState(items);
-  useEffect(() => {
-    console.log(reviews);
-  }, []);
   const handleSeeMore = async () => {
     await setLoading(true);
     await homeAPI

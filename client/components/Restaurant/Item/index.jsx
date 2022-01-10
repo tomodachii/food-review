@@ -6,26 +6,38 @@ import SaveButton from '../../SaveButton';
 import { MdLocationOn } from 'react-icons/md';
 import { AiFillPhone } from 'react-icons/ai';
 import { MdAccessTimeFilled } from 'react-icons/md';
-import items from '../../../testcategories';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Item = ({ restaurant }) => {
-  const [reviews, setReviews] = useState([]);
+  const router = useRouter();
+  const truncates = (input) =>
+    input.length > 200 ? `${input.substring(0, 200)}...` : input;
   useEffect(() => {
-    setReviews(items.slice(0, 2));
+    console.log(restaurant);
+    // setReviews(restaurant.review);
+    console.log('restaurant review: ');
+    console.log(restaurant.review);
+    // console.log(reviews);
   }, []);
   return (
     <div className='w-full p-6 mb-5 bg-white rounded-xl transition duration-300 ease-in-out shadow hover:shadow-lg'>
       <div className='flex items-center justify-between mb-2'>
         <div className='flex gap-5 items-center'>
-          <img src={restaurant.user_img} className='w-24 h-24' />
+          <img
+            src={restaurant.restaurant_image}
+            className='w-24 h-24'
+            onError={(e) => {
+              e.target.src = '../images/avatars/punpun.png';
+            }}
+          />
           <div className='flex flex-col items-start gap-3'>
             <h4 className='m-0 cursor-pointer hover:text-red-600 overflow-hidden overflow-ellipsis whitespace-nowrap max-w-full'>
-              {restaurant.title}
+              {restaurant.restaurant_name}
             </h4>
 
             <div className='inline-flex items-center gap-1 p-1 rounded-xl bg-red-600'>
-              <h5 className='m-0 text-white'>{restaurant.rating}</h5>
+              <h5 className='m-0 text-white'>{restaurant.restaurant_rating}</h5>
               <AiTwotoneStar className=' text-white' />
             </div>
           </div>
@@ -40,19 +52,21 @@ const Item = ({ restaurant }) => {
       <div className='my-4'>
         <div className='flex items-center gap-2'>
           <MdLocationOn />
-          <p className='text-gray-500 m-0'>Address: </p>
+          <p className='text-gray-500 m-0'>
+            Address: {restaurant.address.address}
+          </p>
         </div>
         <div className='flex items-center gap-2'>
           <AiFillPhone />
-          <p className='text-gray-500 m-0'>Contact: </p>
+          <p className='text-gray-500 m-0'>Contact: {restaurant.phoneNumber}</p>
         </div>
         <div className='flex items-center gap-2'>
           <MdAccessTimeFilled />
-          <p className='text-gray-500 m-0'>Time: </p>
+          <p className='text-gray-500 m-0'>Time: {restaurant.openingTime}</p>
         </div>
       </div>
       <div className='flex mb-5 gap-5 overflow-hidden'>
-        <img
+        {/* <img
           className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
           src={restaurant.img}
         />
@@ -79,34 +93,41 @@ const Item = ({ restaurant }) => {
         <img
           className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
           src={restaurant.img}
-        />
+        /> */}
       </div>
       <div className='flex flex-col gap-5'>
-        {reviews.map((review, index) => (
+        {restaurant.review.map((review, index) => (
           <div
             className='flex gap-3 w-full'
             key={new Date().getTime().toString + index}>
-            {/* <img
-              src={review.user_img}
-              className='m-0 rounded-full h-12 w-12 cursor-pointer'
-            /> */}
             <div className='h-14 w-14'>
               <img
-                src={review.user_img}
+                onError={(e) => {
+                  e.target.src = '../images/avatars/punpun.png';
+                }}
+                src={review.users.avatar}
                 className='m-0 rounded-full h-12 w-12 cursor-pointer'
               />
             </div>
 
             <div className='flex flex-col w-full'>
               <div className='flex justify-between items-center w-full'>
-                <div className='flex items-center'>
-                  <h4 className='m-0'>{review.user}</h4>
-                  <p className='text-gray-400 m-0'>time</p>
+                <div className='flex items-center gap-3'>
+                  <h4
+                    onClick={() => {
+                      router.push(`/users/${review.user.username}`);
+                    }}
+                    className='m-0 cursor-pointer transition duration-300 ease-in-out hover:text-red-600'>
+                    {review.users.username}
+                  </h4>
+                  <p className='text-gray-400 m-0'>{review.create_at}</p>
                 </div>
                 <div>star</div>
               </div>
               <div className=''>
-                <p className='text-gray-500 m-0'>{review.description}</p>
+                <p className='text-gray-500 m-0'>
+                  {truncates(review.description)}
+                </p>
               </div>
             </div>
           </div>

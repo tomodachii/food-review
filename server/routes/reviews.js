@@ -9,12 +9,13 @@ const passport = require('../config/passport');
 const prisma = new PrismaClient();
 
 // return one review
-router.get('/:review_id', async (req, res) => {
+router.get('/:review_id/', async (req, res) => {
   const review_id = req.params.review_id;
 
-  const reviewItem = await prisma.table_review.findUnique({
+  const reviewItem = await prisma.table_review.findMany({
     where: {
       review_id: review_id,
+      action: 'write',
     },
     include: {
       review: {
@@ -37,6 +38,7 @@ router.get('/:review_id', async (req, res) => {
       users: {
         select: {
           username: true,
+          displayName: true,
           avatar: true,
           user_id: true,
         },
@@ -44,7 +46,19 @@ router.get('/:review_id', async (req, res) => {
     },
   });
 
-  res.json(reviewItem);
+  res.json(reviewItem[0]);
+});
+
+router.get('/reviewImage/:review_id', async (req, res) => {
+  const review_id = req.params.review_id;
+
+  const imageList = await prisma.table_image.findMany({
+    where: {
+      review_id: review_id,
+    },
+  });
+
+  res.json(imageList);
 });
 
 module.exports = router;
