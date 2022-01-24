@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Typography } from 'antd';
+
+const { Text, Title } = Typography;
 
 const Recommendation = ({ data }) => {
   const [imgList, setImgList] = useState(data);
@@ -52,10 +55,42 @@ const Recommendation = ({ data }) => {
                 onMouseOver={() => setStop(true)}
                 onMouseOut={() => setStop(false)}>
                 <img
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                  }}
                   className=' object-cover h-full w-full scale-95 rounded-3xl shadow-lg cursor-pointer hover:shadow-xl'
                   src={image}
                   alt={name}
                 />
+                <div
+                  style={{
+                    background: 'rgba(0, 0, 0, 0.5)',
+                  }}
+                  className='flex flex-col justify-center opacity-0 transition duration-300 ease-in-out hover:opacity-100 scale-95 rounded-3xl h-full w-full inset-0 z-50'>
+                  <Title
+                    level={2}
+                    style={{ textAlign: 'center', color: 'white' }}>
+                    Title
+                  </Title>
+                  <Title
+                    level={3}
+                    style={{ textAlign: 'center', color: 'white' }}>
+                    Subtitle
+                  </Title>
+                  <Text style={{ textAlign: 'center', color: 'white' }}>
+                    Something text in here
+                  </Text>
+                  <Text style={{ textAlign: 'center', color: 'white' }}>
+                    Something text in here
+                  </Text>
+                  <Text style={{ textAlign: 'center', color: 'white' }}>
+                    Something text in here
+                  </Text>
+                </div>
               </div>
             );
           })}

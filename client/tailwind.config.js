@@ -8,6 +8,7 @@ module.exports = {
         'home-background': "url('/images/bg.png')",
         'reviews-background': "url('/images/bg.png')",
         'restaurants-background': "url('/images/bg.png')",
+        'search-background': "url('/images/searchicon.png')",
       }),
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],

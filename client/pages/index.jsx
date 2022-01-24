@@ -1,10 +1,12 @@
 import HomeLayout from '../layouts/HomeLayout';
-import React from 'react';
+import React, { useContext } from 'react';
 import Categories from '../components/Home/Categories';
 import Menu from '../components/Menu';
 import data from '../testreview';
 import Recommendation from '../components/Home/Recommendation';
 import homeAPI from '../api/home';
+import userAPI from '../api/users';
+import UserContext from '../UserContext';
 import { useRouter } from 'next/router';
 
 export default function Home({ items, categoriesData }) {
@@ -32,21 +34,14 @@ export default function Home({ items, categoriesData }) {
 // };
 
 export async function getStaticProps() {
-  const router = useRouter;
   const categoriesData = await homeAPI
     .getCategories()
     .then((res) => res.data.categories)
-    .catch((err) => {
-      router.push('/404');
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
   const items = await homeAPI
-    .getData(0)
+    .getData(1)
     .then((res) => res.data.reviews)
-    .catch((err) => {
-      router.push('/404');
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
   return {
     props: {
       items,

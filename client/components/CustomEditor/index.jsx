@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function MyEditor({ input, setInput }) {
+export default function MyEditor({ input, setInput, onChange }) {
   const editorRef = useRef();
   const [editorLoaded, setEditorLoaded] = useState(false);
   const { CKEditor, ClassicEditor } = editorRef.current || {};
@@ -43,11 +43,9 @@ export default function MyEditor({ input, setInput }) {
           const data = editor.getData();
           // console.log({ event, editor, data });
           setInput(data);
+          onChange(data);
         }}
       />
-      <div>
-        <h2>{input}</h2>
-      </div>
     </>
   ) : (
     <div>Editor loading</div>

@@ -6,17 +6,21 @@ import UserContext from '../../UserContext';
 import { Tabs } from 'antd';
 import ReviewContainer from '../../components/Review';
 import RestaurantContainer from '../../components/Restaurant';
+import UserContainer from '../../components/User';
 import Loading from '../../components/Loading';
+import Filter from '../../components/Filter';
 const { TabPane } = Tabs;
 
 const SearchResult = ({ data }) => {
-  const [homeData, setHomeData] = useState(data);
+  const [results, setResults] = useState(data);
   const router = useRouter();
   const { user, setUser } = useContext(UserContext);
   const [containerWidth, setContainerWidth] = useState('w-3/4');
-  const [reviews, setReviews] = useState([]);
-  const [restaurants, setRestaurants] = useState([]);
+  const [reviewResults, setReviewResults] = useState([]);
+  const [restaurantResults, setRestaurantResults] = useState([]);
+  const [userResults, setUserResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentKey, setCurrentKey] = useState('');
 
   // const fetchData = async () => {
   //   await homeAPI
@@ -29,27 +33,61 @@ const SearchResult = ({ data }) => {
   // };
 
   const handleTabChange = async (key) => {
+    setCurrentKey(key);
     if (key === 'all') {
-      setContainerWidth('w-3/4');
+      setContainerWidth('w-2/3');
     } else {
       setContainerWidth('w-2/3');
     }
-    await setLoading(true);
-    await searchAPI
-      .getReviewResults(router.query.key)
-      .then((res) => setReviews(res.data.reviews))
-      .catch((err) => {
-        console.log(err);
-        router.push('./404');
-      });
-    await setLoading(false);
+    if (key === 'all') {
+      await setLoading(true);
+      await searchAPI
+        .getResults(router.query.key)
+        .then((res) => setResults(res.data))
+        .catch((err) => {
+          console.log(err);
+          router.push('./404');
+        });
+      await setLoading(false);
+    }
+    if (key === 'reviews') {
+      await setLoading(true);
+      await searchAPI
+        .getReviewResults(router.query.key)
+        .then((res) => setReviewResults(res.data.reviews))
+        .catch((err) => {
+          console.log(err);
+          router.push('./404');
+        });
+      await setLoading(false);
+    }
+    if (key === 'restaurants') {
+      await setLoading(true);
+      await searchAPI
+        .getRestaurantResults(router.query.key)
+        .then((res) => setRestaurantResults(res.data.restaurants))
+        .catch((err) => {
+          console.log(err);
+          router.push('./404');
+        });
+      await setLoading(false);
+    }
+    if (key === 'users') {
+      await setLoading(true);
+      await searchAPI
+        .getUserResults(router.query.key)
+        .then((res) => setUserResults(res.data.users))
+        .catch((err) => {
+          console.log(err);
+          router.push('./404');
+        });
+      await setLoading(false);
+    }
   };
 
   useEffect(() => {
-    // fetchData();
-    console.log(data);
-    console.log(user);
-  }, []);
+    handleTabChange(currentKey);
+  }, [router.query.key]);
 
   return (
     <FRLayout>
@@ -60,20 +98,25 @@ const SearchResult = ({ data }) => {
           <Loading loading={loading} overlay={loading} />
           <Tabs defaultActiveKey='1' centered onChange={handleTabChange}>
             <TabPane tab='All' key='all'>
-              <div className='mt-10'>Content of Tab Pane 1</div>
+              <RestaurantContainer
+                restaurants={results.restaurants}
+                limit={2}
+              />
+              <ReviewContainer reviews={results.reviews} limit={5} />
+              <UserContainer users={results.users} limit={3} />
             </TabPane>
             <TabPane tab='Reviews' key='reviews'>
               <div className='mt-10'>
-                <ReviewContainer reviews={reviews} />
+                <ReviewContainer reviews={reviewResults} />
               </div>
             </TabPane>
             <TabPane tab='Restaurants' key='restaurants'>
               <div className='mt-10'>
-                <RestaurantContainer restaurants={restaurants} />
+                <RestaurantContainer restaurants={restaurantResults} />
               </div>
             </TabPane>
             <TabPane tab='Users' key='users'>
-              <div className='mt-10'>Content of Tab Pane 3</div>
+              <UserContainer users={userResults} />
             </TabPane>
           </Tabs>
         </div>

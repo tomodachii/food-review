@@ -51,7 +51,10 @@ const Map = () => {
   return (
     <div className='w-full h-full'>
       {mapLoaded ? (
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+        <MapContainer
+          center={[21.027763, 105.83416]}
+          zoom={13}
+          scrollWheelZoom={true}>
           <Markers />
           <TileLayer
             // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">POWEROFFRIENDSHIP</a>'

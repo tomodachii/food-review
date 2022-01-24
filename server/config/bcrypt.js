@@ -1,3 +1,3 @@
-const bcrpt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
-module.exports = bcrpt
+module.exports = bcrypt;

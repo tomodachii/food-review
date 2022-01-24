@@ -1,14 +1,25 @@
 import Item from './Item';
 
-const RestaurantContainer = ({ restaurants }) => {
+const RestaurantContainer = ({ restaurants, limit, disableReview }) => {
   return (
     <div className='w-full'>
-      {restaurants.map((restaurant, index) => (
-        <Item
-          key={new Date().getTime().toString + index}
-          restaurant={restaurant}
-        />
-      ))}
+      {limit
+        ? restaurants
+            .slice(0, limit)
+            .map((restaurant, index) => (
+              <Item
+                key={new Date().getTime().toString + index}
+                restaurant={restaurant}
+                disableReview={disableReview}
+              />
+            ))
+        : restaurants.map((restaurant, index) => (
+            <Item
+              key={new Date().getTime().toString + index}
+              restaurant={restaurant}
+              disableReview={disableReview}
+            />
+          ))}
     </div>
   );
 };

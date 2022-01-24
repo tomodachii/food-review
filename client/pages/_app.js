@@ -9,6 +9,9 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
+  const [userLikedReviews, setUserLikedReviews] = useState([]);
+  const [userSavedReviews, setUserSavedReviews] = useState([]);
+  const [userWrittenReviews, setUserWrittenReviews] = useState([]);
   return (
     <UserContext.Provider
       value={{
@@ -18,6 +21,12 @@ function MyApp({ Component, pageProps }) {
         setLoginModalOpen,
         registerModalOpen,
         setRegisterModalOpen,
+        userLikedReviews,
+        setUserLikedReviews,
+        userSavedReviews,
+        setUserSavedReviews,
+        userWrittenReviews,
+        setUserWrittenReviews,
       }}>
       <Head>
         <title>Tastie app</title>
