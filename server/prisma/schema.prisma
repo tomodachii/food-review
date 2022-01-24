@@ -39,6 +39,7 @@ model restaurant {
   openingTime           String?  @db.VarChar(1000)
   address               address  @relation(fields: [address_id], references: [address_id])
   review                review[]
+  table_trend           table_trend[]
 }
 
 model review {
@@ -113,4 +114,9 @@ model table_image {
   review_id  String
   image_link String @db.VarChar(1000)
   review     review @relation(fields: [review_id], references: [review_id])
+}
+
+model table_trend {
+  restaurant_id   String @id @default(uuid())
+  restaurant     restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
 }

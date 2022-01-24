@@ -19,9 +19,15 @@ router.get('/home/categories', async (req, res) => {
 });
 
 router.get('/home/:page', async (req, res) => {
-  const page = req.params.page ? 1 : Math.abs(Number(req.params.page));
+  const page = req.params.page;
 
   const reviews = await prisma.table_review.findMany({
+    where: {
+      action: 'write',
+    },
+    orderBy: {
+      create_at: 'desc',
+    },
     include: {
       review: {
         select: {
@@ -42,7 +48,7 @@ router.get('/home/:page', async (req, res) => {
       },
     },
     skip: (page - 1) * 16,
-    take: 16,
+    take: page * 16,
   });
 
   const data = { reviews };

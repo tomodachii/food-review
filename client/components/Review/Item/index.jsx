@@ -4,8 +4,10 @@ import { AiTwotoneStar } from 'react-icons/ai';
 import LikeButton from '../../LikeButton';
 import SaveButton from '../../SaveButton';
 import reviewsAPI from '../../../api/reviews';
+import { useRouter } from 'next/router';
 
 const Item = ({ data }) => {
+  const router = useRouter();
   const onReviewClick = () => {
     router.push(`/reviews/${data.review.review_id}`);
   };
@@ -39,7 +41,7 @@ const Item = ({ data }) => {
           src={data.users.avatar}
           className='rounded-full h-16 w-16'
           onError={(e) => {
-            e.target = '../images/avatars/punpun.png';
+            e.target.src = '../images/avatars/punpun.png';
           }}
         />
         <div className='flex flex-col gap-1'>
@@ -70,8 +72,9 @@ const Item = ({ data }) => {
       <p className='text-gray-500'>{truncates(data.review.description)}</p>
       <div className='flex mb-5 gap-5 overflow-hidden'>
         {imgList?.length > 7
-          ? imgList.slice(0, 7).map((item) => (
+          ? imgList.slice(0, 7).map((item, index) => (
               <img
+                key={new Date().getTime().toString + index}
                 className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
                 src={item.image_link}
                 onError={(e) => {
@@ -79,8 +82,9 @@ const Item = ({ data }) => {
                 }}
               />
             ))
-          : imgList.map((item) => (
+          : imgList.map((item, index) => (
               <img
+                key={new Date().getTime().toString + index}
                 className='object-cover h-[95px] w-[95px] rounded-lg cursor-pointer'
                 src={item.image_link}
                 onError={(e) => {
@@ -98,7 +102,7 @@ const Item = ({ data }) => {
             margin={true}
           />
         </div>
-        <SaveButton size='medium' />
+        <SaveButton size='medium' reviewID={data.review.review_id} />
       </div>
     </div>
   );

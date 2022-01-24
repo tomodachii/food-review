@@ -44,7 +44,7 @@ const LoginModal = ({ open, setOpen }) => {
     console.log(temp);
     if (temp) {
       await userAPI
-        .getUserLikedReviews(temp.user_id)
+        .getUserLikedReviewsArray(temp.user_id)
         .then((res) => {
           setUserLikedReviews(res.data);
         })
@@ -53,7 +53,7 @@ const LoginModal = ({ open, setOpen }) => {
           console.error(err);
         });
       await userAPI
-        .getUserSavedReviews(temp.user_id)
+        .getUserSavedReviewsArray(temp.user_id)
         .then((res) => {
           setUserSavedReviews(res.data);
         })
@@ -89,7 +89,7 @@ const LoginModal = ({ open, setOpen }) => {
   };
 
   const logInSocial = (social) => {
-    window.open(`http://localhost:5000/users/${social}`, '_self');
+    window.open(`http://localhost:5000/users/signin/${social}`, '_self');
   };
 
   useEffect(() => {

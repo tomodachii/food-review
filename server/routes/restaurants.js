@@ -131,20 +131,58 @@ router.get('/', async (req, res) => {
     },
   });
 
+  // restaurants.forEach((item) => {
+  //   let user2 = [];
+  //   let review2 = [];
+
+  //   for (let i = 0; i < item.review.length; i++) {
+  //     review2[i] = item.review[i];
+  //     user2[i] = review2[i].table_review[0].users;
+  //     review2[i].users = user2[i];
+  //     review2[i].create_at = review2[i].table_review[0].create_at;
+
+  //     delete item.review;
+  //     delete review2[i].table_review;
+  //     item['review'] = review2;
+  //   }
+  // });
+
   restaurants.forEach((item) => {
-    let user2 = [];
-    let review2 = [];
+    item.review.forEach((rv) => {
+      const user = rv.table_review[0].users;
+      const rvTemp = rv;
+      rv['users'] = user;
+      rv['create_at'] = rv.table_review[0].create_at;
 
-    for (let i = 0; i < item.review.length; i++) {
-      review2[i] = item.review[i];
-      user2[i] = review2[i].table_review[0].users;
-      review2[i].users = user2[i];
-      review2[i].create_at = review2[i].table_review[0].create_at;
-
-      delete item.review;
-      delete review2[i].table_review;
-      item['review'] = review2;
-    }
+      rv['review'] = {
+        review_id: rv.review_id,
+        title: rv.title,
+        description: rv.description,
+        service: rv.service,
+        price: rv.price,
+        food: rv.food,
+        ambience: rv.ambience,
+        restaurant_id: rv.restaurant_id,
+        category_id: rv.category_id,
+        likes: rv.likes,
+        review_image: rv.review_image,
+        user_rating: rv.user_rating,
+        create_at: rv.table_review.create,
+      };
+      delete rv.review_id;
+      delete rv.title;
+      delete rv.description;
+      delete rv.service;
+      delete rv.price;
+      delete rv.food;
+      delete rv.ambience;
+      delete rv.restaurant_id;
+      delete rv.category_id;
+      delete rv.likes;
+      delete rv.review_image;
+      delete rv.user_rating;
+      delete rv.table_review;
+    });
   });
 
   res.json(restaurants);

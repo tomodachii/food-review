@@ -16,7 +16,7 @@ const Restaurants = ({ items }) => {
           </h1>
         </div>
         <div className='flex flex-col my-5 items-center'>
-          <h3>100 Places</h3>
+          <h3>{`${items.length} places`}</h3>
           <p className='text-gray-500 text-center'>
             I'm a crepe <br />
             I'm a weirdough <br />

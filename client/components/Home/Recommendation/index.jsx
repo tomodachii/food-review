@@ -73,21 +73,21 @@ const Recommendation = ({ data }) => {
                   className='flex flex-col justify-center opacity-0 transition duration-300 ease-in-out hover:opacity-100 scale-95 rounded-3xl h-full w-full inset-0 z-50'>
                   <Title
                     level={2}
-                    style={{ 'text-align': 'center', color: 'white' }}>
+                    style={{ textAlign: 'center', color: 'white' }}>
                     Title
                   </Title>
                   <Title
                     level={3}
-                    style={{ 'text-align': 'center', color: 'white' }}>
+                    style={{ textAlign: 'center', color: 'white' }}>
                     Subtitle
                   </Title>
-                  <Text style={{ 'text-align': 'center', color: 'white' }}>
+                  <Text style={{ textAlign: 'center', color: 'white' }}>
                     Something text in here
                   </Text>
-                  <Text style={{ 'text-align': 'center', color: 'white' }}>
+                  <Text style={{ textAlign: 'center', color: 'white' }}>
                     Something text in here
                   </Text>
-                  <Text style={{ 'text-align': 'center', color: 'white' }}>
+                  <Text style={{ textAlign: 'center', color: 'white' }}>
                     Something text in here
                   </Text>
                 </div>

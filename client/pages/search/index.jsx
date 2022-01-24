@@ -8,6 +8,7 @@ import ReviewContainer from '../../components/Review';
 import RestaurantContainer from '../../components/Restaurant';
 import UserContainer from '../../components/User';
 import Loading from '../../components/Loading';
+import Filter from '../../components/Filter';
 const { TabPane } = Tabs;
 
 const SearchResult = ({ data }) => {

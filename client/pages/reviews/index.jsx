@@ -18,7 +18,7 @@ const Reviews = ({ items }) => {
           </h1>
         </div>
         <div className='flex flex-col my-5 items-center'>
-          <h3>100 Posts</h3>
+          <h3>{`Quote of the day`}</h3>
           <p className='text-gray-500 text-center'>
             If he doesn't appreciate your fruits jokes, <br /> you have to let
             that mango
@@ -30,7 +30,7 @@ const Reviews = ({ items }) => {
           <Filter />
         </div>
         <div className='col-span-7'>
-          <ReviewContainer reviews={reviews} />
+          <ReviewContainer reviews={reviews} seeMore={true} />
         </div>
       </div>
     </FRLayout>
@@ -40,7 +40,7 @@ const Reviews = ({ items }) => {
 export async function getStaticProps() {
   const router = useRouter;
   const items = await homeAPI
-    .getData(0)
+    .getData(1)
     .then((res) => res.data.reviews)
     .catch((err) => {
       router.push('/404');

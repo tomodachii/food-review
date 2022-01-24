@@ -4,8 +4,20 @@ import Slider from '../../../components/Review/Slider';
 import { AiTwotoneStar } from 'react-icons/ai';
 import LikeButton from '../../../components/LikeButton';
 import SaveButton from '../../../components/SaveButton';
-import { Comment, Tooltip } from 'antd';
+import { Comment, Tooltip, Rate } from 'antd';
 import reviewsAPI from '../../../api/reviews';
+import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
+import restaurantsAPI from '../../../api/restaurants';
+import RestaurantContainer from '../../../components/Restaurant';
+import { useEffect } from 'react';
+const customIcons = {
+  1: <FrownOutlined />,
+  2: <FrownOutlined />,
+  3: <MehOutlined />,
+  4: <SmileOutlined />,
+  5: <SmileOutlined />,
+};
+
 const ExampleComment = ({ children }) => (
   <Comment
     actions={[<span key='comment-nested-reply-to'>Reply to</span>]}
@@ -27,7 +39,11 @@ const ExampleComment = ({ children }) => (
   </Comment>
 );
 
-const Review = ({ data, imgList }) => {
+const Review = ({ data, imgList, restaurant }) => {
+  useEffect(() => {
+    console.log('restaurant');
+    console.log(restaurant);
+  }, []);
   return (
     <FRLayout>
       <div className='w-full bg-gray-50 mx-auto'>
@@ -60,11 +76,26 @@ const Review = ({ data, imgList }) => {
             </div>
             <div></div>
           </div>
-          <div className='flex items-center mb-5 gap-5'>
-            <AiTwotoneStar className='text-2xl text-yellow-400' />
-            <h3 className='m-0'>{`${data.review.user_rating} / 5`}</h3>
+          <div className='flex items-center mb-5 gap-5 justify-evenly'>
+            <div className='flex items-center gap-5'>
+              <AiTwotoneStar className='text-2xl text-yellow-400' />
+              <h3 className='m-0'>{`${
+                Math.round(data.review.user_rating) / 2
+              } / 5`}</h3>
+            </div>
+            <Rate
+              disabled
+              allowHalf
+              style={{ color: 'red' }}
+              character={({ index }) => customIcons[index + 1]}
+              defaultValue={Math.round(data.review.user_rating) / 2}
+            />
           </div>
           <p>{data.review.description}</p>
+          <RestaurantContainer
+            restaurants={[restaurant]}
+            disableReview={true}
+          />
           <ExampleComment>
             <ExampleComment>
               <ExampleComment />
@@ -90,11 +121,15 @@ Review.getInitialProps = async ({ query }) => {
     .then((res) => res.data)
     .catch((err) => {
       console.log(err);
-      router.push('/404');
     });
+  const restaurant = await restaurantsAPI
+    .getRestaurant(data.review.restaurant_id)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
   return {
     data,
     imgList,
+    restaurant,
   };
 };
 export default Review;

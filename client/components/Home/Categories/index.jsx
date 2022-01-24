@@ -10,13 +10,14 @@ const { TabPane } = Tabs;
 const Categories = ({ items, categoriesData }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [reviews, setReviews] = useState(items);
   const handleSeeMore = async () => {
     await setLoading(true);
     await homeAPI
       .getData(page)
       .then((res) => {
+        if (page === 1) setReviews([]);
         setReviews((prevState) => [...prevState, ...res.data.reviews]);
         setPage((prevState) => prevState + 1);
       })
@@ -29,6 +30,7 @@ const Categories = ({ items, categoriesData }) => {
 
   const handleTabChange = async (id) => {
     await setLoading(true);
+    setPage(1);
     await homeAPI
       .getDataByCategories(id)
       .then((res) => {

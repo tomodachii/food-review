@@ -16,7 +16,7 @@ const MiniReviewItem = ({ data, flag }) => {
   // const { user, setLoginModalOpen, userLikedReviews } = useContext(UserContext);
   // const [liked, setLiked] = useState(false);
   const truncates = (input) =>
-    input.length > 150 ? `${input.substring(0, 150)}...` : input;
+    input.length > 80 ? `${input.substring(0, 80)}...` : input;
   const router = useRouter();
   const onReviewClick = () => {
     router.push(`/reviews/${data.review.review_id}`);

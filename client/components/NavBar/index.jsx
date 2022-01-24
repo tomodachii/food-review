@@ -37,11 +37,18 @@ const NavBar = ({ appName, type }) => {
         'text-[#272343] transition duration-300 ease-in-out hover:text-[#dd2f46] hover:-translate-1 hover:scale-110'
       );
     }
-    // await userAPI
-    //   .getLoginUser()
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console(err));
   }, []);
+
+  useEffect(() => {
+    if (!user) {
+      userAPI.getUser().then((res) => {
+        console.log(res.data.user);
+        if (res.data?.user) {
+          setUser(res.data.user);
+        }
+      });
+    }
+  }, [router]);
 
   // const onSearch = value => {}
   const handleWriteReview = async () => {
