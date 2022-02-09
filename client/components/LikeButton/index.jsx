@@ -5,20 +5,23 @@ import userAPI from '../../api/users';
 import { notification } from 'antd';
 
 const LikeButton = ({ size, reviewID, likes, margin }) => {
-  useEffect(async () => {
-    userLikedReviews.forEach((item) => {
-      if (item.review_id === reviewID) setLiked(true);
-    });
-  });
-
-  // useEffect(() => {
-  //   console.log(userLikedReviews);
-  // }, [userLikedReviews]);
-
   const [likesNumber, setLikesNumber] = useState(likes);
   const { user, setLoginModalOpen, userLikedReviews, setUserLikedReviews } =
     useContext(UserContext);
   const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    let check = userLikedReviews.some((item) => item.review_id === reviewID);
+    if (check) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
+  }, [userLikedReviews]);
+
+  // useEffect(() => {
+  //   console.log(userLikedReviews);
+  // }, [userLikedReviews]);
 
   const openNotification = (type, msg) => {
     notification[type]({
@@ -31,13 +34,16 @@ const LikeButton = ({ size, reviewID, likes, margin }) => {
     if (user) {
       setLiked(false);
       setLikesNumber((prevState) => prevState - 1);
+      // setUserLikedReviews((prevState) =>
+      //   prevState.filter((item) => item.review_id !== temp.review_id)
+      // );
       let temp = await userAPI
         .unlike(reviewID, { user_id: user.user_id })
-        .then((res) => res.data)
-        .catch((err) => console.log(err));
-      await setUserLikedReviews((prevState) =>
-        prevState.filter((item) => item.review_id !== temp.review_id)
-      );
+        .catch((err) => {
+          console.log(err);
+          setLiked(true);
+          setLikesNumber((prevState) => prevState + 1);
+        });
     } else {
       openNotification('error', 'You have to log in first');
       await setLoginModalOpen(true);
@@ -48,12 +54,15 @@ const LikeButton = ({ size, reviewID, likes, margin }) => {
     if (user) {
       setLiked(true);
       setLikesNumber((prevState) => prevState + 1);
+      // setUserLikedReviews((prevState) => [...prevState, temp]);
       let temp = await userAPI
         .like(reviewID, { user_id: user.user_id })
-        .then((res) => res.data)
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setLiked(false);
+          setLikesNumber((prevState) => prevState - 1);
+        });
       console.log(temp);
-      setUserLikedReviews((prevState) => [...prevState, temp]);
     } else {
       openNotification('error', 'You have to log in first');
       await setLoginModalOpen(true);

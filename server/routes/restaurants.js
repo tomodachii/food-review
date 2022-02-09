@@ -171,7 +171,7 @@ router.get('/', async (req, res) => {
       };
       delete rv.review_id;
       delete rv.title;
-      delete rv.description;
+      // delete rv.description;
       delete rv.service;
       delete rv.price;
       delete rv.food;

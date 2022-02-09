@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 // import L from 'leaflet';
 
-const Map = () => {
+const Map = ({ lat, lng }) => {
   const [selectedPosition, setSelectedPosition] = useState([0, 0]);
   const [click, setClick] = useState(false);
   const mapRef = useRef();
@@ -26,7 +26,7 @@ const Map = () => {
 
   const getIcon = (size) => {
     return L.icon({
-      iconUrl: '../images/marker.png',
+      iconUrl: '../images/marker1.png',
       iconSize: size,
     });
   };
@@ -51,11 +51,14 @@ const Map = () => {
   return (
     <div className='w-full h-full'>
       {mapLoaded ? (
-        <MapContainer
-          center={[21.027763, 105.83416]}
-          zoom={13}
-          scrollWheelZoom={true}>
-          <Markers />
+        <MapContainer center={[lat, lng]} zoom={45} scrollWheelZoom={true}>
+          {/* <Markers /> */}
+          <Marker
+            key={selectedPosition[0]}
+            position={[lat, lng]}
+            interactive={false}
+            icon={getIcon(50)}
+          />
           <TileLayer
             // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">POWEROFFRIENDSHIP</a>'
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

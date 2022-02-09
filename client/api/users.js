@@ -3,7 +3,7 @@ import axios from 'axios';
 const userAPI = {
   getLoginUser: () => {
     const url = `http://localhost:5000/users`;
-    return axios.get(url);
+    return axios.get(url, { withCredentials: true });
   },
   getUser: (username) => {
     const url = `http://localhost:5000/users/account/${username}`;
@@ -11,7 +11,7 @@ const userAPI = {
   },
   getUserLikedReviews: (id) => {
     const url = `http://localhost:5000/users/likedReviews/${id}`;
-    return axios.get(url);
+    return axios.get(url, { withCredentials: true });
   },
   getUserLikedReviewsArray: (id) => {
     const url = `http://localhost:5000/users/likedReviewsArray/${id}`;
@@ -23,7 +23,7 @@ const userAPI = {
   },
   getUserSavedReviews: (id) => {
     const url = `http://localhost:5000/users/savedReviews/${id}`;
-    return axios.get(url);
+    return axios.get(url, { withCredentials: true });
   },
   getUserSavedReviewsArray: (id) => {
     const url = `http://localhost:5000/users/savedReviewsArray/${id}`;
