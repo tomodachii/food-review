@@ -21,9 +21,6 @@ const Restaurant = ({ data, imgList }) => {
   return (
     <FRLayout>
       <div className='w-3/4 bg-gray-50 mx-auto'>
-        <div className='w-1/2 h-[600px]'>
-          <Map />
-        </div>
         <div className='my-4 bg-white rounded-xl shadow-md pl-6 pr-4 py-5'>
           <div className='flex'>
             <img
@@ -38,7 +35,10 @@ const Restaurant = ({ data, imgList }) => {
           <div className='flex items-center gap-2 mt-3'>
             <AiFillStar />
             <p className=' mb-1 text-gray-500 m-0'>
-              Rating: <b className='text-black'>{data.restaurant_rating / 5}</b>
+              Rating:{' '}
+              <b className='text-black'>
+                {Math.round(data.restaurant_rating / 2)}
+              </b>
               /5
             </p>
           </div>
@@ -63,12 +63,19 @@ const Restaurant = ({ data, imgList }) => {
           </div>
         </div>
 
-        <div className='mt-5 mb-3'>
-          <p className='text-gray-500 text-xl font-semibold font-sans'>
-            Review từ cộng đồng ({data.review.length})
-          </p>
+        <div className='w-full'>
+          <div className='w-full h-[600px] rounded-lg'>
+            <Map lat={21.01109167859198} lng={105.93397082593505} />
+          </div>
         </div>
-        <ReviewContainer reviews={data.review} />
+        <div className=''>
+          <div className='mt-5 mb-3'>
+            <p className='text-gray-500 text-xl font-semibold font-sans'>
+              Review từ cộng đồng ({data.review.length})
+            </p>
+          </div>
+          <ReviewContainer reviews={data.review} />
+        </div>
       </div>
     </FRLayout>
   );

@@ -39,16 +39,16 @@ const NavBar = ({ appName, type }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (!user) {
-      userAPI.getUser().then((res) => {
-        console.log(res.data.user);
-        if (res.data?.user) {
-          setUser(res.data.user);
-        }
-      });
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     userAPI.getUser().then((res) => {
+  //       console.log(res.data.user);
+  //       if (res.data?.user) {
+  //         setUser(res.data.user);
+  //       }
+  //     });
+  //   }
+  // }, [router]);
 
   // const onSearch = value => {}
   const handleWriteReview = async () => {

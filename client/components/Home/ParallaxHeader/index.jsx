@@ -1,6 +1,19 @@
 import NavBar from '../../NavBar';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const ParallaxHeader = () => {
+  const [inputValue, setInputValue] = useState();
+  const router = useRouter();
+  const onEnter = (e) => {
+    if (e.key === 'Enter') {
+      router.push({
+        pathname: `/search/`,
+        query: { key: inputValue },
+      });
+    }
+  };
+
   return (
     <div className='h-screen bg-home-background bg-cover bg-fixed'>
       <NavBar appName='' type='home' />
@@ -15,6 +28,9 @@ const ParallaxHeader = () => {
           type='text'
           className='search-bar bg-search-background'
           placeholder='Search ...'
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyPress={onEnter}
         />
       </div>
     </div>

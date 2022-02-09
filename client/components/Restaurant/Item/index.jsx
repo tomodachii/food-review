@@ -123,7 +123,7 @@ const Item = ({ restaurant, disableReview }) => {
                 </div>
                 <div className=''>
                   <p className='text-gray-500 m-0'>
-                    {truncates(review.review.description)}
+                    {truncates(review.description)}
                   </p>
                 </div>
               </div>

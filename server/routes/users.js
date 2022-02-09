@@ -11,6 +11,7 @@ const prisma = new PrismaClient();
 /* GET users listing. */
 // get all user in users table
 router.get('/', async function (req, res) {
+  console.log('hello');
   if (req.isUnauthenticated()) {
     res.json({ message: 'hello' });
   } else {
@@ -418,6 +419,39 @@ router.post('/postReview/:review_id', async (req, res) => {
   });
 
   res.json(newPost);
+});
+
+router.post('/createRestaurant', async (req, res) => {
+  const {
+    restaurant_image,
+    user_id,
+    restaurant_name,
+    phoneNumber,
+    openingTime,
+    address,
+  } = req.body;
+
+  let restaurant_id = IdRender();
+  const newRestaurant = await prisma.restuarant.create({
+    data: {
+      restaurant_id,
+      restaurant_image,
+      restaurant_name,
+      phoneNumber,
+      openingTime,
+      address,
+    },
+  });
+
+  // await prisma.table_review.create({
+  //   data: {
+  //     user_id: user_id,
+  //     review_id: review_id,
+  //     action: 'write',
+  //   },
+  // });
+
+  res.json(newRestaurant);
 });
 
 router.get('/:review_id', async (req, res) => {

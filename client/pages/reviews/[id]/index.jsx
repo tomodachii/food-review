@@ -29,12 +29,55 @@ const ExampleComment = ({ children }) => (
         alt='Han Solo'
       />
     }
-    content={
-      <p>
-        We supply a series of design principles, practical patterns and high
-        quality design resources (Sketch and Axure).
-      </p>
-    }>
+    content={<p>Ngon.</p>}>
+    {children}
+  </Comment>
+);
+
+const ExampleComment1 = ({ children }) => (
+  <Comment
+    actions={[<span key='comment-nested-reply-to'>Reply to</span>]}
+    author={<a>Han Solo</a>}
+    avatar={
+      <img
+        className='w-12 h-12 rounded-full'
+        src='https://joeschmoe.io/api/v1/random'
+        alt='Han Solo'
+      />
+    }
+    content={<p>Nhưng hơi đắt</p>}>
+    {children}
+  </Comment>
+);
+
+const ExampleComment2 = ({ children }) => (
+  <Comment
+    actions={[<span key='comment-nested-reply-to'>Reply to</span>]}
+    author={<a>Han Solo</a>}
+    avatar={
+      <img
+        className='w-12 h-12 rounded-full'
+        src='https://joeschmoe.io/api/v1/random'
+        alt='Han Solo'
+      />
+    }
+    content={<p>Đồ ăn dạo này đắt thế nhỉ</p>}>
+    {children}
+  </Comment>
+);
+
+const ExampleComment3 = ({ children }) => (
+  <Comment
+    actions={[<span key='comment-nested-reply-to'>Reply to</span>]}
+    author={<a>Han Solo</a>}
+    avatar={
+      <img
+        className='w-12 h-12 rounded-full'
+        src='https://joeschmoe.io/api/v1/random'
+        alt='Han Solo'
+      />
+    }
+    content={<p>Ngon</p>}>
     {children}
   </Comment>
 );
@@ -42,7 +85,7 @@ const ExampleComment = ({ children }) => (
 const Review = ({ data, imgList, restaurant }) => {
   useEffect(() => {
     console.log('restaurant');
-    console.log(restaurant);
+    console.log(data.review);
   }, []);
   return (
     <FRLayout>
@@ -57,7 +100,11 @@ const Review = ({ data, imgList, restaurant }) => {
         <div className='mx-auto w-1/2 p-5 relative'>
           <div className='flex flex-col items-center fixed left-[17%] top-1/4 z-10 gap-3'>
             <div className='flex flex-col items-center gap-3'>
-              <LikeButton size='large' likes={data.review.likes} />
+              <LikeButton
+                size='large'
+                likes={data.review.likes}
+                reviewID={data.review.review_id}
+              />
             </div>
             {/* <h5 className='text-gray-500 m-0'>{data.review.likes}</h5> */}
             <Tooltip placement='left' title={data.users.username}>
@@ -72,7 +119,7 @@ const Review = ({ data, imgList, restaurant }) => {
             </Tooltip>
 
             <div>
-              <SaveButton size='large' />
+              <SaveButton size='large' reviewID={data.review.review_id} />
             </div>
             <div></div>
           </div>
@@ -97,10 +144,10 @@ const Review = ({ data, imgList, restaurant }) => {
             disableReview={true}
           />
           <ExampleComment>
-            <ExampleComment>
-              <ExampleComment />
-              <ExampleComment />
-            </ExampleComment>
+            <ExampleComment1>
+              <ExampleComment2 />
+              <ExampleComment3 />
+            </ExampleComment1>
           </ExampleComment>
         </div>
       </div>

@@ -5,11 +5,6 @@ import UserContext from '../../UserContext';
 import { notification } from 'antd';
 
 const SaveButton = ({ size, reviewID }) => {
-  useEffect(() => {
-    userSavedReviews.forEach((item) => {
-      if (item.review.review_id === reviewID) setSaved(true);
-    });
-  });
   const { user, setLoginModalOpen, userSavedReviews } = useContext(UserContext);
   const [saved, setSaved] = useState(false);
   let fontSize = ' text-default';
@@ -21,6 +16,16 @@ const SaveButton = ({ size, reviewID }) => {
     fontSize = ' text-xl';
   }
 
+  useEffect(() => {
+    console.log('bookmark', userSavedReviews);
+    let check = userSavedReviews.some((item) => item.review_id === reviewID);
+    if (check) {
+      setSaved(true);
+    } else {
+      setSaved(false);
+    }
+  }, [userSavedReviews]);
+
   const openNotification = (type, msg) => {
     notification[type]({
       message: msg,
@@ -29,40 +34,43 @@ const SaveButton = ({ size, reviewID }) => {
   };
 
   const handleUnsave = async () => {
+    setSaved(false);
     if (user) {
-      await setSaved(false);
-      await userAPI
-        .unsave(reviewID, { user_id: user.user_id })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+      await userAPI.unsave(reviewID, { user_id: user.user_id }).catch((err) => {
+        console.log(err);
+        setSaved(true);
+      });
     } else {
-      await openNotification('error', 'You have to log in first');
-      await setLoginModalOpen(true);
+      openNotification('error', 'You have to log in first');
+      setLoginModalOpen(true);
     }
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
+    setSaved(true);
     if (user) {
-      await setSaved(true);
-      await userAPI
+      userAPI
         .save(reviewID, { user_id: user.user_id })
         .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setSaved(false);
+        });
     } else {
-      await openNotification('error', 'You have to log in first');
-      await setLoginModalOpen(true);
+      openNotification('error', 'You have to log in first');
+      setLoginModalOpen(true);
     }
   };
 
   return saved ? (
     <FaBookmark
       className={'text-black cursor-pointer font-bold' + fontSize}
-      onClick={() => handleUnsave}
+      onClick={handleUnsave}
     />
   ) : (
     <FaRegBookmark
       className={'text-black cursor-pointer font-bold' + fontSize}
-      onClick={() => handleSave}
+      onClick={handleSave}
     />
   );
 };

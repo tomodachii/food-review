@@ -46,6 +46,7 @@ const LoginModal = ({ open, setOpen }) => {
       await userAPI
         .getUserLikedReviewsArray(temp.user_id)
         .then((res) => {
+          console.log('data:', res.data);
           setUserLikedReviews(res.data);
         })
         .catch((err) => {
@@ -55,6 +56,7 @@ const LoginModal = ({ open, setOpen }) => {
       await userAPI
         .getUserSavedReviewsArray(temp.user_id)
         .then((res) => {
+          console.log('nigga', res.data);
           setUserSavedReviews(res.data);
         })
         .catch((err) => {
