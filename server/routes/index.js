@@ -18,6 +18,12 @@ router.get('/home/categories', async (req, res) => {
   res.json(data);
 });
 
+router.get('/district', async (req, res) => {
+  const districts = await prisma.district.findMany();
+  const data = { districts };
+  res.json(data);
+});
+
 router.get('/home/:page', async (req, res) => {
   const page = req.params.page;
 
