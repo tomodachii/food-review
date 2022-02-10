@@ -10,6 +10,8 @@ const Recommendation = ({ data }) => {
   const [stop, setStop] = useState(false);
 
   useEffect(() => {
+    // console.log(imgList);
+    console.log(data);
     const lastIndex = imgList.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
@@ -35,7 +37,8 @@ const Recommendation = ({ data }) => {
       <div className='my-5 mx-auto w-full relative'>
         <div className='w-3/4 mx-auto h-[600px] overflow-hidden relative'>
           {imgList.map((item, itemIndex) => {
-            const { image, name } = item;
+            const { image, name, title, quote } = item;
+            // console.log(quote);
             let initPosition =
               'mx-auto w-full h-full absolute top-0 left-0 transition duration-300 ease-in-out';
             let position = initPosition + ' opacity-0 translate-x-full';
@@ -74,21 +77,21 @@ const Recommendation = ({ data }) => {
                   <Title
                     level={2}
                     style={{ textAlign: 'center', color: 'white' }}>
-                    Title
+                    {title}
                   </Title>
                   <Title
                     level={3}
                     style={{ textAlign: 'center', color: 'white' }}>
-                    Subtitle
+                    {quote}
                   </Title>
                   <Text style={{ textAlign: 'center', color: 'white' }}>
-                    Something text in here
+                    {quote}
                   </Text>
                   <Text style={{ textAlign: 'center', color: 'white' }}>
                     Something text in here
                   </Text>
                   <Text style={{ textAlign: 'center', color: 'white' }}>
-                    Something text in here
+                    Something text in here 213
                   </Text>
                 </div>
               </div>

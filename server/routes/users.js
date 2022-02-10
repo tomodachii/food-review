@@ -375,7 +375,7 @@ router.post('/changeInfo', async (req, res) => {
   res.json(user);
 });
 
-router.post('/postReview/:review_id', async (req, res) => {
+router.post('/postReview', async (req, res) => {
   const {
     images,
     user_id,
@@ -394,11 +394,12 @@ router.post('/postReview/:review_id', async (req, res) => {
     data: {
       review_id: review_id,
       title: title,
-      description: description,
-      user_rating: overall * 2,
-      food: food * 2,
-      service: service * 2,
-      price: price * 2,
+      description: `${description}`,
+      user_rating: Number(overall) * 2,
+      ambience: Number(ambience) * 2,
+      food: Number(food) * 2,
+      service: Number(service) * 2,
+      price: Number(price) * 2,
       restaurant_id: restaurant_id,
     },
   });

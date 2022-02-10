@@ -1,14 +1,20 @@
 import FRLayout from '../../../layouts/FRLayout';
-import { Input, Form, Button, Divider, Rate } from 'antd';
+import { Input, Form, Button, Divider, Rate, Select } from 'antd';
 import MyEditor from '../../../components/CustomEditor';
 import { useState, useEffect, createContext } from 'react';
 import PicturesWall from '../../../components/ImgUploader';
 import { fileUpload } from '../../../storeFile';
+import restaurantsAPI from '../../../api/restaurants'
+import userAPI from '../../../api/users'
+
+const { Option } = Select
 
 export const RvContext = createContext();
 
 const CreateReview = () => {
   const [images, updateImages] = useState([]);
+
+  const [restaurants, setRestaurants] = useState()
 
   const [serviceRate, setServiceRate] = useState(0);
   const [priceRate, setPriceRate] = useState(0);
@@ -23,6 +29,11 @@ const CreateReview = () => {
     );
 
     console.log('Received values of form: ', { ...values, images: imagesLink });
+    userAPI.createReview({ ...values, images: imagesLink })
+    .then(res => {
+
+    })
+    .catch()
   };
   const onFinishFailed = () => {};
   const [form] = Form.useForm();
@@ -38,10 +49,18 @@ const CreateReview = () => {
     console.log(overAll);
   }, [serviceRate, priceRate, foodRate, ambienceRate]);
 
+  useEffect(() => {
+    restaurantsAPI.getRestaurants()
+    .then(res => {
+      console.log("hello ",res.data);
+      setRestaurants(res.data)
+    })
+  }, [])
+
   return (
     <RvContext.Provider value={{ images, updateImages }}>
       <FRLayout>
-        <div className='w-3/4 mx-auto '>
+        <div className='w-full mx-auto '>
           <h2 className='text-center my-8 '>Write Review</h2>
           <div className='w-full p-10 bg-white rounded-xl shadow'>
             <Form
@@ -60,7 +79,7 @@ const CreateReview = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your username!',
+                          message: 'Please input title!',
                         },
                       ]}>
                       <Input
@@ -83,9 +102,68 @@ const CreateReview = () => {
                   </div>
                 </div>
                 <div className='col-span-3'>
-                  <div></div>
                   <div>
-                    <h3>Rating</h3>
+                    <h4>Restaurant</h4>
+                    <Form.Item 
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please choose restaurant!',
+                        },
+                      ]} 
+                      name="restaurant_id"
+                    >
+                      <Select
+                        size='large'
+                        showSearch
+                        style={{ width: '100%' }}
+                        placeholder="Search to Select"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                        filterSort={(optionA, optionB) =>
+                          optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                        }
+                      >
+                        {restaurants?.map(restaurant => (
+                          <Option key={restaurant.restaurant_id} value={restaurant.restaurant_id}>{restaurant.restaurant_name}</Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                  </div>
+                  <div>
+                    <h4>Category</h4>
+                    <Form.Item 
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please choose category!',
+                        },
+                      ]} 
+                      name="category_id"
+                    >
+                      <Select
+                        size='large'
+                        showSearch
+                        style={{ width: '100%' }}
+                        placeholder="Search to Select"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                        filterSort={(optionA, optionB) =>
+                          optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                        }
+                      >
+                        {restaurants?.map(restaurant => (
+                          <Option key={restaurant.restaurant_id} value={restaurant.restaurant_id}>{restaurant.restaurant_name}</Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                  </div>
+                  <div>
+                    <h4>Rating</h4>
                     <Divider />
 
                     <Form.Item label='Service' name='service'>

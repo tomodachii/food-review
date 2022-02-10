@@ -17,12 +17,12 @@ const Restaurants = ({ items }) => {
         </div>
         <div className='flex flex-col my-5 items-center'>
           <h3>{`${items.length} places`}</h3>
-          <p className='text-gray-500 text-center'>
+          {/* <p className='text-gray-500 text-center'>
             I'm a crepe <br />
             I'm a weirdough <br />
             What the hell am I doughing here <br />
             I donut belong here <br />
-          </p>
+          </p> */}
         </div>
       </div>
       <div className='w-3/4 mx-auto grid grid-cols-10 gap-5'>

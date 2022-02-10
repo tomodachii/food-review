@@ -45,5 +45,9 @@ const userAPI = {
     const url = `http://localhost:5000/users/unsave/${review_id}`;
     return axios.post(url, { user_id: user_id });
   },
+  createReview: (data) => {
+    const url = `http://localhost:5000/users/postReview`;
+    return axios.post(url, data)
+  }
 };
 export default userAPI;

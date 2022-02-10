@@ -1,17 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, DatePicker, Divider, Rate, Select } from 'antd';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 import moment from 'moment';
+import restaurantsAPI from '../../api/restaurants'
 
 const Filter = ({ options }) => {
   const [form] = Form.useForm();
-  // useEffect(() => {
-  //   // console.log(form.getFieldsValue('username'));
-  // }, [username, password]);
+  const [districts, setDistricts] = useState([])
+
+  useEffect(() => {
+    restaurantsAPI.getDistricts()
+    .then(res => {
+      console.log("districts: ", res.data);
+      setDistricts(res.data.districts)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }, []);
 
   const onValuesChange = () => {
-    console.log(form.getFieldsValue('username'));
+    console.log(form.getFieldsValue('sort'));
+    console.log(form.getFieldsValue('date'));
+    console.log(form.getFieldsValue('district'));
   };
   const handleDateChange = (value) => {
     console.log(moment(value[0]).format());
@@ -28,6 +40,8 @@ const Filter = ({ options }) => {
         onValuesChange={onValuesChange}>
         {(!options || options.includes('sort')) && (
           <div className='p-6 pb-1 bg-white transition duration-300 ease-in-out rounded-xl shadow hover:shadow-xl mb-5'>
+            <p className='m-0' style={{textAlign: 'center'}}>Sort</p>
+            <Divider style={{ margin: '0.5rem' }} />
             <Form.Item name='sort'>
               <Select defaultValue='Date' bordered={false}>
                 <Option value='date'>Date</Option>
@@ -58,7 +72,18 @@ const Filter = ({ options }) => {
             </Form.Item>
           </div>
         )}
-        //TODO : quan huyen
+
+        <div className='p-6 pb-1 bg-white transition duration-300 ease-in-out rounded-xl shadow hover:shadow-xl mb-5'>
+          <p className='m-0' style={{textAlign: 'center'}}>District</p>
+          <Divider style={{ margin: '0.5rem' }} />
+          <Form.Item name='district'>
+            <Select defaultValue='All' bordered={false}>
+              {districts?.map(district => (
+                <Option value={district.district_id}>{district.district_name}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+        </div>
       </Form>
     </div>
   );

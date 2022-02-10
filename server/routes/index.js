@@ -18,6 +18,12 @@ router.get('/home/categories', async (req, res) => {
   res.json(data);
 });
 
+router.get('/districts', async (req, res) => {
+  const districts = await prisma.district.findMany();
+  const data = { districts };
+  res.json(data);
+});
+
 router.get('/home/:page', async (req, res) => {
   const page = req.params.page;
 
@@ -55,14 +61,25 @@ router.get('/home/:page', async (req, res) => {
   res.json(data);
 });
 
+// router.get('/home/trends', async (req, res) => {
+//   const trends = await prisma.restaurant.findMany({
+//     where: {
+//       restaurant_rating: {
+//         gt: 4,
+//       },
+//     },
+//     take: 4,
+//   });
+
+//   const data = trends;
+//   res.json(data);
+// });
+
 router.get('/home/trends', async (req, res) => {
-  const trends = await prisma.restaurant.findMany({
-    where: {
-      restaurant_rating: {
-        gt: 4,
-      },
-    },
-    take: 4,
+  const trends = await prisma.table_trend.findMany({
+    include: {
+      restaurant: true
+    }
   });
 
   const data = trends;

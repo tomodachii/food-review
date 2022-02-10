@@ -7,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model address {
   address_id  String       @id @default(uuid())
   address     String       @db.VarChar(255)
@@ -29,17 +28,17 @@ model district {
 }
 
 model restaurant {
-  restaurant_id         String   @id @default(uuid())
+  restaurant_id         String       @id @default(uuid())
   address_id            String
-  restaurant_rating     Float    @default(0)
-  restaurant_name       String   @db.VarChar(1000)
-  restaurant_alias_link String   @db.VarChar(1000)
-  restaurant_image      String?  @db.VarChar(1000)
-  phoneNumber           String?  @db.VarChar(1000)
-  openingTime           String?  @db.VarChar(1000)
-  address               address  @relation(fields: [address_id], references: [address_id])
+  restaurant_rating     Float        @default(0)
+  restaurant_name       String       @db.VarChar(1000)
+  restaurant_alias_link String       @db.VarChar(1000)
+  restaurant_image      String?      @db.VarChar(1000)
+  phoneNumber           String?      @db.VarChar(1000)
+  openingTime           String?      @db.VarChar(1000)
+  address               address      @relation(fields: [address_id], references: [address_id])
   review                review[]
-  table_trend           table_trend[]
+  table_trend           table_trend?
 }
 
 model review {
@@ -59,8 +58,8 @@ model review {
   category          category       @relation(fields: [category_id], references: [category_id])
   restaurant        restaurant     @relation(fields: [restaurant_id], references: [restaurant_id])
   comments          comments[]
-  table_review      table_review[]
   table_image       table_image[]
+  table_review      table_review[]
 }
 
 model table_review {
@@ -69,8 +68,8 @@ model table_review {
   review_id String
   create_at DateTime @default(now())
   action    String   @default("") @db.VarChar(1000)
-  users     users    @relation(fields: [user_id], references: [user_id])
   review    review   @relation(fields: [review_id], references: [review_id])
+  users     users    @relation(fields: [user_id], references: [user_id])
 }
 
 model comments {
@@ -90,8 +89,8 @@ model subcomments {
   subcomment_date    DateTime @default(now())
   user_id            String
   comment_id         String
-  users              users    @relation(fields: [user_id], references: [user_id])
   comments           comments @relation(fields: [comment_id], references: [comment_id])
+  users              users    @relation(fields: [user_id], references: [user_id])
 }
 
 model users {
@@ -104,9 +103,9 @@ model users {
   phone_number String?        @db.VarChar(255)
   avatar       String?        @db.VarChar(1000)
   provider     String?        @default("") @db.VarChar(30)
-  table_review table_review[]
-  subcomments  subcomments[]
   comments     comments[]
+  subcomments  subcomments[]
+  table_review table_review[]
 }
 
 model table_image {
@@ -117,6 +116,6 @@ model table_image {
 }
 
 model table_trend {
-  restaurant_id   String @id @default(uuid())
-  restaurant     restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
+  restaurant_id String     @id @default(uuid())
+  restaurant    restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
 }
