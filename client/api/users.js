@@ -7,7 +7,7 @@ const userAPI = {
   },
   getUser: (username) => {
     const url = `http://localhost:5000/users/account/${username}`;
-    return axios.get(url);
+    return axios.get(url, { withCredentials: true });
   },
   getUserLikedReviews: (id) => {
     const url = `http://localhost:5000/users/likedReviews/${id}`;
@@ -47,7 +47,23 @@ const userAPI = {
   },
   createReview: (data) => {
     const url = `http://localhost:5000/users/postReview`;
-    return axios.post(url, data)
-  }
+    return axios.post(url, data, { withCredentials: true });
+  },
+  editProfile: (data) => {
+    const url = `http://localhost:5000/users/changeInfo`;
+    return axios.post(url, data);
+  },
+  editPassword: (data) => {
+    const url = `http://localhost:5000/users/changePassword`;
+    return axios.post(url, data);
+  },
+  comment: (data) => {
+    const url = `http://localhost:5000/users/comment`;
+    return axios.post(url, data, { withCredentials: true });
+  },
+  deleteReview: (id) => {
+    const url = `http://localhost:5000/users/deleteReview/${id}`;
+    return axios.post(url, { withCredentials: true });
+  },
 };
 export default userAPI;

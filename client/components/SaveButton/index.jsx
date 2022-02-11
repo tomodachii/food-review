@@ -34,8 +34,8 @@ const SaveButton = ({ size, reviewID }) => {
   };
 
   const handleUnsave = async () => {
-    setSaved(false);
     if (user) {
+      setSaved(false);
       await userAPI.unsave(reviewID, { user_id: user.user_id }).catch((err) => {
         console.log(err);
         setSaved(true);
@@ -47,8 +47,8 @@ const SaveButton = ({ size, reviewID }) => {
   };
 
   const handleSave = () => {
-    setSaved(true);
     if (user) {
+      setSaved(true);
       userAPI
         .save(reviewID, { user_id: user.user_id })
         .then((res) => console.log(res))

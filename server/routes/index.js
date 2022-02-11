@@ -61,25 +61,14 @@ router.get('/home/:page', async (req, res) => {
   res.json(data);
 });
 
-// router.get('/home/trends', async (req, res) => {
-//   const trends = await prisma.restaurant.findMany({
-//     where: {
-//       restaurant_rating: {
-//         gt: 4,
-//       },
-//     },
-//     take: 4,
-//   });
-
-//   const data = trends;
-//   res.json(data);
-// });
-
-router.get('/home/trends', async (req, res) => {
-  const trends = await prisma.table_trend.findMany({
-    include: {
-      restaurant: true
-    }
+router.get('/home/restaurant/trends/', async (req, res) => {
+  const trends = await prisma.restaurant.findMany({
+    where: {
+      restaurant_rating: {
+        gte: 9,
+      },
+    },
+    take: 5,
   });
 
   const data = trends;

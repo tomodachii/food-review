@@ -1,5 +1,5 @@
-import { notification } from 'antd';
-import { useEffect, useState, useContext } from 'react';
+import parse from 'html-react-parser';
+import { useEffect, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
 import LikeButton from '../../LikeButton';
 import SaveButton from '../../SaveButton';
@@ -69,7 +69,9 @@ const Item = ({ data }) => {
           <AiTwotoneStar className=' text-white' />
         </div>
       </div>
-      <p className='text-gray-500'>{truncates(data.review.description)}</p>
+      <p className='text-gray-500'>
+        {truncates(parse(data.review.description))}
+      </p>
       <div className='flex mb-5 gap-5 overflow-hidden'>
         {imgList?.length > 7
           ? imgList.slice(0, 7).map((item, index) => (

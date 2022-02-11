@@ -106,6 +106,7 @@ model users {
   comments     comments[]
   subcomments  subcomments[]
   table_review table_review[]
+  // table_trend table_trend[]
 }
 
 model table_image {
@@ -119,3 +120,11 @@ model table_trend {
   restaurant_id String     @id @default(uuid())
   restaurant    restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
 }
+
+// model table_trend {
+//   table_id      String     @id @default(uuid())
+//   restaurant_id String     
+//   user_id       String
+//   restaurant    restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
+//   users         users      @relation(fields: [user_id], references: [user_id])
+// }

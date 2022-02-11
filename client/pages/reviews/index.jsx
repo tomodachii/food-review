@@ -1,13 +1,16 @@
 import FRLayout from '../../layouts/FRLayout';
 import ReviewContainer from '../../components/Review';
 // import items from '../../testcategories';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Filter from '../../components/Filter';
 import { useRouter } from 'next/router';
 import homeAPI from '../../api/home';
 import reviewsAPI from '../../api/reviews';
 
 const Reviews = ({ items }) => {
+  useEffect(() => {
+    console.log(items);
+  });
   const [reviews, setReviews] = useState(items);
   return (
     <FRLayout>
@@ -27,7 +30,7 @@ const Reviews = ({ items }) => {
       </div>
       <div className='w-3/4 mx-auto grid grid-cols-10 gap-5'>
         <div className='col-span-3'>
-          <Filter />
+          <Filter setReviews={setReviews} flag='reviews' />
         </div>
         <div className='col-span-7'>
           <ReviewContainer reviews={reviews} seeMore={true} />

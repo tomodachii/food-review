@@ -18,7 +18,12 @@ const homeAPI = {
     return axios.get(url, { withCredentials: true });
   },
   getTrends: () => {
-    const url = `http://localhost:5000/home/trends`;
+    const url = `http://localhost:5000/home/restaurant/trends/`;
+    return axios.get(url, { withCredentials: true });
+  },
+  getDistricts: () => {
+    const url = `http://localhost:5000/districts`;
+
     return axios.get(url, { withCredentials: true });
   },
 };

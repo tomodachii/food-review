@@ -1,12 +1,8 @@
 import { UserOutlined } from '@ant-design/icons';
 import { FiEdit3 } from 'react-icons/fi';
-import { AiTwotoneStar } from 'react-icons/ai';
-import LikeButton from '../../LikeButton';
-import SaveButton from '../../SaveButton';
 import { MdLocationOn } from 'react-icons/md';
-import { AiFillPhone } from 'react-icons/ai';
+import { AiFillPhone, AiTwotoneStar } from 'react-icons/ai';
 import { MdAccessTimeFilled } from 'react-icons/md';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 const Item = ({ restaurant, disableReview }) => {
@@ -19,10 +15,13 @@ const Item = ({ restaurant, disableReview }) => {
         <div className='flex gap-5 items-center'>
           <img
             src={restaurant.restaurant_image}
-            className='w-24 h-24'
+            className='w-24 h-24 cursor-pointer'
             onError={(e) => {
               e.target.src = '../images/avatars/punpun.png';
             }}
+            onClick={() =>
+              router.push(`/restaurants/${restaurant.restaurant_id}`)
+            }
           />
           <div className='flex flex-col items-start gap-3'>
             <h4
@@ -34,7 +33,9 @@ const Item = ({ restaurant, disableReview }) => {
             </h4>
 
             <div className='inline-flex items-center gap-1 p-1 rounded-xl bg-red-600'>
-              <h5 className='m-0 text-white'>{restaurant.restaurant_rating}</h5>
+              <h5 className='m-0 text-white'>
+                {Math.round(restaurant.restaurant_rating / 2)}
+              </h5>
               <AiTwotoneStar className=' text-white' />
             </div>
           </div>
@@ -119,7 +120,12 @@ const Item = ({ restaurant, disableReview }) => {
                     </h4>
                     <p className='text-gray-400 m-0'>{review.create_at}</p>
                   </div>
-                  <div>star</div>
+                  <div className='inline-flex items-center gap-1 p-1 rounded-xl bg-red-600'>
+                    <h5 className='m-0 text-white'>
+                      {Math.round(review.review.user_rating / 2)}
+                    </h5>
+                    <AiTwotoneStar className=' text-white' />
+                  </div>
                 </div>
                 <div className=''>
                   <p className='text-gray-500 m-0'>

@@ -1,10 +1,11 @@
 import LikeButton from '../../LikeButton';
 import { useRouter } from 'next/dist/client/router';
-import { Tooltip } from 'antd';
 import UserContext from '../../../UserContext';
 import { useContext, useEffect, useState } from 'react';
+import parse from 'html-react-parser';
+import { notification, Button, Tooltip, Space } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import userAPI from '../../../api/users';
-import { notification } from 'antd';
 
 const MiniReviewItem = ({ data, flag }) => {
   // useEffect(() => {
@@ -13,8 +14,15 @@ const MiniReviewItem = ({ data, flag }) => {
   //   });
   // });
   // const [likesNumber, setLikesNumber] = useState(data.review.likes);
-  // const { user, setLoginModalOpen, userLikedReviews } = useContext(UserContext);
-  // const [liked, setLiked] = useState(false);
+  const { user } = useContext(UserContext);
+  const [editable, setEditable] = useState(false);
+  useEffect(() => {
+    if (user) {
+      if (data.users.username == user.username) {
+        setEditable(true);
+      }
+    }
+  }, []);
   const truncates = (input) =>
     input.length > 80 ? `${input.substring(0, 80)}...` : input;
   const router = useRouter();
@@ -24,6 +32,13 @@ const MiniReviewItem = ({ data, flag }) => {
 
   const onUserClick = () => {
     router.push(`/user/${data.users.username}`);
+  };
+  const onDeleteBtnClick = () => {
+    userAPI.deleteReview(data.review.review_id);
+    router.push(`/user/${data.users.username}`);
+  };
+  const onEditBtnClick = () => {
+    router.push(`/reviews/${data.review.review_id}/edit`);
   };
 
   // const handleUnlike = async () => {
@@ -69,6 +84,20 @@ const MiniReviewItem = ({ data, flag }) => {
             className='w-full rounded-xl shadow-lg hover:scale-110 transition duration-500 ease-in-out'
             src={data.review.review_image}
           />
+          {editable && (
+            <Space className='hover:opacity-100 absolute w-full h-full transition duration-500 ease-in-out opacity-0 z-auto top-0 flex align-middle justify-center bg-custom-overlay-color'>
+              <button
+                className='bg-red-500 text-white rounded-full px-2 py-1 opacity-100 w-12 h-12 hover:scale-110 transition duration-500 ease-in-out'
+                onClick={onDeleteBtnClick}>
+                <DeleteOutlined className='-translate-y-0.5' />
+              </button>
+              <button
+                className='bg-white text-black rounded-full px-2 py-1 opacity-100 w-12 h-12 hover:scale-110 transition duration-500 ease-in-out'
+                onClick={onEditBtnClick}>
+                <EditOutlined className='-translate-y-0.5' />
+              </button>
+            </Space>
+          )}
         </div>
         <div className='relative review--mini__content p-5'>
           <Tooltip
@@ -82,7 +111,7 @@ const MiniReviewItem = ({ data, flag }) => {
             </h4>
           </Tooltip>
           <h5 className='text-gray-400 overflow-hidden'>
-            {truncates(data.review.description)}
+            {truncates(parse(data.review.description))}
           </h5>
 
           <div className='flex items-center justify-between'>

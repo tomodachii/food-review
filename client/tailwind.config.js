@@ -14,8 +14,9 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         yujiboku: ['Yuji Boku', 'sans-serif'],
       },
-      color: {
+      colors: {
         'custom-footer-color': '#F8F8F8',
+        'custom-overlay-color': 'rgba(0, 0, 0, 0.5)',
       },
       fontSize: {
         '10xl': '12rem',

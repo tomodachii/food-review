@@ -190,7 +190,7 @@ body {
 
   .ant-input:hover,
   .ant-input:focus {
-    // border: #272343 solid 1px;
+    border: #272343 solid 1px;
     // border: 1px solid #d9d9d9
   }
 
@@ -266,17 +266,34 @@ body {
 
   //select
   .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
-    border-color: #ffd803;
+    // border-color: #ffd803;
+    border-color: #272343;
+  }
+
+  .ant-select:focus,
+  .ant-select-focused,
+  .ant-select-affix-wrapper:focus,
+  .ant-select-affix-wrapper-focused {
+    // box-shadow: 0 0 0 0px #fffffe;
+    box-shadow: none;
+    border-color: #272343;
+    outline: none !important;
   }
 
   .ant-select:hover,
   .ant-select-focused {
-    border-color: #ffd803;
+    // border-color: #ffd803;
+    box-shadow: none;
+    border-color: #272343;
+    outline: none !important;
   }
 
   .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
     .ant-select-selector {
-    border-color: #ffd803;
+    // border-color: #ffd803;
+    box-shadow: none;
+    border-color: #272343;
+    outline: none !important;
   }
 
   /* width */
@@ -484,6 +501,10 @@ body {
   .ant-form-item-label > label {
     font-size: 18px;
   }
+
+  // .ant-form-item {
+  //   margin-bottom: 0;
+  // }
 
   //ck input
   .ck-editor__editable {
