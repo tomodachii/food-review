@@ -23,6 +23,7 @@ const homeAPI = {
   },
   getDistricts: () => {
     const url = `http://localhost:5000/districts`;
+
     return axios.get(url, { withCredentials: true });
   },
 };

@@ -103,7 +103,7 @@ const CreateReview = () => {
   return (
     <RvContext.Provider value={{ images, updateImages }}>
       <FRLayout>
-        <div className='w-3/4 mx-auto '>
+        <div className='w-full mx-auto '>
           <h2 className='text-center my-8 '>Write Review</h2>
           <div className='w-full p-10 bg-white rounded-xl shadow'>
             <Form

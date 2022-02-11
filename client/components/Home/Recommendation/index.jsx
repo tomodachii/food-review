@@ -13,7 +13,6 @@ const Recommendation = ({ data }) => {
   const [stop, setStop] = useState(false);
 
   useEffect(() => {
-    // console.log(data);
     const lastIndex = imgList.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
@@ -47,7 +46,6 @@ const Recommendation = ({ data }) => {
               restaurant_rating,
               restaurant_id,
             } = item;
-            // console.log(item);
             let initPosition =
               'mx-auto w-full h-full absolute top-0 left-0 transition duration-300 ease-in-out';
             let position = initPosition + ' opacity-0 translate-x-full';
