@@ -188,12 +188,16 @@ router.get('/', async (req, res) => {
   res.json(restaurants);
 });
 
-router.get('/:district', async (req, res) => {
-  const restaurant_id = req.params.restaurant_id;
+router.get('district/:district_id', async (req, res) => {
+  const district_id = req.params.district_id;
 
   let restaurants = await prisma.restaurant.findMany({
     where: {
-      restaurant_id: restaurant_id,
+      district: {
+        some: {
+          district_id: district_id,
+        },
+      },
     },
     include: {
       review: {
@@ -205,11 +209,21 @@ router.get('/:district', async (req, res) => {
           },
         },
       },
-      address: true,
+      // address: {
+      //   include: {
+      //     district: {
+      //       some: {
+      //         district_id: district_id,
+      //       },
+      //     },
+      //   },
+      // },
     },
   });
 
-  restaurants[0].review.forEach((rv) => {
+  console.log(restaurants);
+
+  restaurants.review.forEach((rv) => {
     const user = rv.table_review[0].users;
     const rvTemp = rv;
     rv['users'] = user;
@@ -245,7 +259,7 @@ router.get('/:district', async (req, res) => {
     delete rv.table_review;
   });
   // let data = { restaurants[0] };
-  res.json(restaurants[0]);
+  res.json(restaurants);
 });
 
 module.exports = router;

@@ -11,7 +11,6 @@ const prisma = new PrismaClient();
 /* GET users listing. */
 // get all user in users table
 router.get('/', async function (req, res) {
-  console.log('hello');
   if (req.isUnauthenticated()) {
     res.json({ message: 'hello' });
   } else {
@@ -30,7 +29,8 @@ router.post(
 );
 
 router.post('/logout', (req, res) => {
-  req.logOut();
+  console.log(req.isAuthenticated());
+  req.logout();
   res.json('OK');
 });
 
@@ -72,6 +72,7 @@ router.get('/signout', (req, res) => {
 });
 router.get('/account/:username', async (req, res) => {
   // if (req.isAuthenticated()) {
+  console.log(req.isAuthenticated());
   let username = req.params.username;
   let user = await prisma.users.findMany({
     where: {
@@ -106,73 +107,46 @@ router.get('/savedReviews/:user_id', async (req, res) => {
   // if (req.isAuthenticated()) {
   const user_id = req.params.user_id;
 
-  const savedReviews = await prisma.table_review.findMany({
-    where: {
-      user_id: user_id,
-      action: 'saved',
-    },
-    include: {
-      review: true,
-      users: true,
-    },
-  });
-
   // const savedReviews = await prisma.table_review.findMany({
   //   where: {
   //     user_id: user_id,
   //     action: 'saved',
   //   },
   //   include: {
-  //     review: {
-  //       include: {
-  //         table_review: {
-  //           include: {
-  //             users: true,
-  //           },
-  //         },
-  //       },
-  //     },
+  //     review: true,
+  //     users: true,
   //   },
   // });
 
-  savedReviews.reviews.forEach((rv) => {
-    const user = rv.table_review[0].users;
-    const rvTemp = rv;
-    rv['users'] = user;
-    rv['create_at'] = rv.table_review[0].create_at;
-
-    rv['review'] = {
-      review_id: rv.review_id,
-      title: rv.title,
-      description: rv.description,
-      service: rv.service,
-      price: rv.price,
-      food: rv.food,
-      ambience: rv.ambience,
-      restaurant_id: rv.restaurant_id,
-      category_id: rv.category_id,
-      likes: rv.likes,
-      review_image: rv.review_image,
-      user_rating: rv.user_rating,
-      create_at: rv.table_review.create,
-    };
-    delete rv.review_id;
-    delete rv.title;
-    delete rv.description;
-    delete rv.service;
-    delete rv.price;
-    delete rv.food;
-    delete rv.ambience;
-    delete rv.restaurant_id;
-    delete rv.category_id;
-    delete rv.likes;
-    delete rv.review_image;
-    delete rv.user_rating;
-    delete rv.table_review;
+  const savedReviews = await prisma.table_review.findMany({
+    where: {
+      user_id: user_id,
+      action: 'saved',
+    },
+    include: {
+      review: {
+        include: {
+          table_review: {
+            where: {
+              action: 'write',
+            },
+            include: {
+              users: true,
+            },
+          },
+        },
+      },
+    },
   });
 
-  let data = { reviews };
-  res.json(data);
+  savedReviews.forEach((rv) => {
+    const user = rv.review.table_review[0].users;
+    const rvTemp = rv;
+    rv['users'] = user;
+    rv['create_at'] = rv.review.table_review[0].create_at;
+
+    delete rv.review.table_review;
+  });
 
   res.json(savedReviews);
 });
@@ -389,25 +363,38 @@ router.post('/unsave/:review_id', async (req, res) => {
 
 router.post('/deleteReview/:review_id', async (req, res) => {
   // if (req.isAuthenticated()) {
-  const user_id = req.body.user_id;
+  const user_id = req.user.user_id;
   const review_id = req.params.review_id;
 
   const review = await prisma.table_review.findMany({
     where: {
       user_id: user_id,
       review_id: review_id,
-      action: 'saved',
+      action: 'write',
     },
   });
 
   if (review.length != 0) {
-    const user = await prisma.table_review.delete({
+    await prisma.table_review.deleteMany({
       where: {
         user_id: user_id,
         review_id: review_id,
         action: 'write',
       },
     });
+
+    const deletedReview = await prisma.review.delete({
+      where: {
+        review_id: review_id,
+      },
+    });
+
+    await prisma.table_image.deleteMany({
+      where: {
+        review_id: review_id,
+      },
+    });
+
     res.json('deleted');
   } else {
     res.json('Failed to delete');
@@ -415,15 +402,17 @@ router.post('/deleteReview/:review_id', async (req, res) => {
 });
 
 router.post('/changeInfo', async (req, res) => {
-  const { user_id, username, displayName, email, avatar, password } = req.body;
+  const { user_id, displayName, phone_number, email, avatar } = req.body;
+
+  // console.log('hello' + user_id);
 
   const user = await prisma.users.update({
     where: {
       user_id: user_id,
     },
     data: {
-      username: username,
       displayName: displayName,
+      phone_number: phone_number,
       email: email,
       avatar: avatar,
     },
@@ -432,81 +421,193 @@ router.post('/changeInfo', async (req, res) => {
   res.json(user);
 });
 
-router.post('/postReview/:review_id', async (req, res) => {
-  const {
-    images,
-    user_id,
-    title,
-    description,
-    ambience,
-    food,
-    service,
-    price,
-    overall,
-    restaurant_id,
-  } = req.body;
+router.post('/changePassword', async (req, res) => {
+  const { user_id, oldPassowrd, newPassword } = req.body;
 
-  let review_id = IdRender();
-  const newPost = await prisma.review.create({
-    data: {
-      review_id: review_id,
-      title: title,
-      description: description,
-      user_rating: overall * 2,
-      food: food * 2,
-      service: service * 2,
-      price: price * 2,
-      restaurant_id: restaurant_id,
-    },
-  });
+  const user = await prisma.users.findUnique({});
 
-  await prisma.table_review.create({
-    data: {
-      user_id: user_id,
-      review_id: review_id,
-      action: 'write',
-    },
-  });
+  const truePass = bcrypt.compareSync(oldPassowrd, user.password);
 
-  images.forEach(async (image) => {
-    await prisma.table_image.create({
-      review_id: review_id,
-      image_link: image,
+  if (truePass) {
+    const hashedPass = bcrypt.hashSync(newPassword, 12);
+
+    const user = await prisma.users.update({
+      where: {
+        user_id: user_id,
+      },
+      data: {
+        password: hashedPass,
+      },
     });
-  });
 
-  res.json(newPost);
+    res.json(user);
+  } else {
+    res.json({ message: 'Wrong password' });
+  }
+});
+
+router.post('/postReview', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const {
+      user_id,
+      images,
+      title,
+      description,
+      ambience,
+      food,
+      service,
+      price,
+      overall,
+      restaurant_id,
+      category_id,
+    } = req.body;
+
+    // let user_id = req.user.user_id;
+    console.log(images);
+    let review_image = images[0] ? images[0] : '';
+
+    let review_id = IdRender();
+    let alias = IdRender();
+
+    const newPost = await prisma.review.create({
+      data: {
+        review_id: review_id,
+        review_image: review_image,
+        review_alias_link: alias,
+        title: title,
+        description: `${description}`,
+        user_rating: Number(overall) * 2,
+        ambience: Number(ambience) * 2,
+        food: Number(food) * 2,
+        service: Number(service) * 2,
+        price: Number(price) * 2,
+        restaurant_id: restaurant_id,
+        category_id: category_id,
+      },
+    });
+
+    await prisma.table_review.create({
+      data: {
+        user_id: user_id,
+        review_id: review_id,
+        action: 'write',
+      },
+    });
+
+    await Promise.all(
+      images.map(async (image) => {
+        await prisma.table_image.create({
+          data: {
+            review_id: review_id,
+            image_link: image,
+          },
+        });
+      })
+    );
+
+    res.json(newPost);
+  } else {
+    res.json({ message: 'Have not loged in yet' });
+  }
+});
+
+router.post('/editReview/:review_id', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const review_id = req.params.review_id;
+
+    const {
+      user_id,
+      images,
+      title,
+      description,
+      ambience,
+      food,
+      service,
+      price,
+      overall,
+      restaurant_id,
+      category_id,
+    } = req.body;
+
+    let review_image = images[0] ? images[0] : '';
+
+    const editedPost = await prisma.review.update({
+      where: {
+        review_id: review_id,
+      },
+      data: {
+        review_id: review_id,
+        review_image: review_image,
+        review_alias_link: alias,
+        title: title,
+        description: `${description}`,
+        user_rating: Number(overall) * 2,
+        ambience: Number(ambience) * 2,
+        food: Number(food) * 2,
+        service: Number(service) * 2,
+        price: Number(price) * 2,
+        restaurant_id: restaurant_id,
+        category_id: category_id,
+      },
+    });
+
+    await prisma.table_image.deleteMany({
+      where: {
+        review_id: review_id,
+      },
+    });
+
+    await Promise.all(
+      images.map(async (image) => {
+        await prisma.table_image.create({
+          data: {
+            review_id: review_id,
+            image_link: image,
+          },
+        });
+      })
+    );
+
+    res.json(editedPost);
+  } else {
+    res.json({ message: 'Have not loged in yet' });
+  }
 });
 
 router.post('/createRestaurant', async (req, res) => {
   const {
-    restaurant_image,
     user_id,
     restaurant_name,
+    restaurant_image,
     phoneNumber,
     openingTime,
     address,
+    district_id,
   } = req.body;
 
+  let address_id = IdRender();
   let restaurant_id = IdRender();
-  const newRestaurant = await prisma.restuarant.create({
+  let alias = IdRender();
+
+  await prisma.address.create({
     data: {
-      restaurant_id,
-      restaurant_image,
-      restaurant_name,
-      phoneNumber,
-      openingTime,
-      address,
+      address_id: address_id,
+      address: `${address}`,
+      district_id: district_id,
     },
   });
 
-  // await prisma.table_review.create({
-  //   data: {
-  //     user_id: user_id,
-  //     review_id: review_id,
-  //     action: 'write',
-  //   },
-  // });
+  const newRestaurant = await prisma.restaurant.create({
+    data: {
+      address_id: address_id,
+      restaurant_id: restaurant_id,
+      restaurant_image: `${restaurant_image}`,
+      restaurant_name: `${restaurant_name}`,
+      restaurant_alias_link: alias,
+      phoneNumber: `${phoneNumber}`,
+      openingTime: `${openingTime}`,
+    },
+  });
 
   res.json(newRestaurant);
 });
@@ -540,6 +641,27 @@ router.get('/:review_id', async (req, res) => {
   });
 
   res.json(reviewItem);
+});
+
+router.post('/comment', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const { review_id, comment_content } = req.body;
+
+    // let comment_id = IdRender();
+
+    let comment = await prisma.comments.create({
+      data: {
+        // comment_id: comment_id,
+        comment_content: comment_content,
+        user_id: req.user.user_id,
+        review_id: review_id,
+      },
+    });
+
+    res.json(comment);
+  } else {
+    res.json({ message: 'Have not loged in yet' });
+  }
 });
 
 module.exports = router;

@@ -4,7 +4,9 @@ import 'leaflet/dist/leaflet.css';
 // import L from 'leaflet';
 
 const Map = ({ lat, lng }) => {
-  const [selectedPosition, setSelectedPosition] = useState([0, 0]);
+  const [selectedPosition, setSelectedPosition] = useState([
+    20.993776, 105.811417,
+  ]);
   const [click, setClick] = useState(false);
   const mapRef = useRef();
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -13,6 +15,11 @@ const Map = ({ lat, lng }) => {
   const LRef = useRef();
   const L = LRef.current || {};
   useEffect(() => {
+    if (lat) {
+      if (lng) {
+        setSelectedPosition([lat, lng]);
+      }
+    }
     mapRef.current = {
       useMapEvents: require('react-leaflet').useMapEvents,
       MapContainer: require('react-leaflet').MapContainer,
@@ -51,11 +58,14 @@ const Map = ({ lat, lng }) => {
   return (
     <div className='w-full h-full'>
       {mapLoaded ? (
-        <MapContainer center={[lat, lng]} zoom={45} scrollWheelZoom={true}>
+        <MapContainer
+          center={selectedPosition}
+          zoom={15}
+          scrollWheelZoom={true}>
           {/* <Markers /> */}
           <Marker
             key={selectedPosition[0]}
-            position={[lat, lng]}
+            position={selectedPosition}
             interactive={false}
             icon={getIcon(50)}
           />

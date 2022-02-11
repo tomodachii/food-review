@@ -119,10 +119,11 @@ const Register = ({ open, setOpen }) => {
                   type='primary'
                   htmlType='submit'
                   className='login-form-button'
+                  style={{ marginRight: '10px', borderRadius: '4px' }}
+                  size='large'
                   danger>
                   Register
                 </Button>
-                Or <a href=''>register now!</a>
               </Form.Item>
             </Form>
           </div>

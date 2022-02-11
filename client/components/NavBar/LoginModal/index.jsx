@@ -148,14 +148,14 @@ const LoginModal = ({ open, setOpen }) => {
               </div>
               <Form.Item>
                 <Button
-                  style={{ marginRight: '10px' }}
+                  style={{ marginRight: '10px', borderRadius: '4px' }}
                   type='primary'
                   htmlType='submit'
                   className='login-form-button'
+                  size='large'
                   danger>
                   Log in
                 </Button>
-                Or <a href=''>register now!</a>
               </Form.Item>
             </Form>
             <Button
@@ -166,8 +166,10 @@ const LoginModal = ({ open, setOpen }) => {
                 marginBottom: '10px',
                 width: '50%',
                 display: 'block',
+                background: '#2190c4',
+                borderRadius: '4px',
               }}
-              danger
+              // danger
               size='large'
               icon={<GoogleSquareFilled />}>
               Google
@@ -179,7 +181,8 @@ const LoginModal = ({ open, setOpen }) => {
                 width: '50%',
                 color: 'white',
                 display: 'block',
-                background: '#1294f4',
+                background: '#0037ae',
+                borderRadius: '4px',
               }}
               size='large'
               icon={<FacebookFilled />}>

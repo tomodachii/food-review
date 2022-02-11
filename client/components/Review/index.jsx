@@ -12,9 +12,9 @@ const ReviewContainer = ({ reviews, limit, seeMore }) => {
     await setLoading(true);
     await homeAPI
       .getData(page)
-      .then(async (res) => {
-        await setReviewList((prevState) => [...prevState, ...res.data.reviews]);
-        await console.log(reviewList);
+      .then((res) => {
+        setReviewList((prevState) => [...prevState, ...res.data.reviews]);
+        console.log(reviewList);
         setPage((prevState) => prevState + 1);
       })
       .catch((err) => {

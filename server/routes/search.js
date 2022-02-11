@@ -149,14 +149,84 @@ router.get('/users/:key', async (req, res) => {
   res.json(data);
 });
 
-router.get('/reviews/:key/:fromDate/:toDate', async (req, res) => {
+// router.get('/reviews/:key/:fromDate/:toDate', async (req, res) => {
+//   const key = req.params.key;
+//   const fromDate = req.params.fromDate;
+//   const toDate = req.params.toDate;
+
+//   let reviews = await prisma.review.findMany({
+//     where: {
+//       title: { contains: key },
+//       table_review: {
+//         some: {
+//           create_at: {
+//             gte: new Date(fromDate),
+//             lt: new Date(toDate),
+//           },
+//         },
+//       },
+//     },
+//     include: {
+//       table_review: {
+//         include: {
+//           users: true,
+//         },
+//       },
+//     },
+//   });
+
+//   reviews.forEach((rv) => {
+//     const user = rv.table_review[0].users;
+//     const rvTemp = rv;
+//     rv['users'] = user;
+//     rv['create_at'] = rv.table_review[0].create_at;
+
+//     rv['review'] = {
+//       review_id: rv.review_id,
+//       title: rv.title,
+//       description: rv.description,
+//       service: rv.service,
+//       price: rv.price,
+//       food: rv.food,
+//       ambience: rv.ambience,
+//       restaurant_id: rv.restaurant_id,
+//       category_id: rv.category_id,
+//       likes: rv.likes,
+//       review_image: rv.review_image,
+//       user_rating: rv.user_rating,
+//       create_at: rv.table_review.create,
+//     };
+//     delete rv.review_id;
+//     delete rv.title;
+//     delete rv.description;
+//     delete rv.service;
+//     delete rv.price;
+//     delete rv.food;
+//     delete rv.ambience;
+//     delete rv.restaurant_id;
+//     delete rv.category_id;
+//     delete rv.likes;
+//     delete rv.review_image;
+//     delete rv.user_rating;
+//     delete rv.table_review;
+//   });
+
+//   let data = { reviews };
+//   res.json(data);
+// });
+
+router.get('/reviews/:key/:rating/date/:fromDate/:toDate', async (req, res) => {
   const key = req.params.key;
   const fromDate = req.params.fromDate;
   const toDate = req.params.toDate;
+  const rating = req.params.rating;
 
   let reviews = await prisma.review.findMany({
     where: {
       title: { contains: key },
+      user_rating: {
+        gte: rating,
+      },
       table_review: {
         some: {
           create_at: {
@@ -214,7 +284,6 @@ router.get('/reviews/:key/:fromDate/:toDate', async (req, res) => {
   let data = { reviews };
   res.json(data);
 });
-
 router.get('/users/:key', async (req, res) => {
   const key = req.params.key;
 

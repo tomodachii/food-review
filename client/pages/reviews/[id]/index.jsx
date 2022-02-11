@@ -10,6 +10,9 @@ import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import restaurantsAPI from '../../../api/restaurants';
 import RestaurantContainer from '../../../components/Restaurant';
 import { useEffect } from 'react';
+import CommentSection from '../../../components/CommentSection';
+import { useRouter } from 'next/router';
+import parse from 'html-react-parser';
 const customIcons = {
   1: <FrownOutlined />,
   2: <FrownOutlined />,
@@ -83,6 +86,7 @@ const ExampleComment3 = ({ children }) => (
 );
 
 const Review = ({ data, imgList, restaurant }) => {
+  const router = useRouter();
   useEffect(() => {
     console.log('restaurant');
     console.log(data.review);
@@ -115,6 +119,7 @@ const Review = ({ data, imgList, restaurant }) => {
                 onError={(e) => {
                   e.target.src = '../images/avatars/punpun.png';
                 }}
+                onClick={() => router.push(`/user/${data.users.username}`)}
               />
             </Tooltip>
 
@@ -138,17 +143,18 @@ const Review = ({ data, imgList, restaurant }) => {
               defaultValue={Math.round(data.review.user_rating) / 2}
             />
           </div>
-          <p>{data.review.description}</p>
+          <p>{parse(data.review.description)}</p>
           <RestaurantContainer
             restaurants={[restaurant]}
             disableReview={true}
           />
-          <ExampleComment>
+          {/* <ExampleComment>
             <ExampleComment1>
               <ExampleComment2 />
               <ExampleComment3 />
             </ExampleComment1>
-          </ExampleComment>
+          </ExampleComment> */}
+          <CommentSection review_id={data.review.review_id} />
         </div>
       </div>
     </FRLayout>

@@ -1,8 +1,7 @@
 import { UserOutlined } from '@ant-design/icons';
 import { FiEdit3 } from 'react-icons/fi';
-import { AiTwotoneStar } from 'react-icons/ai';
 import { MdLocationOn } from 'react-icons/md';
-import { AiFillPhone } from 'react-icons/ai';
+import { AiFillPhone, AiTwotoneStar } from 'react-icons/ai';
 import { MdAccessTimeFilled } from 'react-icons/md';
 import { useRouter } from 'next/router';
 
@@ -123,7 +122,7 @@ const Item = ({ restaurant, disableReview }) => {
                   </div>
                   <div className='inline-flex items-center gap-1 p-1 rounded-xl bg-red-600'>
                     <h5 className='m-0 text-white'>
-                      {review.review.user_rating}
+                      {Math.round(review.review.user_rating / 2)}
                     </h5>
                     <AiTwotoneStar className=' text-white' />
                   </div>

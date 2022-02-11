@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Typography } from 'antd';
+import { useRouter } from 'next/router';
+import { AiTwotoneStar } from 'react-icons/ai';
 
 const { Text, Title } = Typography;
 
 const Recommendation = ({ data }) => {
+  const router = useRouter();
   const [imgList, setImgList] = useState(data);
   const [index, setIndex] = useState(0);
   const [stop, setStop] = useState(false);
 
   useEffect(() => {
+    // console.log(data);
     const lastIndex = imgList.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
@@ -35,7 +39,15 @@ const Recommendation = ({ data }) => {
       <div className='my-5 mx-auto w-full relative'>
         <div className='w-3/4 mx-auto h-[600px] overflow-hidden relative'>
           {imgList.map((item, itemIndex) => {
-            const { image, name } = item;
+            const {
+              restaurant_image,
+              restaurant_name,
+              openingTime,
+              phoneNumber,
+              restaurant_rating,
+              restaurant_id,
+            } = item;
+            // console.log(item);
             let initPosition =
               'mx-auto w-full h-full absolute top-0 left-0 transition duration-300 ease-in-out';
             let position = initPosition + ' opacity-0 translate-x-full';
@@ -51,7 +63,7 @@ const Recommendation = ({ data }) => {
             return (
               <div
                 className={position}
-                key={name}
+                key={restaurant_name}
                 onMouseOver={() => setStop(true)}
                 onMouseOut={() => setStop(false)}>
                 <img
@@ -63,33 +75,30 @@ const Recommendation = ({ data }) => {
                     right: 0,
                   }}
                   className=' object-cover h-full w-full scale-95 rounded-3xl shadow-lg cursor-pointer hover:shadow-xl'
-                  src={image}
-                  alt={name}
+                  src={restaurant_image}
+                  onError={(e) => (e.target.src = 'images/avatars/punpun.png')}
                 />
                 <div
+                  onClick={() => router.push(`/restaurants/${restaurant_id}`)}
                   style={{
                     background: 'rgba(0, 0, 0, 0.5)',
                   }}
-                  className='flex flex-col justify-center opacity-0 transition duration-300 ease-in-out hover:opacity-100 scale-95 rounded-3xl h-full w-full inset-0 z-50'>
-                  <Title
-                    level={2}
-                    style={{ textAlign: 'center', color: 'white' }}>
-                    Title
-                  </Title>
+                  className='cursor-pointer flex flex-col justify-center opacity-0 transition duration-300 ease-in-out hover:opacity-100 scale-95 rounded-3xl h-full w-full inset-0 z-50'>
+                  <h1 className='pb-3 text-center text-white font-yujiboku px-5'>
+                    {restaurant_name}
+                  </h1>
                   <Title
                     level={3}
                     style={{ textAlign: 'center', color: 'white' }}>
-                    Subtitle
+                    {openingTime}
                   </Title>
-                  <Text style={{ textAlign: 'center', color: 'white' }}>
-                    Something text in here
-                  </Text>
-                  <Text style={{ textAlign: 'center', color: 'white' }}>
-                    Something text in here
-                  </Text>
-                  <Text style={{ textAlign: 'center', color: 'white' }}>
-                    Something text in here
-                  </Text>
+                  <h4 className='p-3 text-center text-white'>{phoneNumber}</h4>
+                  <div className='mt-3 flex items-center gap-1 p-1 rounded-xl bg-red-600 mx-auto'>
+                    <h4 className='p-1 m-0 text-white'>
+                      {Math.round(restaurant_rating / 2)}
+                    </h4>
+                    <AiTwotoneStar className=' text-white' />
+                  </div>
                 </div>
               </div>
             );
@@ -108,7 +117,7 @@ const Recommendation = ({ data }) => {
 
         <div className='pt-8 flex items-center justify-center gap-4'>
           {imgList.map((item, itemIndex) => {
-            const { image, name } = item;
+            const { restaurant_image, restaurant_name } = item;
             let initPosition =
               'object-cover h-[65px] w-[70px] rounded-lg ransition duration-500 ease-in-out cursor-pointer hover:scale-110';
             let position = initPosition + ' opacity-50';
@@ -118,10 +127,10 @@ const Recommendation = ({ data }) => {
 
             return (
               <img
-                key={name}
+                key={restaurant_name}
                 className={position}
-                src={image}
-                alt={name}
+                src={restaurant_image}
+                onError={(e) => (e.target.src = 'images/avatars/punpun.png')}
                 onClick={() => setIndex(itemIndex)}
               />
             );

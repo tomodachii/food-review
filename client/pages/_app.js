@@ -19,8 +19,6 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if (!user) {
       userAPI.getLoginUser().then((res) => {
-        console.log('app');
-        console.log(res.data.user);
         if (res.data?.user) {
           setUser(res.data.user);
           userAPI

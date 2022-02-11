@@ -8,13 +8,11 @@ import { FiEdit3 } from 'react-icons/fi';
 import { useRouter } from 'next/dist/client/router';
 import UserContext from '../../UserContext';
 import { useContext } from 'react';
-import userAPI from '../../api/users';
 import loginAPI from '../../api/login';
 
 const NavBar = ({ appName, type }) => {
   const router = useRouter();
   const [navItemStyle, setNavItemStyle] = useState('');
-  const [avatarUser, setAvatarUser] = useState('');
   const {
     user,
     setUser,
@@ -55,7 +53,7 @@ const NavBar = ({ appName, type }) => {
     if (user) {
       router.push('/reviews/create');
     } else {
-      await setRegisterModalOpen(true);
+      await setLoginModalOpen(true);
       await openNotification('error', 'You have to login first');
     }
   };

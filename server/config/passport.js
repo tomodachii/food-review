@@ -48,7 +48,6 @@ passport.use(
       });
 
       if (newUser) {
-        console.log('ok');
         return done(null, newUser);
       } else {
         return done(null, false);
@@ -172,6 +171,8 @@ passport.deserializeUser(async function (user_id, done) {
     if (authUser) {
       done(null, authUser);
       return;
+    } else {
+      done(null, false);
     }
   } catch (err) {
     done(null, false);

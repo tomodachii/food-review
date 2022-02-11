@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tabs } from 'antd';
 import FRLayout from '../../../../layouts/FRLayout';
 import ProfileEdit from '../../../../components/User/ProfileEdit';
 import PasswordChange from '../../../../components/User/PasswordChange';
-import items from '../../../../testcategories';
+import userAPI from '../../../../api/users';
 
 const { TabPane } = Tabs;
 
-const UserEdit = () => {
-  const [userInfo, setUserInfo] = useState(items);
+const UserEdit = ({ data }) => {
   return (
     <>
       <FRLayout>
@@ -18,7 +17,7 @@ const UserEdit = () => {
           <div className='my-6'>
             <Tabs tabPosition='left'>
               <TabPane tab='Edit Profile' key='1'>
-                <ProfileEdit userInfo={userInfo[0]} />
+                <ProfileEdit userInfo={data} />
               </TabPane>
               <TabPane tab='Change Password' key='2'>
                 <PasswordChange />
@@ -29,6 +28,17 @@ const UserEdit = () => {
       </FRLayout>
     </>
   );
+};
+
+UserEdit.getInitialProps = async ({ query }) => {
+  const { username } = query;
+  const data = await userAPI
+    .getUser(username)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return {
+    data,
+  };
 };
 
 export default UserEdit;

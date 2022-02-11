@@ -13,5 +13,10 @@ const restaurantsAPI = {
     const url = `http://localhost:5000/restaurants/images/${id}`;
     return axios.get(url);
   },
+  getDistricts: () => {
+    const url = `http://localhost:5000/districts`;
+    return axios.get(url);
+  },
+
 };
 export default restaurantsAPI;

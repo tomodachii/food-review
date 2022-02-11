@@ -62,7 +62,7 @@ const Restaurant = ({ data, imgList }) => {
             <Slider data={imgList[0]} />
           </div>
         </div>
-        <div class='grid grid-cols-2 gap-2'>
+        {/* <div class='grid grid-cols-2 gap-2'>
           <div className='w-full'>
             <div className='w-full h-[600px] rounded-lg'>
               <Map lat={21.01109167859198} lng={105.93397082593505} />
@@ -76,7 +76,7 @@ const Restaurant = ({ data, imgList }) => {
             </div>
             <ReviewContainer reviews={data.review} />
           </div>
-        </div>
+        </div> */}
         <div className='w-full'>
           <div className='w-full h-[600px] rounded-lg'>
             <Map lat={21.01109167859198} lng={105.93397082593505} />

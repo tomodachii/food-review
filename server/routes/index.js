@@ -18,7 +18,7 @@ router.get('/home/categories', async (req, res) => {
   res.json(data);
 });
 
-router.get('/district', async (req, res) => {
+router.get('/districts', async (req, res) => {
   const districts = await prisma.district.findMany();
   const data = { districts };
   res.json(data);
@@ -61,14 +61,14 @@ router.get('/home/:page', async (req, res) => {
   res.json(data);
 });
 
-router.get('/home/trends', async (req, res) => {
+router.get('/home/restaurant/trends/', async (req, res) => {
   const trends = await prisma.restaurant.findMany({
     where: {
       restaurant_rating: {
-        gt: 4,
+        gte: 9,
       },
     },
-    take: 4,
+    take: 5,
   });
 
   const data = trends;
